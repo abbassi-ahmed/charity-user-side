@@ -27,9 +27,6 @@ const DonationProject = ({ project }) => {
     e.preventDefault();
     let formErrors = {};
 
-    if (!token) {
-      formErrors.token = "Please select a currency";
-    }
     if (!amount) {
       formErrors.amount = "Please enter an amount";
     }
@@ -53,7 +50,7 @@ const DonationProject = ({ project }) => {
       const response = await axios.post(
         "http://localhost:3636/payments/project-donation",
         {
-          token: token,
+          token: "TND",
           amount: parseFloat(amount),
           description: description,
           firstName: firstName,
@@ -149,7 +146,7 @@ const DonationProject = ({ project }) => {
                     setErrors({ ...errors, phone: "" });
                   }}
                 />
-                <Col
+                {/* <Col
                   lg={5}
                   className={`d-flex gap-3 align-items-center justify-content-center mt-3 mb-3 p-2 rounded border border-gray shadow-sm bg-light text-gray w-100 ${
                     errors.token && "border-danger"
@@ -188,7 +185,7 @@ const DonationProject = ({ project }) => {
                     }}
                   />
                   EUR
-                </Col>
+                </Col> */}
                 <input
                   type="text"
                   placeholder="Amount"

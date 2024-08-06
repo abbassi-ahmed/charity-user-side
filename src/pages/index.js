@@ -45,7 +45,7 @@ const Home = () => {
   return (
     <div>
       <Layout>
-        <Header user={user} />
+        <Header />
         {user ? (
           <div>
             <BannerSlider />

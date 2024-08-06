@@ -35,9 +35,14 @@ export const navItems = [
   },
   {
     id: 6,
-    name: "Contact",
-    href: "/contact",
+    name: "Abonnement",
+    href: "/abonnement",
   },
+  // {
+  //   id: 7,
+  //   name: "Contact",
+  //   href: "/contact",
+  // },
 ];
 export const navDefault = [
   {

@@ -9,7 +9,7 @@ import Link from "next/link";
 const { logo, navItems, phone, icon, email, address, socials, navDefault } =
   headerData;
 
-const Header = ({ className = "", user }) => {
+const Header = ({ className = "" }) => {
   const { scrollTop } = useScroll(160);
 
   return (
@@ -45,7 +45,6 @@ const Header = ({ className = "", user }) => {
             navDefault={navDefault}
             icon={icon}
             phone={phone}
-            user={user}
           />
         </Container>
       </div>

@@ -10,6 +10,8 @@ import "react-modal-video/css/modal-video.css";
 import "@/styles/default.css";
 import "@/styles/style.css";
 import "@/styles/menu.css";
+import "@/styles/modalPayment.css";
+import "@/styles/subscriptionCard.css";
 
 const MyApp = ({ Component, pageProps }) => {
   return (

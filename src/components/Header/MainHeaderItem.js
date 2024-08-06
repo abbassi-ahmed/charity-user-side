@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Image, Row } from "react-bootstrap";
 import Link from "../Reuseable/Link";
 import HeaderInfo from "./HeaderInfo";
@@ -12,8 +12,32 @@ const MainHeaderItem = ({
   phone = "",
   socials,
   searchColor,
-  user,
 }) => {
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      fetch("http://localhost:3636/users/verify", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ token }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data && data.firstName) {
+            setUser(data);
+          } else {
+            localStorage.removeItem("token");
+          }
+        })
+        .catch((error) => {
+          console.error("Error verifying token:", error);
+          localStorage.removeItem("token");
+        });
+    }
+  }, []);
   return (
     <Row>
       <Col lg={12}>
@@ -24,8 +48,12 @@ const MainHeaderItem = ({
                 <Image src={logo.src} alt="logo" />
               </Link>
             </div>
-            {user && <HeaderMenu navItems={navItems} />}
-            <HeaderMenu navItems={navDefault} />
+            {user?.id ? (
+              <HeaderMenu navItems={navItems} />
+            ) : (
+              <HeaderMenu navItems={navDefault} />
+            )}
+
             <HeaderInfo
               icon={icon}
               phone={phone}
