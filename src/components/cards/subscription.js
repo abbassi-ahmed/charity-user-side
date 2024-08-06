@@ -41,6 +41,7 @@ export default function Subscription({ key, title, description, price, user }) {
           lastName: lastName,
           email: email,
           phoneNumber: phone,
+          subscriptionId: 2,
         }
       );
       if (response.status === 204) {
