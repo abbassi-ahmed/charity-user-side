@@ -12,6 +12,16 @@ const CategoriesBoxItem = ({ categories = [] }) => {
         <div key={id} className="item">
           <a href="#">
             <i className={icon}></i>
+            {/* <Image
+              src={icon.src}
+              alt="icon"
+              style={{
+                width: 80,
+                height: 80,
+                objectFit: "cover",
+                boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.1)",
+              }}
+            /> */}
             <br />
             <span>{title}</span>
           </a>
