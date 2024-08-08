@@ -23,7 +23,7 @@ export default function Page() {
       const fetchProjectData = async () => {
         try {
           const projectResponse = await fetch(
-            `http://localhost:3636/projects/find-one/${id}`
+            `http://194.164.54.216:3636/projects/find-one/${id}`
           );
           if (!projectResponse.ok) throw new Error("Failed to fetch project");
           const projectData = await projectResponse.json();
@@ -34,7 +34,7 @@ export default function Page() {
 
         try {
           const sumResponse = await fetch(
-            `http://localhost:3636/project-donation/get-sum-of-donations/${id}`
+            `http://194.164.54.216:3636/project-donation/get-sum-of-donations/${id}`
           );
           if (!sumResponse.ok)
             throw new Error("Failed to fetch sum of donations");
