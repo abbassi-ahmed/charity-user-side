@@ -12,6 +12,7 @@ import "@/styles/style.css";
 import "@/styles/menu.css";
 import "@/styles/modalPayment.css";
 import "@/styles/subscriptionCard.css";
+import "@/styles/skeletonLoader.css";
 
 const MyApp = ({ Component, pageProps }) => {
   return (

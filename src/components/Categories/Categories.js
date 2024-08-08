@@ -1,73 +1,139 @@
 import { categoriesSection } from "@/data/categories";
-import React from "react";
+import axios from "axios";
+import React, { useState, useEffect, Suspense } from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
+const { text } = categoriesSection;
+import {
+  SkeletonCategoriesBoxItem,
+  SkeletonLoader,
+} from "../skeletonLoader/skeletonLoader";
 
-const { bg, tagline, title, text, categoriesUser, signIn, categories } =
-  categoriesSection;
+const LazyComponent = (props) => {
+  return (
+    <div>
+      <h1>This is a Lazy Loaded Component!</h1>
+    </div>
+  );
+};
 
 const CategoriesBoxItem = ({ categories = [] }) => {
   return (
     <div className="categories-box-item">
-      {categories.map(({ id, icon, title }) => (
-        <div key={id} className="item">
-          <a href="#">
-            <i className={icon}></i>
-            {/* <Image
-              src={icon.src}
-              alt="icon"
-              style={{
-                width: 80,
-                height: 80,
-                objectFit: "cover",
-                boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.1)",
-              }}
-            /> */}
-            <br />
-            <span>{title}</span>
-          </a>
-        </div>
-      ))}
+      {categories.length > 0 ? (
+        categories.map(({ id, icon, title }) => (
+          <div key={id} className="item">
+            <a href="#">
+              <Image
+                src={icon}
+                alt="icon"
+                style={{
+                  width: 80,
+                  height: 80,
+                  objectFit: "cover",
+                  boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.1)",
+                }}
+              />
+              <br />
+              <span>{title}</span>
+            </a>
+          </div>
+        ))
+      ) : (
+        <p>No categories available</p>
+      )}
     </div>
   );
 };
 
 const Categories = () => {
+  const [categoriesSection, setCategoriesSection] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const fetchCategories = async () => {
+    try {
+      setLoading(true);
+      const res = await axios.get(
+        "http://localhost:3636/categories-section/find-all"
+      );
+      setCategoriesSection(res.data);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
   return (
     <section
       className="categories-area bg_cover"
-      style={{ backgroundImage: `url(${bg.src})` }}
+      style={{
+        backgroundImage: `url(${
+          categoriesSection && categoriesSection[0]?.bg
+        })`,
+      }}
     >
       <Container>
-        <Row className="align-items-center">
-          <Col lg={5}>
-            <div className="categories-content">
-              <span>{tagline}</span>
-              <h3 className="title">{title}</h3>
-              <p>{text}</p>
-              <div className="item d-flex align-items-center">
-                <div className="thumb">
-                  <Image
-                    src={categoriesUser.src}
-                    alt=""
-                    style={{
-                      width: 72,
-                      height: 72,
-                      borderRadius: 50,
-                      objectFit: "cover",
-                    }}
-                  />
+        {loading ? (
+          <SkeletonLoader />
+        ) : categoriesSection ? (
+          <Row className="align-items-center">
+            <Col lg={5}>
+              <div className="categories-content">
+                <span>{categoriesSection[0]?.tagline || ""}</span>
+                <h3 className="title">{categoriesSection[0]?.title || ""}</h3>
+                <p
+                  style={{
+                    wordWrap: "break-word",
+                    overflowWrap: "break-word",
+                    wordBreak: "break-word",
+                  }}
+                >
+                  {categoriesSection[0]?.description || ""}
+                </p>
+                <div className="item d-flex align-items-center">
+                  <div className="thumb">
+                    <Image
+                      src={categoriesSection[0]?.categoriesUser || ""}
+                      alt=""
+                      style={{
+                        width: 72,
+                        height: 72,
+                        borderRadius: 50,
+                        objectFit: "cover",
+                      }}
+                    />
+                  </div>
+                  <p>{categoriesSection[0]?.signature || ""}</p>
                 </div>
-                <Image src={signIn.src} alt="singin" />
               </div>
-            </div>
-          </Col>
-          <Col lg={7}>
-            <div className="categories-box">
-              <CategoriesBoxItem categories={categories.slice(0, 3)} />
-              <CategoriesBoxItem categories={categories.slice(3)} />
-            </div>
-          </Col>
-        </Row>
+            </Col>
+            <Col lg={7}>
+              <div className="categories-box">
+                <Suspense fallback={<SkeletonCategoriesBoxItem />}>
+                  <CategoriesBoxItem
+                    categories={
+                      categoriesSection[0]?.categories.slice(0, 3) || []
+                    }
+                  />
+
+                  {categoriesSection[0]?.categories.slice(3).length > 3 && (
+                    <CategoriesBoxItem
+                      categories={
+                        categoriesSection[0]?.categories.slice(3) || []
+                      }
+                    />
+                  )}
+                </Suspense>
+              </div>
+            </Col>
+          </Row>
+        ) : (
+          <p>No categories section available</p>
+        )}
       </Container>
     </section>
   );

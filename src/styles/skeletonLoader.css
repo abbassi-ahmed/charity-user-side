@@ -1,0 +1,34 @@
+.skeleton {
+    background: #e0e0e0;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+.skeleton-text {
+    height: 20px;
+}
+
+.skeleton-title {
+    width: 70%;
+}
+
+.skeleton-description {
+    width: 100%;
+    height: 60px;
+}
+
+.skeleton-thumb {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+}
+
+.skeleton-signature {
+    width: 50%;
+}
+
+.skeleton-box-item {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 15px;
+}
