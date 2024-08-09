@@ -26,6 +26,7 @@
     "swiper": "^8.1.6"
   },
   "devDependencies": {
+    "encoding": "^0.1.13",
     "eslint": "8.15.0",
     "eslint-config-next": "12.1.6"
   }

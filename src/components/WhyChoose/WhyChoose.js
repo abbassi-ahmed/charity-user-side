@@ -1,8 +1,13 @@
 import { whyChoose } from "@/data/whyChoose";
-import React from "react";
-import { Col, Container, Image, Row } from "react-bootstrap";
-
-const { title, thumb, thumb2, tagline, title2, items } = whyChoose;
+import { funFacts } from "@/data/funFacts";
+import React, { useState, useEffect, Suspense } from "react";
+import { Container, Image, Row, Col } from "react-bootstrap";
+import axios from "axios";
+import {
+  SkeletonCategoriesBoxItem,
+  SkeletonWhyChooseItem,
+} from "../skeletonLoader/skeletonLoader";
+// const { title, thumb, thumb2, tagline, title2, items } = whyChoose;
 
 const Item = ({ item = {} }) => {
   const { title, text } = item;
@@ -18,39 +23,62 @@ const Item = ({ item = {} }) => {
 const Thumb = ({ thumb }) => {
   return (
     <div className="thumb">
-      <Image src={thumb.src} alt="" />
+      <Image src={thumb} alt="" />
     </div>
   );
 };
 
 const WhyChoose = () => {
+  const [whyChooseData, setWhyChooseData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get(
+        "http://194.164.54.216:3636/why-choose-section/find-all"
+      );
+      setWhyChooseData(response.data);
+    } catch (error) {
+      console.error("Error fetching why choose data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <section className="why-choose-area">
       <Container>
-        <Row>
-          <Col lg={6}>
-            <div className="why-choose-thumb d-block d-sm-flex">
-              <div className="item-1">
-                <div className="conent">
-                  <h4 className="title">{title}</h4>
+        {loading ? (
+          <SkeletonWhyChooseItem />
+        ) : (
+          <Row>
+            <Col lg={6}>
+              <div className="why-choose-thumb d-block d-sm-flex">
+                <div className="item-1">
+                  <div className="conent">
+                    <h4 className="title">{whyChooseData[0]?.title}</h4>
+                  </div>
+                  <Thumb thumb={whyChooseData[0]?.thumb} />
                 </div>
-                <Thumb thumb={thumb} />
+                <div className="item-2">
+                  <Thumb thumb={whyChooseData[0]?.thumb2} />
+                </div>
               </div>
-              <div className="item-2">
-                <Thumb thumb={thumb2} />
+            </Col>
+            <Col lg={6}>
+              <div className="why-choose-content">
+                <span>{whyChooseData[0]?.tagline}</span>
+                <h3 className="title">{whyChooseData[0]?.title2}</h3>
+                {whyChooseData[0]?.items.map((item) => (
+                  <Item key={item.id} item={item} />
+                ))}
               </div>
-            </div>
-          </Col>
-          <Col lg={6}>
-            <div className="why-choose-content">
-              <span>{tagline}</span>
-              <h3 className="title">{title2}</h3>
-              {items.map((item) => (
-                <Item key={item.id} item={item} />
-              ))}
-            </div>
-          </Col>
-        </Row>
+            </Col>
+          </Row>
+        )}
       </Container>
     </section>
   );

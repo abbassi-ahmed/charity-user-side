@@ -8,14 +8,6 @@ import {
   SkeletonLoader,
 } from "../skeletonLoader/skeletonLoader";
 
-const LazyComponent = (props) => {
-  return (
-    <div>
-      <h1>This is a Lazy Loaded Component!</h1>
-    </div>
-  );
-};
-
 const CategoriesBoxItem = ({ categories = [] }) => {
   return (
     <div className="categories-box-item">

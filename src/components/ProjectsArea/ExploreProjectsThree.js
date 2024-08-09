@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import SingleExploreProject from "./SingleExploreProject";
 import axios from "axios";
@@ -6,6 +6,7 @@ import axios from "axios";
 const ExploreProjectsThree = () => {
   const [projects, setProjects] = useState([]);
   const [projectSums, setProjectSums] = useState({});
+  const hasFetchedProjects = useRef(false); // Ref to track if the data has been fetched
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -17,7 +18,6 @@ const ExploreProjectsThree = () => {
         setProjects(projects);
 
         const projectSumsCopy = { ...projectSums };
-
         await Promise.all(
           projects.map(async (project) => {
             try {
@@ -39,8 +39,12 @@ const ExploreProjectsThree = () => {
         console.error("Error fetching projects:", error);
       }
     };
-    fetchProjects();
-  }, []);
+
+    if (!hasFetchedProjects.current) {
+      fetchProjects();
+      hasFetchedProjects.current = true;
+    }
+  }, [projectSums]);
 
   return (
     <section className="explore-projects-3-area explore-v2-page pt-90 pb-120">

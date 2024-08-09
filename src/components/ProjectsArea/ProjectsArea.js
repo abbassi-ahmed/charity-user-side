@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import SwiperCore, { Autoplay, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -43,6 +43,7 @@ const ProjectsArea = ({ className = "" }) => {
   const [tagline, setTagline] = useState("Explore projects");
   const [title, setTitle] = useState("Projects");
   const [projectSums, setProjectSums] = useState({});
+  const hasFetchedProjects = useRef(false); // Ref to track if the data has been fetched
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -52,7 +53,6 @@ const ProjectsArea = ({ className = "" }) => {
         );
         setProjects(response.data);
         const projectSumsCopy = { ...projectSums };
-
         await Promise.all(
           projects.map(async (project) => {
             try {
@@ -73,9 +73,11 @@ const ProjectsArea = ({ className = "" }) => {
         console.error("Error fetching the projects", error);
       }
     };
-
-    fetchProjects();
-  }, []);
+    if (!hasFetchedProjects.current) {
+      fetchProjects();
+      hasFetchedProjects.current = true;
+    }
+  }, [projectSums, projects]);
 
   return (
     <div>
