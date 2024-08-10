@@ -4,8 +4,7 @@ import Link from "../../Reuseable/Link";
 import CircularProgressBar from "../../../components/circularProgress/progress";
 
 const ProjectDetailsArea = ({ project, sum }) => {
-  const { image, name, description, target, startDate, targetDate, Status } =
-    project;
+  const { name, description, target, startDate, targetDate, Status } = project;
   const amount = sum && sum.sum ? sum.sum : 0;
   const progress = (amount / parseInt(target)) * 100;
 
@@ -15,7 +14,7 @@ const ProjectDetailsArea = ({ project, sum }) => {
         <Row>
           <Col lg={6}>
             <div className="project-details-thumb">
-              <Image src={image} alt={name} />
+              {/* <Image src={image} alt={name} /> */}
               <div className="icon">
                 <i className="fa fa-heart"></i>
               </div>
@@ -62,9 +61,7 @@ const ProjectDetailsArea = ({ project, sum }) => {
               <div className="d-flex justify-content-between mt-30">
                 <div className="project-btn mt-25 mr-15">
                   <Link href={`/donation-project/${project.id}`}>
-                    <a className="main-btn" href="#">
-                      Donate Now
-                    </a>
+                    Donate Now
                   </Link>
                 </div>
                 <div className="project-btn mt-25">
