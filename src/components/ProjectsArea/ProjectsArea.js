@@ -49,7 +49,7 @@ const ProjectsArea = ({ className = "" }) => {
     const fetchProjects = async () => {
       try {
         const response = await axios.get(
-          "http://194.164.54.216:3636/projects/find-all"
+          "http://localhost:3636/projects/find-all"
         );
         setProjects(response.data);
         const projectSumsCopy = { ...projectSums };
@@ -57,7 +57,7 @@ const ProjectsArea = ({ className = "" }) => {
           projects.map(async (project) => {
             try {
               const response = await axios.get(
-                `http://194.164.54.216:3636/project-donation/get-sum-of-donations/${project.id}`
+                `http://localhost:3636/project-donation/get-sum-of-donations/${project.id}`
               );
               projectSumsCopy[project.id] = response.data.sum;
             } catch (error) {

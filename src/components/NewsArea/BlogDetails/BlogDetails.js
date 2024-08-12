@@ -17,7 +17,7 @@ const BlogDetails = ({ id }) => {
           return;
         }
         const response = await axios.get(
-          `http://194.164.54.216:3636/blogs/find-one/${id}`
+          `http://localhost:3636/blogs/find-one/${id}`
         );
         setBlog(response.data);
       } catch (error) {
