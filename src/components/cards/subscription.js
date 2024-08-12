@@ -33,7 +33,7 @@ export default function Subscription({ key, title, description, price, user }) {
     } else {
       console.log(price, firstName, lastName, email, phone);
       const response = await axios.post(
-        "http://194.164.54.216:3636/payments/create",
+        "http://localhost:3636/payments/create",
         {
           token: "TND",
           amount: 6000,

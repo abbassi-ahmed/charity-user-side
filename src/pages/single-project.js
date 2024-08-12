@@ -10,10 +10,10 @@ const SingleProject = () => {
   return (
     <Layout>
       <Header />
-      <PageTitle title="Single Project" page="Explore" />
+      {/* <PageTitle title="Single Project" page="Explore" />
       <ProjectDetailsArea />
       <ProjectDetailsContent />
-      <SimilarProjects />
+      <SimilarProjects /> */}
     </Layout>
   );
 };
