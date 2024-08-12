@@ -31,7 +31,7 @@ const Abonnement = () => {
   const fetchSubscriptions = async () => {
     try {
       const response = await fetch(
-        "http://194.164.54.216:3636/subscription/find-all"
+        "http://localhost:3636/subscription/find-all"
       );
       const data = await response.json();
       setSubscriptionData(data);
@@ -44,7 +44,7 @@ const Abonnement = () => {
     fetchSubscriptions();
     const token = localStorage.getItem("token");
     if (token) {
-      fetch("http://194.164.54.216:3636/users/verify", {
+      fetch("http://localhost:3636/users/verify", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,5 +1,5 @@
 import { exploreProjects } from "@/data/projectsArea";
-import React from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import SwiperCore, { Autoplay, Pagination } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -33,6 +33,48 @@ const options = {
 const { tagline, title, projects } = exploreProjects;
 
 const ExploreProjects = () => {
+  const [projects, setProjects] = useState([]);
+  const [projectSums, setProjectSums] = useState({});
+  const hasFetchedProjects = useRef(false); // Ref to track if the data has been fetched
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3636/projects/find-all"
+        );
+        const projects = response.data;
+        setProjects(projects);
+
+        const projectSumsCopy = { ...projectSums };
+        await Promise.all(
+          projects.map(async (project) => {
+            try {
+              const response = await axios.get(
+                `http://localhost:3636/project-donation/get-sum-of-donations/${project.id}`
+              );
+              projectSumsCopy[project.id] = response.data.sum;
+            } catch (error) {
+              console.error(
+                `Error fetching sum of donations for project ${project.id}:`,
+                error
+              );
+            }
+          })
+        );
+
+        setProjectSums(projectSumsCopy);
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      }
+    };
+
+    if (!hasFetchedProjects.current) {
+      fetchProjects();
+      hasFetchedProjects.current = true;
+    }
+  }, [projectSums]);
+
   return (
     <section className="explore-projects-3-area">
       <Container fluid className="p-0">
@@ -46,7 +88,10 @@ const ExploreProjects = () => {
             <div className="swiper-wrapper">
               {projects.slice(0, 5).map((project) => (
                 <SwiperSlide key={project.id}>
-                  <SingleExploreProject project={project} />
+                  <SingleExploreProject
+                    project={project}
+                    projectSums={projectSums}
+                  />
                 </SwiperSlide>
               ))}
             </div>

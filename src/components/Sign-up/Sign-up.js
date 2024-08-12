@@ -47,7 +47,7 @@ const SignUp = () => {
       }
 
       const response = await axios.post(
-        `http://194.164.54.216:3636/users/signup`,
+        `http://localhost:3636/users/signup`,
         data,
         {
           headers: {
