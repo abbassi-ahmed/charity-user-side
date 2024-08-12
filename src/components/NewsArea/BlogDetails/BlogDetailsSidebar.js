@@ -36,7 +36,9 @@ const BlogDetailsSidebar = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await fetch("http://localhost:3636/blogs/find-all");
+        const response = await fetch(
+          "http://194.164.54.216:3636/blogs/find-all"
+        );
         const data = await response.json();
         // Sorted posts by createdAt date in descending order
         const sortedPosts = data.sort(

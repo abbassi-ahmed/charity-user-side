@@ -12,7 +12,7 @@ const ExploreProjectsThree = () => {
     const fetchProjects = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3636/projects/find-all"
+          "http://194.164.54.216:3636/projects/find-all"
         );
         const projects = response.data;
         setProjects(projects);
@@ -22,7 +22,7 @@ const ExploreProjectsThree = () => {
           projects.map(async (project) => {
             try {
               const response = await axios.get(
-                `http://localhost:3636/project-donation/get-sum-of-donations/${project.id}`
+                `http://194.164.54.216:3636/project-donation/get-sum-of-donations/${project.id}`
               );
               projectSumsCopy[project.id] = response.data.sum;
             } catch (error) {
