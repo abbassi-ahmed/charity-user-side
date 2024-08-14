@@ -59,7 +59,15 @@ const WhyChoose = () => {
               <div className="why-choose-thumb d-block d-sm-flex">
                 <div className="item-1">
                   <div className="conent">
-                    <h4 className="title">{whyChooseData[0]?.title}</h4>
+                    <h4
+                      className="title text-wrap"
+                      style={{
+                        wordBreak: "break-word",
+                        overflowWrap: "break-word",
+                      }}
+                    >
+                      {whyChooseData[0]?.title}
+                    </h4>
                   </div>
                   <Thumb thumb={whyChooseData[0]?.thumb} />
                 </div>
