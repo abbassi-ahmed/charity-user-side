@@ -3,7 +3,14 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
-export default function Subscription({ key, title, description, price, user }) {
+export default function Subscription({
+  title,
+  description,
+  price,
+  user,
+  subscriptionId,
+  duration,
+}) {
   const router = useRouter();
   const [modal, setModal] = useState(false);
   const [email, setEmail] = useState("");
@@ -27,60 +34,68 @@ export default function Subscription({ key, title, description, price, user }) {
 
   const handleDonate = async (e) => {
     e.preventDefault();
-    // Handle donation logic here
     if (phone === "") {
       setErrors({ phone: "Please enter your phone number" });
     } else {
-      console.log(price, firstName, lastName, email, phone);
-      const response = await axios.post(
-        "http://localhost:3636/payments/create",
-        {
-          token: "TND",
-          amount: 6000,
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-          phoneNumber: phone,
-          subscriptionId: 2,
+      try {
+        const response = await axios.post(
+          "http://localhost:3636/payments/create",
+          {
+            token: "TND",
+            amount: 6000,
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            phoneNumber: phone,
+            subscriptionId: subscriptionId,
+          }
+        );
+        if (response.status === 204) {
+          toast.error("Email Not found");
+        } else if (response.data.url) {
+          router.push(response.data.url);
+          setFirstName("");
+          setLastName("");
+          setEmail("");
+          setPhone("");
+        } else {
+          console.error("Error: URL is undefined");
         }
-      );
-      if (response.status === 204) {
-        toast.error("Email Not found");
-      } else if (response.data.url) {
-        router.push(response.data.url);
-        setFirstName("");
-        setLastName("");
-        setEmail("");
-        setPhone("");
-      } else {
-        console.error("Error: URL is undefined");
+      } catch (error) {
+        console.error("Error creating payment:", error);
       }
-
       toggleModal();
     }
-    // Close the modal after submission
   };
 
   return (
-    <div className="container-card" key={key}>
+    <div className="container-card">
       <h2 className="title-card">{title}</h2>
       <p className="body-card">{description}</p>
       <div className="payment-card">
         {price}
-        <span className="text-xl">/Year</span>
+        <span className="text-xl">
+          /{duration === 30 ? "month" : duration === 365 ? "year" : "day"}
+        </span>
       </div>
-      <button
-        className="btn-card"
-        onClick={() => {
-          if (!user) {
-            router.push("/sign-in");
-          } else {
-            toggleModal();
-          }
-        }}
-      >
-        Subscribe
-      </button>
+      {user?.subscription && user.subscription.id === subscriptionId ? (
+        <button className="btn-card" disabled>
+          You are already subscribed to this plan
+        </button>
+      ) : (
+        <button
+          className="btn-card"
+          onClick={() => {
+            if (!user) {
+              router.push("/sign-in");
+            } else {
+              toggleModal();
+            }
+          }}
+        >
+          Subscribe
+        </button>
+      )}
 
       {/* Modal */}
       {modal && user && (
