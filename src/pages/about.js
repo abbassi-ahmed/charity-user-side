@@ -8,9 +8,25 @@ import PageTitle from "@/components/Reuseable/PageTitle";
 import TeamMainArea from "@/components/TeamArea/TeamMainArea";
 import TestimonialsArea from "@/components/Testimonials/TestimonialsArea";
 import TogetherArea from "@/components/TogetherArea/TogetherArea";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const About = () => {
+  const [testimonials, setTestimonials] = useState([]);
+
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3636/testimonials-section/find-all"
+        );
+        setTestimonials(response.data);
+        console.log("Testimonials fetched:", response.data);
+      } catch (error) {
+        console.error("Error fetching testimonials:", error);
+      }
+    };
+    fetchTestimonials();
+  }, []);
   return (
     <Layout>
       <Header />
@@ -20,7 +36,7 @@ const About = () => {
       <NextBigThing className="next-big-thing-about-area" />
       <TeamMainArea className="about-team-main-area" />
       <TogetherArea className="together-3-area" />
-      <TestimonialsArea />
+      <TestimonialsArea testimonials={testimonials} />
       <BrandAreaTwo />
     </Layout>
   );

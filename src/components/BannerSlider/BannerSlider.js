@@ -27,6 +27,7 @@ const BannerSlider = ({
   className = "",
   isBannerTwo = false,
   isBannerThree = false,
+  slides = [],
 }) => {
   const banners = isBannerTwo ? banners2 : isBannerThree ? banners3 : banners1;
 
@@ -34,7 +35,7 @@ const BannerSlider = ({
     <section className={`banner-slider ${className}`}>
       <Swiper {...options}>
         <div className="swiper-wrapper">
-          {banners.map((singleSlide) => (
+          {slides.map((singleSlide) => (
             <SwiperSlide key={singleSlide.id}>
               <SingleBanner
                 singleSlide={singleSlide}
