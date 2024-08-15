@@ -14,9 +14,11 @@ import TestimonialsArea from "@/components/Testimonials/TestimonialsArea";
 import TogetherArea from "@/components/TogetherArea/TogetherArea";
 import WhyChoose from "@/components/WhyChoose/WhyChoose";
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const Home = () => {
   const [user, setUser] = useState(null);
+  const [slides, setSlides] = useState([]);
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -28,9 +30,13 @@ const Home = () => {
         body: JSON.stringify({ token }),
       })
         .then((response) => response.json())
-        .then((data) => {
+        .then(async (data) => {
           if (data && data.firstName) {
             setUser(data);
+            const response = await axios.get(
+              "http://localhost:3636/slider-section/find-all"
+            );
+            setSlides(response.data);
           } else {
             localStorage.removeItem("token");
           }
@@ -41,6 +47,22 @@ const Home = () => {
         });
     }
   }, []);
+  const [testimonials, setTestimonials] = useState([]);
+
+  useEffect(() => {
+    const fetchTestimonials = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:3636/testimonials-section/find-all"
+        );
+        setTestimonials(response.data);
+        console.log("Testimonials fetched:", response.data);
+      } catch (error) {
+        console.error("Error fetching testimonials:", error);
+      }
+    };
+    fetchTestimonials();
+  }, []);
 
   return (
     <div>
@@ -48,15 +70,15 @@ const Home = () => {
         <Header />
         {user ? (
           <div>
-            <BannerSlider />
+            <BannerSlider slides={slides} />
             <Categories />
             <CtaArea />
             <ProjectsArea />
             <WhyChoose />
             <FunFacts />
             <TogetherArea />
-            <BrandArea />
-            <TestimonialsArea />
+            {/* <BrandArea /> */}
+            <TestimonialsArea testimonials={testimonials} />
             {/* <TeamArea /> */}
             {/* <TeamMainArea /> */}
             <NewsArea />

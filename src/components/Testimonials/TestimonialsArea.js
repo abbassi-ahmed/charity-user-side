@@ -1,5 +1,5 @@
 import { testimonialsArea } from "@/data/testimonialsArea";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import SwiperCore, { Autoplay, EffectFade, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -21,9 +21,10 @@ const options = {
   },
 };
 
-const { title, tagline, testimonials } = testimonialsArea;
+const { title, tagline } = testimonialsArea;
 
-const TestimonialsArea = () => {
+const TestimonialsArea = ({ testimonials = [] }) => {
+  console.log("Testimonials:", testimonials);
   return (
     <section className="testimonials-area">
       <Container>

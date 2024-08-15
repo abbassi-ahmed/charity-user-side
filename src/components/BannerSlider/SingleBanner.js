@@ -18,9 +18,7 @@ const SingleBanner = ({
         isBannerThree ? "banner-3-area align-items-end" : "align-items-center"
       }`}
       style={{
-        backgroundImage: `url(${
-          require(`src/assets/images/${bg}`).default.src
-        })`,
+        backgroundImage: `url(${bg})`,
         backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
@@ -53,6 +51,12 @@ const SingleBanner = ({
               )}
               <h3
                 className={`title${isActive ? " animated fadeInRightBig" : ""}`}
+                style={{
+                  maxWidth: "100%",
+                  width: "100%",
+                  wordWrap: "break-word",
+                  overflowWrap: "break-word",
+                }}
               >
                 {title}
               </h3>
@@ -70,19 +74,19 @@ const SingleBanner = ({
         <div
           className={`banner-line${isActive ? " animated fadeInRightBig" : ""}`}
         >
-          <Image src={banner.src} alt="" />
+          <Image src={banner} alt="" />
         </div>
       )}
       {isBannerTwo && (
         <div>
           <div className="banner-color-shadow">
-            <Image src={banner.src} alt="" />
+            <Image src={banner} alt="" />
           </div>
           <div className="banner-line">
-            <Image src={banner1.src} alt="" />
+            <Image src={banner1} alt="" />
           </div>
           <div className="banner-line-2">
-            <Image src={banner2.src} alt="" />
+            <Image src={banner2} alt="" />
           </div>
         </div>
       )}
