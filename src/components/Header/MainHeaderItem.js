@@ -48,7 +48,8 @@ const MainHeaderItem = ({
                 <Image src={logo.src} alt="logo" />
               </Link>
             </div>
-            {user?.id ? (
+
+            {user?.id && user?.subscription ? (
               <HeaderMenu navItems={navItems} />
             ) : (
               <HeaderMenu navItems={navDefault} />

@@ -17,7 +17,7 @@ const SignUp = () => {
   });
 
   const [errorMessage, setErrorMessage] = useState(null);
-
+  const [loader, setLoader] = useState(false);
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (name === "avatar" && files.length > 0) {
@@ -45,7 +45,7 @@ const SignUp = () => {
       if (formData.avatar) {
         data.append("avatar", formData.avatar);
       }
-
+      setLoader(true);
       const response = await axios.post(
         `http://localhost:3636/users/signup`,
         data,
@@ -56,31 +56,21 @@ const SignUp = () => {
         }
       );
 
-      console.log("Response data:", response.data);
-      console.log("Response status:", response.status);
-
       if (response.status === 200 || response.status === 201) {
         router.push("/sign-in");
       } else {
-        console.error("Unexpected response status:", response.status);
         setErrorMessage("Unexpected response status: " + response.status);
       }
     } catch (error) {
-      console.error("Error signing up:", error);
       if (error.response) {
-        // The request was made and the server responded with a status code that falls out of the range of 2xx
-        console.error("Error response data:", error.response.data);
-        console.error("Error response status:", error.response.status);
         setErrorMessage(error.response.data.message || "Error signing up");
       } else if (error.request) {
-        // The request was made but no response was received
-        console.error("Error request:", error.request);
         setErrorMessage("No response received from the server.");
       } else {
-        // Something happened in setting up the request that triggered an Error
-        console.error("Error message:", error.message);
         setErrorMessage(error.message);
       }
+    } finally {
+      setLoader(false);
     }
   };
 
@@ -93,6 +83,7 @@ const SignUp = () => {
             <Row className="justify-content-center">
               <Col lg={6} md={8}>
                 <div className="auth-form">
+                  <h2 className="mt-4 text-center">Sign Up</h2>
                   <Form onSubmit={handleSubmit}>
                     <Form.Group controlId="formFirstName">
                       <Form.Label>First Name</Form.Label>
@@ -146,8 +137,16 @@ const SignUp = () => {
                       variant="primary"
                       type="submit"
                       className="w-100 mt-3"
+                      disabled={loader}
                     >
-                      Sign Up
+                      {loader ? (
+                        <div
+                          className="spinner-border text-light spinner-border-sm"
+                          role="status"
+                        ></div>
+                      ) : (
+                        "Sign Up"
+                      )}
                     </Button>
                   </Form>
                   {errorMessage && (
@@ -155,7 +154,7 @@ const SignUp = () => {
                       {errorMessage}
                     </p>
                   )}
-                  <p className="mt-3 text-center">
+                  <p className="mt-3 text-center mb-5">
                     Already have an account?{" "}
                     <Link href="/sign-in">Sign In</Link>
                   </p>

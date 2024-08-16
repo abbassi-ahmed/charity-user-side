@@ -1,17 +1,82 @@
-import CtaArea from "@/components/CtaArea/CtaArea";
 import Header from "@/components/Header/Header";
 import Layout from "@/components/Layout/Layout";
 import PageTitle from "@/components/Reuseable/PageTitle";
 import TeamMainArea from "@/components/TeamArea/TeamMainArea";
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
+import { useRouter } from "next/router";
 
 const TeamMembers = () => {
+  const router = useRouter();
+  const hasFetchedUsers = useRef(false);
+
+  // Fetch the current user and handle token verification
+  const { data: user, isLoading: loadingUser } = useQuery({
+    queryKey: ["user"],
+    queryFn: async () => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        throw new Error("No token found");
+      }
+      const response = await fetch("http://localhost:3636/users/verify", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ token }),
+      });
+      if (!response.ok) {
+        throw new Error("Failed to verify token");
+      }
+      return response.json();
+    },
+    onError: () => {
+      localStorage.removeItem("token");
+      router.push("/sign-in");
+    },
+    retry: false, // Prevent retrying if the token verification fails
+  });
+
+  // Fetch the users data
+  const { data: users, isLoading: loadingUsers } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const response = await axios.get("http://localhost:3636/admins/find-all");
+      return response.data;
+    },
+    enabled: !loadingUser && user !== null,
+  });
+
+  useEffect(() => {
+    if (!loadingUser && user && !user.subscription) {
+      router.push("/abonnement");
+    }
+  }, [loadingUser, user, router]);
+
+  if (loadingUser || loadingUsers) {
+    return (
+      <Layout>
+        <Header />
+        <div
+          className="d-flex justify-content-center align-items-center"
+          style={{ height: "50vh", width: "100%" }}
+        >
+          <div className="pageLoader"></div>
+        </div>
+      </Layout>
+    );
+  }
+
   return (
     <Layout>
       <Header />
       <PageTitle title="Team Members" parent="pages" />
-      <TeamMainArea className="about-team-main-area team-page-area" count={6} />
-      <CtaArea />
+      <TeamMainArea
+        className="about-team-main-area team-page-area"
+        count={users.length}
+        users={users}
+      />
     </Layout>
   );
 };

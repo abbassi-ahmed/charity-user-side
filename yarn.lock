@@ -193,6 +193,18 @@
   dependencies:
     tslib "^2.4.0"
 
+"@tanstack/query-core@5.51.21":
+  version "5.51.21"
+  resolved "https://registry.npmjs.org/@tanstack/query-core/-/query-core-5.51.21.tgz"
+  integrity sha512-POQxm42IUp6n89kKWF4IZi18v3fxQWFRolvBA6phNVmA8psdfB1MvDnGacCJdS+EOX12w/CyHM62z//rHmYmvw==
+
+"@tanstack/react-query@^5.51.23":
+  version "5.51.23"
+  resolved "https://registry.npmjs.org/@tanstack/react-query/-/react-query-5.51.23.tgz"
+  integrity sha512-CfJCfX45nnVIZjQBRYYtvVMIsGgWLKLYC4xcUiYEey671n1alvTZoCBaU9B85O8mF/tx9LPyrI04A6Bs2THv4A==
+  dependencies:
+    "@tanstack/query-core" "5.51.21"
+
 "@types/eslint-scope@^3.7.3":
   version "3.7.7"
   resolved "https://registry.npmjs.org/@types/eslint-scope/-/eslint-scope-3.7.7.tgz"

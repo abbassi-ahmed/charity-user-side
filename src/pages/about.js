@@ -8,25 +8,70 @@ import PageTitle from "@/components/Reuseable/PageTitle";
 import TeamMainArea from "@/components/TeamArea/TeamMainArea";
 import TestimonialsArea from "@/components/Testimonials/TestimonialsArea";
 import TogetherArea from "@/components/TogetherArea/TogetherArea";
-import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import React, { useState, useEffect } from "react";
 
 const About = () => {
-  const [testimonials, setTestimonials] = useState([]);
+  const [user, setUser] = useState(null);
+  const [loader, setLoader] = useState(true);
+  const router = useRouter();
 
   useEffect(() => {
-    const fetchTestimonials = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:3636/testimonials-section/find-all"
-        );
-        setTestimonials(response.data);
-        console.log("Testimonials fetched:", response.data);
-      } catch (error) {
-        console.error("Error fetching testimonials:", error);
-      }
-    };
-    fetchTestimonials();
-  }, []);
+    const token = localStorage.getItem("token");
+    if (token) {
+      fetch("http://localhost:3636/users/verify", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ token }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data && data.firstName) {
+            setUser(data);
+          } else {
+            localStorage.removeItem("token");
+            router.push("/sign-in");
+          }
+        })
+        .catch((error) => {
+          console.error("Error verifying token:", error);
+          localStorage.removeItem("token");
+          router.push("/sign-in");
+        })
+        .finally(() => {
+          setLoader(false);
+        });
+    } else {
+      router.push("/sign-in");
+      setLoader(false);
+    }
+  }, [router]);
+
+  useEffect(() => {
+    if (!loader && user && !user.subscription) {
+      router.push("/abonnement");
+    }
+  }, [loader, user, router]);
+
+  if (loader) {
+    return (
+      <Layout>
+        <Header />
+
+        <PageTitle title="About" parent="pages" />
+
+        <div
+          className="d-flex justify-content-center align-items-center"
+          style={{ height: "50vh", width: "100%" }}
+        >
+          <div className="pageLoader"></div>
+        </div>
+      </Layout>
+    );
+  }
+
   return (
     <Layout>
       <Header />
@@ -36,8 +81,6 @@ const About = () => {
       <NextBigThing className="next-big-thing-about-area" />
       <TeamMainArea className="about-team-main-area" />
       <TogetherArea className="together-3-area" />
-      <TestimonialsArea testimonials={testimonials} />
-      <BrandAreaTwo />
     </Layout>
   );
 };
