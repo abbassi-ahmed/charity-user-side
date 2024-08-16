@@ -18,7 +18,7 @@ export default function Page() {
   useEffect(() => {
     if (id) {
       setLoading(true);
-      setError(null); // Reset error state
+      setError(null);
 
       const fetchProjectData = async () => {
         try {
@@ -52,11 +52,21 @@ export default function Page() {
   }, [id]);
 
   if (loading) {
-    return <div>Loading...</div>; // Replace with a spinner or skeleton
+    return (
+      <Layout>
+        <Header />
+        <div
+          className="d-flex justify-content-center align-items-center"
+          style={{ height: "50vh", width: "100%" }}
+        >
+          <div className="pageLoader"></div>
+        </div>
+      </Layout>
+    );
   }
 
   if (error) {
-    return <div>Error: {error}</div>; // Display error message
+    return <div>Error: {error}</div>;
   }
 
   return (

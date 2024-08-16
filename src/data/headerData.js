@@ -18,25 +18,26 @@ export const navItems = [
     name: "Projects",
     href: "/projects-2",
   },
+
   {
     id: 4,
-    name: "Pages",
-    href: "",
-    subNavItems: [
-      { id: 1, name: "FAQ", href: "/faq" },
-      { id: 2, name: "Events", href: "/event" },
-      { id: 3, name: "Team Members", href: "/team-members" },
-    ],
-  },
-  {
-    id: 5,
     name: "News",
     href: "/news",
   },
   {
-    id: 6,
+    id: 5,
     name: "Abonnement",
     href: "/abonnement",
+  },
+  {
+    id: 6,
+    name: "Pages",
+    href: "",
+    subNavItems: [
+      { id: 1, name: "FAQ", href: "/faq" },
+      // { id: 2, name: "Events", href: "/event" },
+      { id: 2, name: "Team Members", href: "/team-members" },
+    ],
   },
   // {
   //   id: 7,

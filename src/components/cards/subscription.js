@@ -42,7 +42,7 @@ export default function Subscription({
           "http://localhost:3636/payments/create",
           {
             token: "TND",
-            amount: 6000,
+            amount: price,
             firstName: firstName,
             lastName: lastName,
             email: email,
@@ -72,10 +72,29 @@ export default function Subscription({
     <div className="container-card">
       <h2 className="title-card">{title}</h2>
       <p className="body-card">{description}</p>
-      <div className="payment-card">
-        {price}
-        <span className="text-xl">
-          /{duration === 30 ? "month" : duration === 365 ? "year" : "day"}
+      <div className="payment-card" style={{ width: "110px" }}>
+        {price} TND
+        <span className="text-lg">
+          /
+          {duration === 30
+            ? "month"
+            : duration === 365
+            ? "year"
+            : duration === 7
+            ? "week"
+            : duration === 1
+            ? "day"
+            : duration === 60
+            ? "2 months"
+            : duration === 90
+            ? "3 months"
+            : duration === 180
+            ? "6 months"
+            : duration === 270
+            ? "9 months"
+            : duration === 365
+            ? "year"
+            : "days"}
         </span>
       </div>
       {user?.subscription && user.subscription.id === subscriptionId ? (

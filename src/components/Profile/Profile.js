@@ -3,6 +3,7 @@ import { Container, Form, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
+import { toast, Toaster } from "react-hot-toast";
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -13,6 +14,7 @@ const Profile = () => {
   });
   const [avatarFile, setAvatarFile] = useState(null); // State to hold the selected avatar file
   const [loading, setLoading] = useState(true);
+  const [loader, setLoader] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -32,6 +34,7 @@ const Profile = () => {
             lastName: data.lastName,
             email: data.email,
           });
+          setAvatarFile(data.avatar);
           setLoading(false);
         })
         .catch((error) => {
@@ -49,16 +52,19 @@ const Profile = () => {
     });
   };
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setAvatarFile(file);
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setAvatarFile(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const token = localStorage.getItem("token");
-
-    // Prepare form data including the avatar file
     const formDataToSend = new FormData();
     formDataToSend.append("firstName", formData.firstName);
     formDataToSend.append("lastName", formData.lastName);
@@ -66,24 +72,22 @@ const Profile = () => {
     if (avatarFile) {
       formDataToSend.append("avatar", avatarFile);
     }
-
+    setLoader(true);
     fetch(`http://localhost:3636/users/update/${user.id}`, {
       method: "PUT",
-      headers: {
-        // No need to set Content-Type for FormData
-        // It will be set automatically
-        // "Content-Type": "multipart/form-data",
-      },
+      headers: {},
       body: formDataToSend,
     })
       .then((response) => response.json())
       .then((data) => {
         setUser(data);
-        alert("Profile updated successfully!");
+        toast.success("Profile updated successfully.");
       })
       .catch((error) => {
-        console.error("Error updating profile:", error);
-        alert("Failed to update profile.");
+        toast.error("Error updating profile.");
+      })
+      .finally(() => {
+        setLoader(false);
       });
   };
 
@@ -92,9 +96,55 @@ const Profile = () => {
   }
 
   return (
-    <Container className="profile-container">
-      <h2>Edit Profile</h2>
+    <Container
+      className="profile-container"
+      style={{
+        minHeight: "60vh",
+        margin: "0 auto",
+        width: "40%",
+        padding: "20px",
+      }}
+    >
+      <h2 className="text-center mb-3">Edit Profile</h2>
       <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="formAvatar ">
+          <Form.Label>Upload Avatar</Form.Label>
+          <label
+            className="avatar-preview"
+            style={{
+              width: "100px",
+              height: "100px",
+              borderRadius: "50%",
+              overflow: "hidden",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              border: "1px solid #ccc",
+              backgroundColor: "#f0f0f0",
+              marginBottom: "10px",
+              cursor: "pointer",
+            }}
+          >
+            {avatarFile ? (
+              <Image
+                src={avatarFile}
+                alt="Avatar Preview"
+                className="avatar-image"
+                width={100}
+                height={100}
+                objectFit="cover"
+              />
+            ) : (
+              <span></span>
+            )}
+            <Form.Control
+              type="file"
+              name="avatar"
+              hidden
+              onChange={handleFileChange}
+            />
+          </label>
+        </Form.Group>
         <Form.Group controlId="formFirstName">
           <Form.Label>First Name</Form.Label>
           <Form.Control
@@ -125,28 +175,27 @@ const Profile = () => {
             required
           />
         </Form.Group>
-        <Form.Group controlId="formAvatar">
-          <Form.Label>Upload Avatar</Form.Label>
-          <Form.Control type="file" name="avatar" onChange={handleFileChange} />
-        </Form.Group>
-        {user && user.avatar && (
-          <div className="avatar-preview">
-            <Image
-              src={user.avatar}
-              alt="Avatar Preview"
-              width={100}
-              height={100}
-              style={{
-                borderRadius: "50%",
-                objectFit: "cover",
-              }}
-            />
-          </div>
-        )}
-        <Button variant="primary" type="submit" className="mt-3">
-          <FontAwesomeIcon icon={faSave} /> Save Changes
+
+        <Button
+          variant="primary"
+          type="submit"
+          className="mt-3  text-center align-self-center"
+          style={{ width: "100%" }}
+          disabled={loader}
+        >
+          {loader ? (
+            <div
+              className="spinner-border text-light spinner-border-sm"
+              role="status"
+            ></div>
+          ) : (
+            <>
+              <FontAwesomeIcon icon={faSave} /> Save Changes{" "}
+            </>
+          )}
         </Button>
       </Form>
+      <Toaster />
     </Container>
   );
 };

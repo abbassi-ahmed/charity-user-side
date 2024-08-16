@@ -1,88 +1,115 @@
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import BannerSlider from "@/components/BannerSlider/BannerSlider";
-import BrandArea from "@/components/BrandArea/BrandArea";
 import Categories from "@/components/Categories/Categories";
 import CtaArea from "@/components/CtaArea/CtaArea";
 import FunFacts from "@/components/FunFacts/FunFacts";
-import GuideArea from "@/components/GuideArea/GuideArea";
 import Header from "@/components/Header/Header";
 import Layout from "@/components/Layout/Layout";
 import NewsArea from "@/components/NewsArea/NewsArea";
 import ProjectsArea from "@/components/ProjectsArea/ProjectsArea";
-import TeamArea from "@/components/TeamArea/TeamArea";
-import TeamMainArea from "@/components/TeamArea/TeamMainArea";
-import TestimonialsArea from "@/components/Testimonials/TestimonialsArea";
 import TogetherArea from "@/components/TogetherArea/TogetherArea";
+import TestimonialsArea from "@/components/Testimonials/TestimonialsArea";
 import WhyChoose from "@/components/WhyChoose/WhyChoose";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+
+const fetchUser = async (token) => {
+  const response = await fetch("http://localhost:3636/users/verify", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ token }),
+  });
+  if (!response.ok) throw new Error("Network response was not ok");
+  return response.json();
+};
+
+const fetchSlides = async () => {
+  const response = await axios.get(
+    "http://localhost:3636/slider-section/find-all"
+  );
+  return response.data;
+};
+
+const fetchTestimonials = async () => {
+  const response = await axios.get(
+    "http://localhost:3636/testimonials-section/find-all"
+  );
+  return response.data;
+};
 
 const Home = () => {
-  const [user, setUser] = useState(null);
-  const [slides, setSlides] = useState([]);
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      fetch("http://localhost:3636/users/verify", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ token }),
-      })
-        .then((response) => response.json())
-        .then(async (data) => {
-          if (data && data.firstName) {
-            setUser(data);
-            const response = await axios.get(
-              "http://localhost:3636/slider-section/find-all"
-            );
-            setSlides(response.data);
-          } else {
-            localStorage.removeItem("token");
-          }
-        })
-        .catch((error) => {
-          console.error("Error verifying token:", error);
-          localStorage.removeItem("token");
-        });
-    }
-  }, []);
-  const [testimonials, setTestimonials] = useState([]);
+  const [token, setToken] = useState(null);
+  const {
+    data: user,
+    isLoading: isUserLoading,
+    error: userError,
+  } = useQuery({
+    queryKey: ["user", token],
+    queryFn: () => fetchUser(token),
+    enabled: !!token,
+    initialData: null,
+  });
+
+  const { data: slides, isLoading: isSlidesLoading } = useQuery({
+    queryKey: ["slides"],
+    queryFn: fetchSlides,
+    enabled: !!user,
+    initialData: [],
+  });
+
+  const { data: testimonials, isLoading: isTestimonialsLoading } = useQuery({
+    queryKey: ["testimonials"],
+    queryFn: fetchTestimonials,
+    enabled: !!user,
+    initialData: [],
+  });
 
   useEffect(() => {
-    const fetchTestimonials = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:3636/testimonials-section/find-all"
-        );
-        setTestimonials(response.data);
-        console.log("Testimonials fetched:", response.data);
-      } catch (error) {
-        console.error("Error fetching testimonials:", error);
-      }
-    };
-    fetchTestimonials();
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+      setToken(storedToken);
+    }
   }, []);
+
+  if (isUserLoading || isSlidesLoading || isTestimonialsLoading) {
+    return (
+      <Layout>
+        <Header />
+        <div
+          className="d-flex justify-content-center align-items-center"
+          style={{ height: "50vh", width: "100%" }}
+        >
+          <div className="pageLoader"></div>
+        </div>
+      </Layout>
+    );
+  }
+
+  if (userError) {
+    localStorage.removeItem("token");
+    return (
+      <Layout>
+        <Header />
+        <NewsArea />
+      </Layout>
+    );
+  }
 
   return (
     <div>
       <Layout>
         <Header />
-        {user ? (
+        {user && user.subscription && user.subscription.id ? (
           <div>
-            <BannerSlider slides={slides} />
+            <BannerSlider slides={slides} user={user} />
             <Categories />
             <CtaArea />
             <ProjectsArea />
             <WhyChoose />
             <FunFacts />
             <TogetherArea />
-            {/* <BrandArea /> */}
             <TestimonialsArea testimonials={testimonials} />
-            {/* <TeamArea /> */}
-            {/* <TeamMainArea /> */}
             <NewsArea />
-            {/* <GuideArea /> */}
           </div>
         ) : (
           <div>

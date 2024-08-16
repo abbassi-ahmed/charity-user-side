@@ -13,6 +13,7 @@ const SignIn = () => {
   });
   const [errorMessage, setErrorMessage] = useState(null);
   const router = useRouter();
+  const [loader, setLoader] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,6 +27,7 @@ const SignIn = () => {
     e.preventDefault();
     setErrorMessage(null);
     try {
+      setLoader(true);
       const response = await axios.post(
         `http://localhost:3636/users/signin`,
         formData,
@@ -35,7 +37,6 @@ const SignIn = () => {
           },
         }
       );
-      console.log(response.data);
 
       if (
         response.status === 200 ||
@@ -44,25 +45,18 @@ const SignIn = () => {
         localStorage.setItem("token", response.data.token);
         router.push("/");
       } else {
-        setErrorMessage(
-          "Unexpected response status or missing token: " + response.status
-        );
+        setErrorMessage(response.data.message);
       }
     } catch (error) {
-      console.error("Error signing in:", error);
       if (error.response) {
-        console.error("Error response data:", error.response.data);
-        console.error("Error response status:", error.response.status);
         setErrorMessage(error.response.data.message || "Error signing in");
       } else if (error.request) {
-        // The request was made but no response was received
-        console.error("Error request:", error.request);
         setErrorMessage("No response received from the server.");
       } else {
-        // Something happened in setting up the request that triggered an Error
-        console.error("Error message:", error.message);
         setErrorMessage(error.message);
       }
+    } finally {
+      setLoader(false);
     }
   };
 
@@ -74,7 +68,7 @@ const SignIn = () => {
           <Row className="justify-content-center">
             <Col lg={6} md={8}>
               <div className="auth-form">
-                <h2 className="mt-4">Sign In</h2>
+                <h2 className="mt-4 text-center">Sign In</h2>
                 <Form onSubmit={handleSubmit}>
                   <Form.Group controlId="formEmail" className="mb-3">
                     <Form.Label>Email</Form.Label>
@@ -100,14 +94,22 @@ const SignIn = () => {
                     variant="primary"
                     type="submit"
                     className="w-100 mt-3"
+                    disabled={loader}
                   >
-                    Sign In
+                    {loader ? (
+                      <div
+                        className="spinner-border text-light spinner-border-sm"
+                        role="status"
+                      ></div>
+                    ) : (
+                      "Sign In"
+                    )}
                   </Button>
                 </Form>
                 {errorMessage && (
                   <p className="mt-3 text-center text-danger">{errorMessage}</p>
                 )}
-                <p className="mt-3 text-center">
+                <p className="mt-3 text-center mb-5">
                   Don&apos;t have an account?{" "}
                   <Link href="/sign-up">Sign Up</Link>
                 </p>
