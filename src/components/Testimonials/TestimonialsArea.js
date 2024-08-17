@@ -24,7 +24,6 @@ const options = {
 const { title, tagline } = testimonialsArea;
 
 const TestimonialsArea = ({ testimonials = [] }) => {
-  console.log("Testimonials:", testimonials);
   return (
     <section className="testimonials-area">
       <Container>
