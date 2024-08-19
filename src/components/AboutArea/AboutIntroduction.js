@@ -10,7 +10,7 @@ const AboutIntroduction = () => {
   const fetchAboutData = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:3636/about-section/find-all"
+        "http://194.164.54.216:3636/about-section/find-all"
       );
       setAboutData(response.data);
     } catch (error) {

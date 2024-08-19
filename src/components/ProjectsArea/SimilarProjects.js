@@ -17,7 +17,7 @@ const SimilarProjects = ({ projects }) => {
         projects.map(async (project) => {
           try {
             const response = await axios.get(
-              `http://localhost:3636/project-donation/get-sum-of-donations/${project.id}`
+              `http://194.164.54.216:3636/project-donation/get-sum-of-donations/${project.id}`
             );
             newProjectSums[project.id] = response.data.sum;
           } catch (error) {

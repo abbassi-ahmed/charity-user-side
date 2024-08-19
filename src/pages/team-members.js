@@ -19,7 +19,7 @@ const TeamMembers = () => {
       if (!token) {
         throw new Error("No token found");
       }
-      const response = await fetch("http://localhost:3636/users/verify", {
+      const response = await fetch("http://194.164.54.216:3636/users/verify", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -42,7 +42,9 @@ const TeamMembers = () => {
   const { data: users, isLoading: loadingUsers } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const response = await axios.get("http://localhost:3636/admins/find-all");
+      const response = await axios.get(
+        "http://194.164.54.216:3636/admins/find-all"
+      );
       return response.data;
     },
     enabled: !loadingUser && user !== null,
