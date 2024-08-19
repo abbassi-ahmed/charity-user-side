@@ -45,7 +45,7 @@ const Categories = () => {
     try {
       setLoading(true);
       const res = await axios.get(
-        "http://localhost:3636/categories-section/find-all"
+        "http://194.164.54.216:3636/categories-section/find-all"
       );
       setCategoriesSection(res.data);
     } catch (error) {

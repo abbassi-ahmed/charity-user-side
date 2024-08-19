@@ -13,7 +13,7 @@ const EventDetails = () => {
       const fetchEvent = async () => {
         try {
           const response = await fetch(
-            `http://localhost:3636/events/find-one/${id}`
+            `http://194.164.54.216:3636/events/find-one/${id}`
           );
           const data = await response.json();
           setEvent(data);

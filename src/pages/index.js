@@ -14,7 +14,7 @@ import TestimonialsArea from "@/components/Testimonials/TestimonialsArea";
 import WhyChoose from "@/components/WhyChoose/WhyChoose";
 
 const fetchUser = async (token) => {
-  const response = await fetch("http://localhost:3636/users/verify", {
+  const response = await fetch("http://194.164.54.216:3636/users/verify", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ token }),
@@ -25,14 +25,14 @@ const fetchUser = async (token) => {
 
 const fetchSlides = async () => {
   const response = await axios.get(
-    "http://localhost:3636/slider-section/find-all"
+    "http://194.164.54.216:3636/slider-section/find-all"
   );
   return response.data;
 };
 
 const fetchTestimonials = async () => {
   const response = await axios.get(
-    "http://localhost:3636/testimonials-section/find-all"
+    "http://194.164.54.216:3636/testimonials-section/find-all"
   );
   return response.data;
 };

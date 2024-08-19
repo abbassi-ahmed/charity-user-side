@@ -39,7 +39,7 @@ export default function Subscription({
     } else {
       try {
         const response = await axios.post(
-          "http://localhost:3636/payments/create",
+          "http://194.164.54.216:3636/payments/create",
           {
             token: "TND",
             amount: price,

@@ -19,7 +19,7 @@ const About = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      fetch("http://localhost:3636/users/verify", {
+      fetch("http://194.164.54.216:3636/users/verify", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
