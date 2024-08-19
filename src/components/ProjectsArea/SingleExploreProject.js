@@ -23,7 +23,6 @@ const SingleExploreProject = ({ project, projectSums }) => {
 
       <div className="explore-projects-content">
         <div className="item d-flex align-items-center">
-          <span>{truncatedDescription}</span>
           <p>
             <i className="fa fa-clock-o"></i>{" "}
             {new Date(startDate).toLocaleDateString()}

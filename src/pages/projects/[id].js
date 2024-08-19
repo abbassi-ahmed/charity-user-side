@@ -6,11 +6,13 @@ import SimilarProjects from "@/components/ProjectsArea/SimilarProjects";
 import PageTitle from "@/components/Reuseable/PageTitle";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import axios from "axios";
 
 export default function Page() {
   const router = useRouter();
   const { id } = router.query;
   const [project, setProject] = useState(null);
+  const [similarProjects, setSimilarProjects] = useState([]);
   const [projectSums, setProjectSums] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -19,7 +21,6 @@ export default function Page() {
     if (id) {
       setLoading(true);
       setError(null);
-
       const fetchProjectData = async () => {
         try {
           const projectResponse = await fetch(
@@ -28,6 +29,19 @@ export default function Page() {
           if (!projectResponse.ok) throw new Error("Failed to fetch project");
           const projectData = await projectResponse.json();
           setProject(projectData);
+        } catch (error) {
+          setError(error.message);
+        }
+
+        try {
+          const OtherProjects = await axios.get(
+            `http://localhost:3636/projects/find-all`
+          );
+          if (!OtherProjects) throw new Error("Failed to fetch other projects");
+          const similarProjects = OtherProjects.data.filter(
+            (project) => project.id !== parseInt(id, 10)
+          );
+          setSimilarProjects(similarProjects);
         } catch (error) {
           setError(error.message);
         }
@@ -74,8 +88,9 @@ export default function Page() {
       <Header />
       <PageTitle title="Single Project" page="Explore" />
       <ProjectDetailsArea project={project} sum={projectSums} />
-      <ProjectDetailsContent />
-      <SimilarProjects />
+      {similarProjects.length > 0 && (
+        <SimilarProjects projects={similarProjects} />
+      )}
     </Layout>
   );
 }
