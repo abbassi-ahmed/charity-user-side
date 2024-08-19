@@ -10,12 +10,12 @@ const ProjectDetailsArea = ({ project, sum }) => {
   const progress = (amount / parseInt(target)) * 100;
 
   return (
-    <section className="project-details-area pt-120 pb-190">
+    <section className="project-details-area pt-120 pb-50">
       <Container>
         <Row>
           <Col lg={6}>
             <div className="project-details-thumb">
-              <Image src={image} alt={name} />
+              <Image src={image} alt={name} width={450} height={490} />
               <div className="icon">
                 <i className="fa fa-heart"></i>
               </div>
@@ -36,7 +36,7 @@ const ProjectDetailsArea = ({ project, sum }) => {
                   ? description
                   : "No description available."}
               </p>
-              <div className="project-details-item">
+              <div className="project-details-item mt-5">
                 <div className="item text-center">
                   <h5 className="title">{target}</h5>
                   <span>Target</span>
@@ -66,11 +66,6 @@ const ProjectDetailsArea = ({ project, sum }) => {
                       Donate Now
                     </a>
                   </Link>
-                </div>
-                <div className="project-btn mt-25">
-                  <a className="main-btn" href="#">
-                    Back this project
-                  </a>
                 </div>
               </div>
             </div>
