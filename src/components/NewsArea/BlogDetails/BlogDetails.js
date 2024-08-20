@@ -9,6 +9,7 @@ import axios from "axios";
 const BlogDetails = ({ id }) => {
   // const { id } = useParams();
   const [blog, setBlog] = useState(null);
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const fetchBlog = async () => {
@@ -16,17 +17,25 @@ const BlogDetails = ({ id }) => {
         if (!id) {
           return;
         }
-        const response = await axios.get(
-          `http://194.164.54.216:3636/blogs/find-one/${id}`
-        );
-        setBlog(response.data);
+        await axios
+          .get(`http://194.164.54.216:3636/blogs/find-one/${id}`)
+          .then(async (response) => {
+            setBlog(response.data);
+            await axios
+              .get("http://194.164.54.216:3636/blogs/find-all")
+              .then((res) => {
+                const uniquePosts = res.data.filter(
+                  (post) => post.id !== blog?.id
+                );
+                setPosts(uniquePosts);
+              });
+          });
       } catch (error) {
         console.error("Error fetching blog details:", error);
       }
     };
-
     fetchBlog();
-  }, [id]);
+  }, [id, blog?.id]);
 
   if (!blog) {
     return <div>Loading...</div>;
@@ -41,7 +50,7 @@ const BlogDetails = ({ id }) => {
             {/* <BlogAuthor author={blog.admin} /> */}
           </Col>
           <Col lg={4} md={6} sm={7}>
-            <BlogDetailsSidebar />
+            <BlogDetailsSidebar posts={posts} />
           </Col>
         </Row>
       </Container>
