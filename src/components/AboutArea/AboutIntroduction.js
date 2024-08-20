@@ -64,12 +64,7 @@ const AboutIntroduction = () => {
             </Col>
             <Col lg={7}>
               <div className="about-introduction-thumb">
-                {!imageLoaded && (
-                  <div
-                    className="image-skeleton"
-                    style={{ height: "400px", backgroundColor: "#f0f0f0" }}
-                  ></div>
-                )}
+                {!imageLoaded && <div className="pageLoader"></div>}
                 <Image
                   src={aboutData[0]?.thumb}
                   alt=""

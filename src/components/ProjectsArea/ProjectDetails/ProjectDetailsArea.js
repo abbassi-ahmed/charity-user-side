@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
 import Link from "../../Reuseable/Link";
 import CircularProgressBar from "../../../components/circularProgress/progress";
@@ -6,8 +6,13 @@ import CircularProgressBar from "../../../components/circularProgress/progress";
 const ProjectDetailsArea = ({ project, sum }) => {
   const { name, image, description, target, startDate, targetDate, Status } =
     project;
+  const [imageLoad, setImageLoad] = useState(false);
+
   const amount = sum && sum.sum ? sum.sum : 0;
   const progress = (amount / parseInt(target)) * 100;
+  const handleImageLoad = () => {
+    setImageLoad(true);
+  };
 
   return (
     <section className="project-details-area pt-120 pb-50">
@@ -15,7 +20,22 @@ const ProjectDetailsArea = ({ project, sum }) => {
         <Row>
           <Col lg={6}>
             <div className="project-details-thumb">
-              <Image src={image} alt={name} width={450} height={490} />
+              {!imageLoad && (
+                <div
+                  className="d-flex justify-content-center align-items-center"
+                  style={{ height: "300px", width: "100%" }}
+                >
+                  <div className="pageLoader"></div>
+                </div>
+              )}
+              <Image
+                src={image}
+                alt={name}
+                width={450}
+                height={490}
+                onLoad={handleImageLoad}
+                style={{ display: imageLoad ? "block" : "none" }}
+              />
               <div className="icon">
                 <i className="fa fa-heart"></i>
               </div>

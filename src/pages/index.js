@@ -104,7 +104,7 @@ const Home = () => {
             <BannerSlider slides={slides} user={user} />
             <Categories />
             <CtaArea />
-            <ProjectsArea />
+            {/* <ProjectsArea /> */}
             <WhyChoose />
             <FunFacts />
             <TogetherArea />
