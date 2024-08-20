@@ -1,6 +1,7 @@
 import React from "react";
 import { Image } from "react-bootstrap";
 import Link from "../Reuseable/Link";
+import { useRouter } from "next/router";
 
 const truncateText = (text, maxLength) => {
   if (text.length <= maxLength) return text;
@@ -12,6 +13,12 @@ const SingleExploreProject = ({ project, projectSums }) => {
   const amount = projectSums[project.id] || 0;
   const truncatedDescription = truncateText(description, 100);
   const progress = (amount / target) * 100;
+
+  const router = useRouter();
+
+  const navigateToProject = () => {
+    router.push(`/projects/${project.id}`);
+  };
 
   return (
     <div className="explore-projects-item mt-30" style={{ height: "400px" }}>
@@ -28,9 +35,9 @@ const SingleExploreProject = ({ project, projectSums }) => {
             {new Date(startDate).toLocaleDateString()}
           </p>
         </div>
-        <Link href={`/projects/${project.id}`}>
+        <div onClick={navigateToProject} className="cursor-pointer">
           <h3 className="title">{name}</h3>
-        </Link>
+        </div>
         <div className="projects-range">
           <div className="projects-range-content">
             <ul>
