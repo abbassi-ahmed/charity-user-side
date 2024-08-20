@@ -9,15 +9,25 @@ const NewsItem = ({ news = {}, index = 0, newsTwo = false }) => {
 
   return (
     <div
-      style={{ marginRight: "30px", boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)" }}
+      style={{
+        marginRight: "30px",
+        boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+      }}
     >
       <Col style={{ display: "flex", gap: "30px" }}>
-        <div className={`news-item mt-30`} style={{ height: "400px" }}>
+        <div
+          className={`news-item `}
+          style={{ height: "400px", width: "350px" }}
+        >
           <div className="news-thumb">
             <Image
               src={image}
               alt="news"
-              style={{ height: "150px", width: "100%", objectFit: "contain" }}
+              style={{
+                height: "150px",
+                width: "100%",
+                objectFit: "cover",
+              }}
             />
           </div>
           <div className="news-content">
@@ -32,7 +42,17 @@ const NewsItem = ({ news = {}, index = 0, newsTwo = false }) => {
                 {new Date(createdAt).toLocaleDateString()}
               </li>
             </ul>
-            <h3 className="title">{title}</h3>
+            <Link
+              href={`/blog/${news.id}`}
+              className="bg-transparent mb-5"
+              style={{
+                textDecoration: "none",
+                width: "100%",
+                textAlign: "left",
+              }}
+            >
+              <h3 className="title">{title}</h3>
+            </Link>
             <Link href={`/blog/${news.id}`}>
               <i className="flaticon-next"></i>
             </Link>

@@ -63,7 +63,12 @@ const Abonnement = () => {
       <PageTitle title="Abonnement" />
       <div className="subscription-wrapper">
         {loading ? (
-          <p>Loading subscriptions...</p>
+          <div
+            className="d-flex justify-content-center align-items-center"
+            style={{ height: "300px", width: "100%" }}
+          >
+            <div className="pageLoader"></div>
+          </div>
         ) : error ? (
           <p>{error}</p>
         ) : (
