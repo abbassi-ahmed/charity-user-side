@@ -53,14 +53,12 @@ const Home = () => {
   const { data: slides, isLoading: isSlidesLoading } = useQuery({
     queryKey: ["slides"],
     queryFn: fetchSlides,
-    enabled: !!user,
     initialData: [],
   });
 
   const { data: testimonials, isLoading: isTestimonialsLoading } = useQuery({
     queryKey: ["testimonials"],
     queryFn: fetchTestimonials,
-    enabled: !!user,
     initialData: [],
   });
 
@@ -99,23 +97,15 @@ const Home = () => {
     <div>
       <Layout>
         <Header />
-        {user && user.subscription && user.subscription.id ? (
-          <div>
-            <BannerSlider slides={slides} user={user} />
-            <Categories />
-            <CtaArea />
-            {/* <ProjectsArea /> */}
-            <WhyChoose />
-            <FunFacts />
-            <TogetherArea />
-            <TestimonialsArea testimonials={testimonials} />
-            <NewsArea />
-          </div>
-        ) : (
-          <div>
-            <NewsArea />
-          </div>
-        )}
+        <BannerSlider slides={slides} />
+        <Categories />
+        <CtaArea />
+        {/* <ProjectsArea /> */}
+        <WhyChoose />
+        <FunFacts />
+        <TogetherArea />
+        <TestimonialsArea testimonials={testimonials} />
+        <NewsArea />
       </Layout>
     </div>
   );

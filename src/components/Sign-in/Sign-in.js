@@ -61,64 +61,61 @@ const SignIn = () => {
   };
 
   return (
-    <Layout>
+    <section className="auth-section">
       <PageTitle title="Sign In" />
-      <section className="auth-section">
-        <Container>
-          <Row className="justify-content-center">
-            <Col lg={6} md={8}>
-              <div className="auth-form">
-                <h2 className="mt-4 text-center">Sign In</h2>
-                <Form onSubmit={handleSubmit}>
-                  <Form.Group controlId="formEmail" className="mb-3">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
-                      type="email"
-                      name="email"
-                      placeholder="Email"
-                      onChange={handleChange}
-                      required
-                    />
-                  </Form.Group>
-                  <Form.Group controlId="formPassword" className="mb-3">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                      type="password"
-                      name="password"
-                      placeholder="Password"
-                      onChange={handleChange}
-                      required
-                    />
-                  </Form.Group>
-                  <Button
-                    variant="primary"
-                    type="submit"
-                    className="w-100 mt-3"
-                    disabled={loader}
-                  >
-                    {loader ? (
-                      <div
-                        className="spinner-border text-light spinner-border-sm"
-                        role="status"
-                      ></div>
-                    ) : (
-                      "Sign In"
-                    )}
-                  </Button>
-                </Form>
-                {errorMessage && (
-                  <p className="mt-3 text-center text-danger">{errorMessage}</p>
-                )}
-                <p className="mt-3 text-center mb-5">
-                  Don&apos;t have an account?{" "}
-                  <Link href="/sign-up">Sign Up</Link>
-                </p>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </section>
-    </Layout>
+      <Container>
+        <Row className="justify-content-center">
+          <Col lg={6} md={8}>
+            <div className="auth-form">
+              <h2 className="mt-4 text-center">Sign In</h2>
+              <Form onSubmit={handleSubmit}>
+                <Form.Group controlId="formEmail" className="mb-3">
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
+                <Form.Group controlId="formPassword" className="mb-3">
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
+                <Button
+                  variant="primary"
+                  type="submit"
+                  className="w-100 mt-3"
+                  disabled={loader}
+                >
+                  {loader ? (
+                    <div
+                      className="spinner-border text-light spinner-border-sm"
+                      role="status"
+                    ></div>
+                  ) : (
+                    "Sign In"
+                  )}
+                </Button>
+              </Form>
+              {errorMessage && (
+                <p className="mt-3 text-center text-danger">{errorMessage}</p>
+              )}
+              <p className="mt-3 text-center mb-5">
+                Don&apos;t have an account? <Link href="/sign-up">Sign Up</Link>
+              </p>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </section>
   );
 };
 

@@ -49,11 +49,12 @@ const MainHeaderItem = ({
               </Link>
             </div>
 
-            {user?.id && user?.subscription ? (
-              <HeaderMenu navItems={navItems} />
+            {/* {user?.id && user?.subscription ? (
             ) : (
               <HeaderMenu navItems={navDefault} />
-            )}
+            )} */}
+
+            <HeaderMenu navItems={navItems} />
 
             <HeaderInfo
               icon={icon}
