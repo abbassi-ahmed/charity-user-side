@@ -37,11 +37,11 @@ const AboutIntroduction = () => {
                   <span>{aboutData[0]?.tagline}</span>
                   <h3 className="title">{aboutData[0]?.title}</h3>
                   <p>{aboutData[0]?.text}</p>
-                  <div className="item1 mt-35">
+                  <div className="item mt-35">
                     <i className="flaticon-checkmark"></i>
                     <h4 className="title">{aboutData[0]?.item1}</h4>
                   </div>
-                  <div className="item2 mt-35">
+                  <div className="item mt-35">
                     <i className="flaticon-checkmark"></i>
                     <h4 className="title">{aboutData[0]?.item2}</h4>
                   </div>
@@ -51,11 +51,11 @@ const AboutIntroduction = () => {
                   <span>Loading...</span>
                   <h3 className="title">Loading...</h3>
                   <p>Loading...</p>
-                  <div className="item1 mt-35">
+                  <div className="item mt-35">
                     <i className="flaticon-checkmark"></i>
                     <h4 className="title">Loading...</h4>
                   </div>
-                  <div className="item2 mt-35">
+                  <div className="item mt-35">
                     <i className="flaticon-checkmark"></i>
                     <h4 className="title">Loading...</h4>
                   </div>

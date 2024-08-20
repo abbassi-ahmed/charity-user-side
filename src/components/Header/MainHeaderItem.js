@@ -50,10 +50,10 @@ const MainHeaderItem = ({
             </div>
 
             {/* {user?.id && user?.subscription ? (
+              <HeaderMenu navItems={navItems} />
             ) : (
               <HeaderMenu navItems={navDefault} />
             )} */}
-
             <HeaderMenu navItems={navItems} />
 
             <HeaderInfo

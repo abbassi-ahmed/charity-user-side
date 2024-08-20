@@ -30,35 +30,11 @@ const SidebarPostSingle = ({ post = {} }) => {
   );
 };
 
-const BlogDetailsSidebar = () => {
-  const [posts, setPosts] = useState([]);
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const response = await fetch(
-          "http://194.164.54.216:3636/blogs/find-all"
-        );
-        const data = await response.json();
-        // Sorted posts by createdAt date in descending order
-        const sortedPosts = data.sort(
-          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-        );
-        setPosts(sortedPosts);
-      } catch (error) {
-        console.error("Error fetching posts:", error);
-      }
-    };
-
-    fetchPosts();
-  }, []);
-
-  const onSubmit = (data) => console.log(data);
-
+const BlogDetailsSidebar = ({ posts }) => {
   return (
     <div className="sidebar">
       <div className="sidebar__single sidebar__post">
-        <h3 className="sidebar__title">Recent Posts</h3>
+        <h3 className="sidebar__title">Other Posts</h3>
         <div className="sidebar__post-wrap">
           {posts.map((post) => (
             <SidebarPostSingle post={post} key={post.id} />
