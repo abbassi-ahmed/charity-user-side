@@ -44,14 +44,14 @@ const EasyStepsArea = () => {
           ))}
         </Row>
         <Row className="justify-content-center">
-          <Col lg={7}>
+          {/* <Col lg={7}>
             <div className="easy-steps-content text-center">
               <p>{text}</p>
               <Link className="main-btn" href="/single-project">
                 Start a Project
               </Link>
             </div>
-          </Col>
+          </Col> */}
         </Row>
       </Container>
     </section>

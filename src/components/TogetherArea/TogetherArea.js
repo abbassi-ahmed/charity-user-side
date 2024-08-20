@@ -17,9 +17,9 @@ const TogetherArea = ({ className = "" }) => {
             <div className="together-content text-center">
               <span>{tagline}</span>
               <h3 className="title">{title}</h3>
-              <Link className="main-btn" href="/single-project">
+              {/* <Link className="main-btn" href="/single-project">
                 Start a Project
-              </Link>
+              </Link> */}
             </div>
           </Col>
         </Row>
