@@ -44,21 +44,8 @@ const SingleTab = ({ tab = {}, current }) => {
   );
 };
 
-const FaqDesignArea = () => {
+const FaqDesignArea = ({ faqData }) => {
   const [current, setCurrent] = useState("pills-1");
-  const fetchFaqData = async () => {
-    try {
-      const response = await axios.get(
-        "http://194.164.54.216:3636/faq/find-all"
-      );
-      console.log(response.data);
-    } catch (error) {
-      console.error("Error fetching faq data:", error);
-    }
-  };
-  useEffect(() => {
-    fetchFaqData();
-  }, []);
 
   return (
     <section className="faq-design-area pb-120">
