@@ -55,7 +55,9 @@ const SingleExploreProject = ({ project, projectSums }) => {
                   transition: "width 0.3s ease-in-out",
                 }}
               >
-                <p style={{ color: "white", textAlign: "center" }}>{amount}</p>
+                <p style={{ color: "white", textAlign: "center" }}>
+                  {amount === 0 ? "" : amount}
+                </p>
               </div>
             </div>
           </div>

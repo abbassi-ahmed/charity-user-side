@@ -50,12 +50,6 @@ const TeamMembers = () => {
     enabled: !loadingUser && user !== null,
   });
 
-  useEffect(() => {
-    if (!loadingUser && user && !user.subscription) {
-      router.push("/abonnement");
-    }
-  }, [loadingUser, user, router]);
-
   if (loadingUser || loadingUsers) {
     return (
       <Layout>

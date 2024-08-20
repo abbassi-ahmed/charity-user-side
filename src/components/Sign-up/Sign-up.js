@@ -76,94 +76,89 @@ const SignUp = () => {
 
   return (
     <div>
-      <Layout>
-        <PageTitle title="Sign Up" />
-        <section className="auth-section">
-          <Container>
-            <Row className="justify-content-center">
-              <Col lg={6} md={8}>
-                <div className="auth-form">
-                  <h2 className="mt-4 text-center">Sign Up</h2>
-                  <Form onSubmit={handleSubmit}>
-                    <Form.Group controlId="formFirstName">
-                      <Form.Label>First Name</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="firstName"
-                        placeholder="First Name"
-                        onChange={handleChange}
-                        required
-                      />
-                    </Form.Group>
-                    <Form.Group controlId="formLastName">
-                      <Form.Label>Last Name</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="lastName"
-                        placeholder="Last Name"
-                        onChange={handleChange}
-                        required
-                      />
-                    </Form.Group>
-                    <Form.Group controlId="formEmail">
-                      <Form.Label>Email</Form.Label>
-                      <Form.Control
-                        type="email"
-                        name="email"
-                        placeholder="Email"
-                        onChange={handleChange}
-                        required
-                      />
-                    </Form.Group>
-                    <Form.Group controlId="formPassword">
-                      <Form.Label>Password</Form.Label>
-                      <Form.Control
-                        type="password"
-                        name="password"
-                        placeholder="Password"
-                        onChange={handleChange}
-                        required
-                      />
-                    </Form.Group>
-                    <Form.Group controlId="formAvatar">
-                      <Form.Label>Avatar</Form.Label>
-                      <Form.Control
-                        type="file"
-                        name="avatar"
-                        onChange={handleChange}
-                      />
-                    </Form.Group>
-                    <Button
-                      variant="primary"
-                      type="submit"
-                      className="w-100 mt-3"
-                      disabled={loader}
-                    >
-                      {loader ? (
-                        <div
-                          className="spinner-border text-light spinner-border-sm"
-                          role="status"
-                        ></div>
-                      ) : (
-                        "Sign Up"
-                      )}
-                    </Button>
-                  </Form>
-                  {errorMessage && (
-                    <p className="mt-3 text-center text-danger">
-                      {errorMessage}
-                    </p>
-                  )}
-                  <p className="mt-3 text-center mb-5">
-                    Already have an account?{" "}
-                    <Link href="/sign-in">Sign In</Link>
-                  </p>
-                </div>
-              </Col>
-            </Row>
-          </Container>
-        </section>
-      </Layout>
+      <PageTitle title="Sign Up" />
+      <section className="auth-section">
+        <Container>
+          <Row className="justify-content-center">
+            <Col lg={6} md={8}>
+              <div className="auth-form">
+                <h2 className="mt-4 text-center">Sign Up</h2>
+                <Form onSubmit={handleSubmit}>
+                  <Form.Group controlId="formFirstName">
+                    <Form.Label>First Name</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="firstName"
+                      placeholder="First Name"
+                      onChange={handleChange}
+                      required
+                    />
+                  </Form.Group>
+                  <Form.Group controlId="formLastName">
+                    <Form.Label>Last Name</Form.Label>
+                    <Form.Control
+                      type="text"
+                      name="lastName"
+                      placeholder="Last Name"
+                      onChange={handleChange}
+                      required
+                    />
+                  </Form.Group>
+                  <Form.Group controlId="formEmail">
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control
+                      type="email"
+                      name="email"
+                      placeholder="Email"
+                      onChange={handleChange}
+                      required
+                    />
+                  </Form.Group>
+                  <Form.Group controlId="formPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                      type="password"
+                      name="password"
+                      placeholder="Password"
+                      onChange={handleChange}
+                      required
+                    />
+                  </Form.Group>
+                  <Form.Group controlId="formAvatar">
+                    <Form.Label>Avatar</Form.Label>
+                    <Form.Control
+                      type="file"
+                      name="avatar"
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                  <Button
+                    variant="primary"
+                    type="submit"
+                    className="w-100 mt-3"
+                    disabled={loader}
+                  >
+                    {loader ? (
+                      <div
+                        className="spinner-border text-light spinner-border-sm"
+                        role="status"
+                      ></div>
+                    ) : (
+                      "Sign Up"
+                    )}
+                  </Button>
+                </Form>
+                {errorMessage && (
+                  <p className="mt-3 text-center text-danger">{errorMessage}</p>
+                )}
+                <p className="mt-3 text-center mb-5">
+                  Already have an account? <Link href="/sign-in">Sign In</Link>
+                </p>
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </section>
     </div>
   );
 };

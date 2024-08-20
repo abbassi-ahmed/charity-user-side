@@ -44,16 +44,9 @@ const About = () => {
           setLoader(false);
         });
     } else {
-      router.push("/sign-in");
       setLoader(false);
     }
   }, [router]);
-
-  useEffect(() => {
-    if (!loader && user && !user.subscription) {
-      router.push("/abonnement");
-    }
-  }, [loader, user, router]);
 
   if (loader) {
     return (

@@ -1,5 +1,5 @@
 import { bannerSlider } from "@/data/bannerSlider";
-import React, { useEffect } from "react";
+import React from "react";
 import SwiperCore, { Autoplay, EffectFade, Navigation } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import SingleBanner from "./SingleBanner";
@@ -28,17 +28,9 @@ const BannerSlider = ({
   className = "",
   isBannerTwo = false,
   isBannerThree = false,
-  user = null,
   slides = [],
 }) => {
   const router = useRouter();
-
-  useEffect(() => {
-    if (!user.subscription && !user.subscription.id) {
-      router.push("/abonnement");
-    }
-  }, [router, user]);
-
   return (
     <section className={`banner-slider ${className}`}>
       <Swiper {...options}>
