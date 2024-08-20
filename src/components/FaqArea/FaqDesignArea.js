@@ -51,7 +51,7 @@ const FaqDesignArea = () => {
       <Container>
         <Row>
           <Col lg={12}>
-            <div className="faq-tab-btn">
+            {/* <div className="faq-tab-btn">
               <ul className="nav nav-pills justify-content-between">
                 {navItems.map((navItem) => (
                   <NavItem
@@ -62,7 +62,7 @@ const FaqDesignArea = () => {
                   />
                 ))}
               </ul>
-            </div>
+            </div> */}
             <div className="tab-content mt-55" id="pills-tabContent">
               {tabPane.map((tab) => (
                 <SingleTab key={tab.id} tab={tab} current={current} />

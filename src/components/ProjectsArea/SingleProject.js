@@ -7,9 +7,11 @@ const SingleProject = ({ project, projectSums = {} }) => {
   const { id, image, startDate, name, description, target } = project;
   const amount = projectSums[id] || 0;
   const progress = target ? (amount / target) * 100 : 0;
-  // const handleImageLoad = () => {
-  //   setImageLoad(true);
-  // };
+
+  const handleImageLoad = () => {
+    setImageLoad(true);
+  };
+
   return (
     <div
       className="explore-projects-item mt-30"
@@ -19,21 +21,24 @@ const SingleProject = ({ project, projectSums = {} }) => {
         className="explore-projects-thumb"
         style={{ height: "300px", width: "100%", overflow: "hidden" }}
       >
-        {imageLoad ? (
+        {!imageLoad && (
           <div
             className="d-flex justify-content-center align-items-center"
             style={{ height: "300px", width: "100%" }}
           >
             <div className="pageLoader"></div>
           </div>
-        ) : (
-          <Image
-            src={image}
-            alt={name}
-            style={{ height: "300px", width: "100%" }}
-            // onLoad={handleImageLoad}
-          />
         )}
+        <Image
+          src={image}
+          alt={name}
+          style={{
+            height: "300px",
+            width: "100%",
+            display: imageLoad ? "block" : "none",
+          }}
+          onLoad={handleImageLoad}
+        />
       </div>
       <div className="explore-projects-content" style={{ padding: "20px" }}>
         <div className="item d-flex align-items-center">
@@ -59,7 +64,9 @@ const SingleProject = ({ project, projectSums = {} }) => {
               transition: "width 0.3s ease-in-out",
             }}
           >
-            <p style={{ color: "white", textAlign: "center" }}>{amount}</p>
+            <p style={{ color: "white", textAlign: "center" }}>
+              {amount === 0 ? "" : amount}
+            </p>
           </div>
         </div>
         <div className="projects-goal">

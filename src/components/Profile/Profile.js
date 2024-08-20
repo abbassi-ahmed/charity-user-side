@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Container, Form, Button } from "react-bootstrap";
+import { Container, Form, Button, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
+import NoPayment from "../../assets/svgs/empty-cart.svg";
+
 import { toast, Toaster } from "react-hot-toast";
 
 const Profile = () => {
@@ -92,7 +94,14 @@ const Profile = () => {
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div
+        className="d-flex justify-content-center align-items-center"
+        style={{ height: "300px", width: "100%" }}
+      >
+        <div className="pageLoader"></div>
+      </div>
+    );
   }
 
   return (
@@ -100,101 +109,132 @@ const Profile = () => {
       className="profile-container"
       style={{
         minHeight: "60vh",
-        margin: "0 auto",
-        width: "40%",
+        width: "100%",
         padding: "20px",
       }}
     >
-      <h2 className="text-center mb-3">Edit Profile</h2>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="formAvatar ">
-          <Form.Label>Upload Avatar</Form.Label>
-          <label
-            className="avatar-preview"
-            style={{
-              width: "100px",
-              height: "100px",
-              borderRadius: "50%",
-              overflow: "hidden",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              border: "1px solid #ccc",
-              backgroundColor: "#f0f0f0",
-              marginBottom: "10px",
-              cursor: "pointer",
-            }}
-          >
-            {avatarFile ? (
-              <Image
-                src={avatarFile}
-                alt="Avatar Preview"
-                className="avatar-image"
-                width={100}
-                height={100}
-                objectFit="cover"
+      <Row className="justify-content-between" style={{ height: "100%" }}>
+        <Col lg={6} className="mb-5">
+          <h2 className="text-center mb-3">Edit Profile</h2>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="formAvatar">
+              <Form.Label>Upload Avatar</Form.Label>
+              <label
+                className="avatar-preview"
+                style={{
+                  width: "100px",
+                  height: "100px",
+                  borderRadius: "50%",
+                  overflow: "hidden",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  border: "1px solid #ccc",
+                  backgroundColor: "#f0f0f0",
+                  marginBottom: "10px",
+                  cursor: "pointer",
+                }}
+              >
+                {avatarFile ? (
+                  <Image
+                    src={avatarFile}
+                    alt="Avatar Preview"
+                    className="avatar-image"
+                    width={100}
+                    height={100}
+                    objectFit="cover"
+                  />
+                ) : (
+                  <span></span>
+                )}
+                <Form.Control
+                  type="file"
+                  name="avatar"
+                  hidden
+                  onChange={handleFileChange}
+                />
+              </label>
+            </Form.Group>
+            <Form.Group controlId="formFirstName">
+              <Form.Label>First Name</Form.Label>
+              <Form.Control
+                type="text"
+                name="firstName"
+                value={formData.firstName}
+                onChange={handleChange}
+                required
               />
-            ) : (
-              <span></span>
-            )}
-            <Form.Control
-              type="file"
-              name="avatar"
-              hidden
-              onChange={handleFileChange}
-            />
-          </label>
-        </Form.Group>
-        <Form.Group controlId="formFirstName">
-          <Form.Label>First Name</Form.Label>
-          <Form.Control
-            type="text"
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
-        <Form.Group controlId="formLastName">
-          <Form.Label>Last Name</Form.Label>
-          <Form.Control
-            type="text"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
-        <Form.Group controlId="formEmail">
-          <Form.Label>Email</Form.Label>
-          <Form.Control
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-        </Form.Group>
+            </Form.Group>
+            <Form.Group controlId="formLastName">
+              <Form.Label>Last Name</Form.Label>
+              <Form.Control
+                type="text"
+                name="lastName"
+                value={formData.lastName}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+            <Form.Group controlId="formEmail">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
 
-        <Button
-          variant="primary"
-          type="submit"
-          className="mt-3  text-center align-self-center"
-          style={{ width: "100%" }}
-          disabled={loader}
-        >
-          {loader ? (
-            <div
-              className="spinner-border text-light spinner-border-sm"
-              role="status"
-            ></div>
+            <Button
+              variant="primary"
+              type="submit"
+              className="mt-3 text-center align-self-center"
+              style={{ width: "100%" }}
+              disabled={loader}
+            >
+              {loader ? (
+                <div
+                  className="spinner-border text-light spinner-border-sm"
+                  role="status"
+                ></div>
+              ) : (
+                <>
+                  <FontAwesomeIcon icon={faSave} /> Save Changes{" "}
+                </>
+              )}
+            </Button>
+          </Form>
+        </Col>
+        <Col lg={(4, 5)} className="mb-3 text-center">
+          <h2 className="mb-5">Subscription</h2>
+          {user.subscription ? (
+            <div className="container-card">
+              <h2 className="title-card">{user.subscription.title}</h2>
+              <p className="body-card">{user.subscription.description}</p>
+              <div className="btn-card">
+                <span className="text-lg">
+                  Ends on: {new Date(user.dateEnd).toLocaleDateString()}
+                </span>
+              </div>
+            </div>
           ) : (
-            <>
-              <FontAwesomeIcon icon={faSave} /> Save Changes{" "}
-            </>
+            <div className="text-center">
+              <Image
+                src={NoPayment}
+                alt="No Payment"
+                className="mr-5 "
+                style={{
+                  display: "block",
+                  margin: "0 auto",
+                }}
+              />
+              <h4>No Subscription Found</h4>
+            </div>
           )}
-        </Button>
-      </Form>
+        </Col>
+      </Row>
+
       <Toaster />
     </Container>
   );

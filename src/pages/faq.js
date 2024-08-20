@@ -11,9 +11,8 @@ const Faq = () => {
     <Layout>
       <Header />
       <PageTitle title="FAQs" parent="pages" />
-      <FaqTitleArea />
       <FaqDesignArea />
-      <BrandAreaTwo />
+      {/* <BrandAreaTwo /> */}
     </Layout>
   );
 };
