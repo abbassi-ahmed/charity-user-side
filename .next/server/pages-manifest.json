@@ -1,5 +1,27 @@
 {
   "/_app": "pages/_app.js",
+  "/_document": "pages/_document.js",
+  "/abonnement": "pages/abonnement.html",
+  "/about": "pages/about.html",
+  "/blog/[id]": "pages/blog/[id].html",
+  "/contact": "pages/contact.html",
+  "/donation-project/[id]": "pages/donation-project/[id].html",
+  "/event": "pages/event.html",
+  "/faq": "pages/faq.html",
+  "/event/[id]": "pages/event/[id].html",
+  "/index-3": "pages/index-3.html",
+  "/": "pages/index.html",
+  "/news": "pages/news.html",
+  "/index-2": "pages/index-2.html",
+  "/profile": "pages/profile.html",
+  "/projects-2": "pages/projects-2.html",
+  "/projects-1": "pages/projects-1.html",
+  "/projects/[id]": "pages/projects/[id].html",
+  "/sign-up": "pages/sign-up.html",
+  "/sign-in": "pages/sign-in.html",
+  "/single-news": "pages/single-news.html",
+  "/team-members": "pages/team-members.html",
+  "/single-project": "pages/single-project.html",
   "/_error": "pages/_error.js",
-  "/_document": "pages/_document.js"
+  "/404": "pages/404.html"
 }
