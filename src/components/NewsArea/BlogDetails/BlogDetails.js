@@ -18,11 +18,11 @@ const BlogDetails = ({ id }) => {
           return;
         }
         await axios
-          .get(`http://194.164.54.216:3636/blogs/find-one/${id}`)
+          .get(`https://api.olympiquemnihla.com//blogs/find-one/${id}`)
           .then(async (response) => {
             setBlog(response.data);
             await axios
-              .get("http://194.164.54.216:3636/blogs/find-all")
+              .get("https://api.olympiquemnihla.com//blogs/find-all")
               .then((res) => {
                 const uniquePosts = res.data.filter(
                   (post) => post.id !== blog?.id
