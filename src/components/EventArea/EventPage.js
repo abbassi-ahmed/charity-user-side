@@ -9,7 +9,7 @@ const EventsPage = () => {
     const fetchEvents = async () => {
       try {
         const response = await fetch(
-          "http://194.164.54.216:3636/events/find-all"
+          "https://api.olympiquemnihla.com//events/find-all"
         );
         const data = await response.json();
         setEvents(data);
