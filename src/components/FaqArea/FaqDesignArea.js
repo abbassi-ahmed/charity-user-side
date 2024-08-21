@@ -1,10 +1,10 @@
-import { faqDesignArea } from "@/data/faqArea";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import axios from "axios";
+import { faqDesignArea } from "@/data/faqArea";
 import Faqs from "./Faqs";
-
-const { navItems, tabPane } = faqDesignArea;
+import noData from "../../assets/svgs/noData.svg";
+import Image from "next/image";
+const { navItems } = faqDesignArea;
 
 const NavItem = ({ navItem = {}, current, setCurrent }) => {
   const { href, icon, name } = navItem;
@@ -24,35 +24,42 @@ const NavItem = ({ navItem = {}, current, setCurrent }) => {
   );
 };
 
-const SingleTab = ({ tab = {}, current }) => {
-  const { id, faqsData } = tab;
+const SingleTab = ({ current, id, faqsData }) => {
   const active = current === id;
-
+  if (!Array.isArray(faqsData)) {
+    faqsData = [faqsData];
+  }
   return (
     <div
       className={`tab-pane animated${active ? " fadeIn show active" : ""}`}
       id={id}
     >
       <Row>
-        {faqsData.map((faqs, i) => (
-          <Col key={i} lg={6}>
-            <Faqs faqs={faqs} />
-          </Col>
-        ))}
+        {faqsData?.length > 0 ? (
+          faqsData.map((faqs, i) => (
+            <Col key={i} lg={12}>
+              <Faqs faqs={faqs} />
+            </Col>
+          ))
+        ) : (
+          <div className="text-center">
+            <Image src={noData} alt="No Data Found" width={200} height={200} />
+
+            <h2>No FAQs For This Category</h2>
+          </div>
+        )}
       </Row>
     </div>
   );
 };
 
-const FaqDesignArea = ({ faqData }) => {
-  const [current, setCurrent] = useState("pills-1");
-
+const FaqDesignArea = ({ faqData, current, setCurrent }) => {
   return (
     <section className="faq-design-area pb-120">
       <Container>
         <Row>
           <Col lg={12}>
-            {/* <div className="faq-tab-btn">
+            <div className="faq-tab-btn">
               <ul className="nav nav-pills justify-content-between">
                 {navItems.map((navItem) => (
                   <NavItem
@@ -63,11 +70,34 @@ const FaqDesignArea = ({ faqData }) => {
                   />
                 ))}
               </ul>
-            </div> */}
+            </div>
             <div className="tab-content mt-55" id="pills-tabContent">
-              {tabPane.map((tab) => (
-                <SingleTab key={tab.id} tab={tab} current={current} />
-              ))}
+              {faqData?.length > 0 ? (
+                faqData.map((tab) => (
+                  <SingleTab
+                    key={tab.id}
+                    id={
+                      current === "pills-1"
+                        ? "pills-1"
+                        : current === "pills-2"
+                        ? "pills-2"
+                        : "pills-3"
+                    }
+                    faqsData={tab}
+                    current={current}
+                  />
+                ))
+              ) : (
+                <div className="text-center">
+                  <Image
+                    src={noData}
+                    alt="No Data Found"
+                    width={200}
+                    height={200}
+                  />
+                  <h2>No FAQs For This Category</h2>
+                </div>
+              )}
             </div>
           </Col>
         </Row>
