@@ -6,6 +6,7 @@ import Image from "next/image";
 import NoPayment from "../../assets/svgs/empty-cart.svg";
 
 import { toast, Toaster } from "react-hot-toast";
+import { useRouter } from "next/router";
 
 const Profile = () => {
   const [user, setUser] = useState(null);
@@ -17,6 +18,7 @@ const Profile = () => {
   const [avatarFile, setAvatarFile] = useState(null); // State to hold the selected avatar file
   const [loading, setLoading] = useState(true);
   const [loader, setLoader] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -44,7 +46,11 @@ const Profile = () => {
           setLoading(false);
         });
     }
-  }, []);
+    if (!token) {
+      router.push("/sign-in");
+      setLoading(false);
+    }
+  }, [router]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -208,7 +214,7 @@ const Profile = () => {
         </Col>
         <Col lg={(4, 5)} className="mb-3 text-center">
           <h2 className="mb-5">Subscription</h2>
-          {user.subscription ? (
+          {user?.subscription ? (
             <div className="container-card">
               <h2 className="title-card">{user.subscription.title}</h2>
               <p className="body-card">{user.subscription.description}</p>
