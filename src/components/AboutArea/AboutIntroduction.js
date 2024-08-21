@@ -10,7 +10,7 @@ const AboutIntroduction = () => {
   const fetchAboutData = async () => {
     try {
       const response = await axios.get(
-        "https://api.olympiquemnihla.com//about-section/find-all"
+        "https://api.olympiquemnihla.com/about-section/find-all"
       );
       setAboutData(response.data);
     } catch (error) {

@@ -20,7 +20,7 @@ const TeamMembers = () => {
         throw new Error("No token found");
       }
       const response = await fetch(
-        "https://api.olympiquemnihla.com//users/verify",
+        "https://api.olympiquemnihla.com/users/verify",
         {
           method: "POST",
           headers: {
@@ -46,7 +46,7 @@ const TeamMembers = () => {
     queryKey: ["users"],
     queryFn: async () => {
       const response = await axios.get(
-        "https://api.olympiquemnihla.com//admins/find-all"
+        "https://api.olympiquemnihla.com/admins/find-all"
       );
       return response.data;
     },

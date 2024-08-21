@@ -11,7 +11,7 @@ const Faq = () => {
   const fetchFaqData = async () => {
     try {
       const response = await axios.get(
-        "https://api.olympiquemnihla.com//faq/find-all"
+        "https://api.olympiquemnihla.com/faq/find-all"
       );
       setFaqData(response.data);
       console.log(response.data);

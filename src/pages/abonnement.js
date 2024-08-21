@@ -14,7 +14,7 @@ const Abonnement = () => {
   const fetchSubscriptions = async () => {
     try {
       const response = await fetch(
-        "https://api.olympiquemnihla.com//subscription/find-all"
+        "https://api.olympiquemnihla.com/subscription/find-all"
       );
       if (!response.ok) throw new Error("Failed to fetch subscriptions");
       const data = await response.json();
@@ -33,7 +33,7 @@ const Abonnement = () => {
 
     try {
       const response = await fetch(
-        "https://api.olympiquemnihla.com//users/verify",
+        "https://api.olympiquemnihla.com/users/verify",
         {
           method: "POST",
           headers: {

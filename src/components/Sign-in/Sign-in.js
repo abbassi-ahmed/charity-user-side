@@ -29,7 +29,7 @@ const SignIn = () => {
     try {
       setLoader(true);
       const response = await axios.post(
-        `https://api.olympiquemnihla.com//users/signin`,
+        `https://api.olympiquemnihla.com/users/signin`,
         formData,
         {
           headers: {

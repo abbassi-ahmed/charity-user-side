@@ -45,7 +45,7 @@ const Categories = () => {
     try {
       setLoading(true);
       const res = await axios.get(
-        "https://api.olympiquemnihla.com//categories-section/find-all"
+        "https://api.olympiquemnihla.com/categories-section/find-all"
       );
       setCategoriesSection(res.data);
     } catch (error) {

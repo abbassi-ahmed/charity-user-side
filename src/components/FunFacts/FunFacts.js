@@ -13,7 +13,7 @@ const FunFacts = ({ className = "" }) => {
     try {
       setLoading(true);
       const response = await axios.get(
-        "https://api.olympiquemnihla.com//fun-fact-section/find-all"
+        "https://api.olympiquemnihla.com/fun-fact-section/find-all"
       );
       setFacts(response.data);
     } catch (error) {
