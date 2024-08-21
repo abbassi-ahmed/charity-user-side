@@ -23,7 +23,7 @@ const HeaderInfo = ({ socials, icon, phone = "", searchColor }) => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      fetch("https://api.olympiquemnihla.com//users/verify", {
+      fetch("https://api.olympiquemnihla.com/users/verify", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

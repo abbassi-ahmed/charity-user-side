@@ -14,7 +14,7 @@ export default function Page() {
 
   useEffect(() => {
     if (id) {
-      fetch(`https://api.olympiquemnihla.com//projects/find-one/${id}`)
+      fetch(`https://api.olympiquemnihla.com/projects/find-one/${id}`)
         .then((response) => response.json())
         .then((data) => setProject(data))
         .catch((error) => console.error("Error fetching project:", error));

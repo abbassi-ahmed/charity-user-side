@@ -18,11 +18,11 @@ const BlogDetails = ({ id }) => {
           return;
         }
         await axios
-          .get(`https://api.olympiquemnihla.com//blogs/find-one/${id}`)
+          .get(`https://api.olympiquemnihla.com/blogs/find-one/${id}`)
           .then(async (response) => {
             setBlog(response.data);
             await axios
-              .get("https://api.olympiquemnihla.com//blogs/find-all")
+              .get("https://api.olympiquemnihla.com/blogs/find-all")
               .then((res) => {
                 const uniquePosts = res.data.filter(
                   (post) => post.id !== blog?.id
