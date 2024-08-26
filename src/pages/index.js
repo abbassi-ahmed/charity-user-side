@@ -12,6 +12,7 @@ import ProjectsArea from "@/components/ProjectsArea/ProjectsArea";
 import TogetherArea from "@/components/TogetherArea/TogetherArea";
 import TestimonialsArea from "@/components/Testimonials/TestimonialsArea";
 import WhyChoose from "@/components/WhyChoose/WhyChoose";
+import Link from "../components/Reuseable/Link";
 
 const fetchUser = async (token) => {
   const response = await fetch("https://api.olympiquemnihla.com/users/verify", {
@@ -92,9 +93,8 @@ const Home = () => {
       </Layout>
     );
   }
-
   return (
-    <div>
+    <div style={{ position: "relative" }}>
       <Layout>
         <Header />
         <BannerSlider slides={slides} />
@@ -106,6 +106,38 @@ const Home = () => {
         <TogetherArea />
         <TestimonialsArea testimonials={testimonials} />
         <NewsArea />
+        <Link
+          style={{
+            position: "fixed",
+            bottom: "15px",
+            left: "10px",
+            padding: "10px",
+            borderRadius: "5px",
+            border: "none",
+            zIndex: 1000,
+            width: "110px",
+            height: "50px",
+            backgroundColor: "#29F0B5",
+            color: "#fff",
+            cursor: "pointer",
+            textAlign: "center",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+          href={"/donate"}
+        >
+          <p
+            style={{
+              width: "100%",
+              color: "#fff",
+              fontSize: "16px",
+              fontWeight: "bold",
+            }}
+          >
+            Donate Now
+          </p>
+        </Link>
       </Layout>
     </div>
   );
