@@ -88,8 +88,8 @@ const headerData = {
   navItems,
   navDefault,
   email: "needhelp@krowd.com",
-  phone: "666 888 0000",
-  address: "66 Broklyn Street, USA",
+  phone: "+216 xx xxx xxx",
+  address: "Cite Bassatine Mnihla, Ariana, Tunisia, 2094",
   socials,
 };
 
