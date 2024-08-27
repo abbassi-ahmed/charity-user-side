@@ -16,7 +16,13 @@ export const navItems = [
   {
     id: 3,
     name: "Projects",
-    href: "/projects-2",
+    href: "",
+
+    subNavItems: [
+      { id: 1, name: "All Of Them", href: "/projects-2" },
+      { id: 2, name: "Mobile", href: "/projects-type1" },
+      { id: 3, name: "Web", href: "/projects-type1" },
+    ],
   },
 
   {

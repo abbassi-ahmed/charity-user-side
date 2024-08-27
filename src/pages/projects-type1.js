@@ -5,7 +5,7 @@ import PageTitle from "@/components/Reuseable/PageTitle";
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 
-const Projects2 = () => {
+const ProjectType1 = () => {
   const [projects, setProjects] = useState([]);
   const [projectSums, setProjectSums] = useState({});
   const [loading, setLoading] = useState(true);
@@ -14,8 +14,11 @@ const Projects2 = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await axios.get(
-          "https://api.olympiquemnihla.com/projects/find-all"
+        const response = await axios.post(
+          "https://api.olympiquemnihla.com/projects/find-by-type",
+          {
+            type: "Mobile",
+          }
         );
         const projects = response.data;
         setProjects(projects);
@@ -68,10 +71,10 @@ const Projects2 = () => {
   return (
     <Layout>
       <Header />
-      <PageTitle title="All Projects" />
+      <PageTitle title="Project Type  " />
       <ExploreProjectsThree projects={projects} projectSums={projectSums} />
     </Layout>
   );
 };
 
-export default Projects2;
+export default ProjectType1;
