@@ -122,6 +122,7 @@ const Home = () => {
             cursor: "pointer",
             textAlign: "center",
             display: "flex",
+            cursor: "pointer",
             justifyContent: "center",
             alignItems: "center",
           }}
