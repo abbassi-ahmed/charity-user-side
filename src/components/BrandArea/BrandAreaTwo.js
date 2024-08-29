@@ -7,7 +7,7 @@ import axios from "axios";
 SwiperCore.use([Autoplay]);
 
 const options = {
-  slidesPerView: 5,
+  slidesPerView: 3,
   spaceBetween: 30,
   loop: true,
   autoplay: {
@@ -40,7 +40,7 @@ const options = {
 const BrandItem = ({ image }) => {
   return (
     <div className="brand-item text-center">
-      <Image src={image.src} alt="" />
+      <Image src={image} alt="" width={150} height={150} />
     </div>
   );
 };

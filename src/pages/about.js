@@ -74,6 +74,7 @@ const About = () => {
       {/* <NextBigThing className="next-big-thing-about-area" /> */}
       {/* <TeamMainArea className="about-team-main-area" /> */}
       <TogetherArea className="together-3-area" />
+      <BrandAreaTwo className="brand-area-2" />
     </Layout>
   );
 };
