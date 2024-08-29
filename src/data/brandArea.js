@@ -1,4 +1,4 @@
-import image from "@/images/brand.png";
+import image from "@/images/bg4.jpg";
 
 export const brands = [
   {

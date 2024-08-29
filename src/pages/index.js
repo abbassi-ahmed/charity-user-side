@@ -9,6 +9,8 @@ import Header from "@/components/Header/Header";
 import Layout from "@/components/Layout/Layout";
 import NewsArea from "@/components/NewsArea/NewsArea";
 import ProjectsArea from "@/components/ProjectsArea/ProjectsArea";
+import BrandAreaTwo from "@/components/BrandArea/BrandAreaTwo";
+
 import TogetherArea from "@/components/TogetherArea/TogetherArea";
 import TestimonialsArea from "@/components/Testimonials/TestimonialsArea";
 import WhyChoose from "@/components/WhyChoose/WhyChoose";
@@ -103,6 +105,7 @@ const Home = () => {
         {/* <ProjectsArea /> */}
         <WhyChoose />
         <FunFacts />
+        <BrandAreaTwo />
         <TogetherArea />
         <TestimonialsArea testimonials={testimonials} />
         <NewsArea />
