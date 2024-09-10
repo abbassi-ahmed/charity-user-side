@@ -120,7 +120,7 @@ const Home = () => {
             zIndex: 1000,
             width: "110px",
             height: "50px",
-            backgroundColor: "#29F0B5",
+            backgroundColor: "#29AAE1",
             color: "#fff",
             cursor: "pointer",
             textAlign: "center",
