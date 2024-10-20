@@ -49,7 +49,7 @@ const DonationAll = () => {
     }
     try {
       const response = await axios.post(
-        "https://api.olympiquemnihla.com/payments/donation",
+        "http://localhost:3636/payments/donation",
         {
           token: "TND",
           amount: parseFloat(amount),

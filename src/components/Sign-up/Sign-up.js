@@ -47,7 +47,7 @@ const SignUp = () => {
       }
       setLoader(true);
       const response = await axios.post(
-        `https://api.olympiquemnihla.com/users/signup`,
+        `http://localhost:3636/users/signup`,
         data,
         {
           headers: {

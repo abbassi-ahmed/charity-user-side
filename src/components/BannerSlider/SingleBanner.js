@@ -38,7 +38,7 @@ const SingleBanner = ({
                 !isBannerTwo && !isBannerThree ? " text-center" : ""
               }`}
             >
-              {!isBannerTwo && !isBannerThree && (
+              {/* {!isBannerTwo && !isBannerThree && (
                 <div
                   className={`box${isActive ? " animated fadeInDown" : ""}`}
                 ></div>
@@ -59,7 +59,7 @@ const SingleBanner = ({
                 }}
               >
                 {title}
-              </h3>
+              </h3> */}
               <Link
                 className={`main-btn${isActive ? " animated zoomIn" : ""}`}
                 href="/news"

@@ -14,7 +14,7 @@ const Abonnement = () => {
   const fetchSubscriptions = async () => {
     try {
       const response = await fetch(
-        "https://api.olympiquemnihla.com/subscription/find-all"
+        "http://localhost:3636/subscription/find-all"
       );
       if (!response.ok) throw new Error("Failed to fetch subscriptions");
       const data = await response.json();
@@ -32,16 +32,13 @@ const Abonnement = () => {
     if (!token) return;
 
     try {
-      const response = await fetch(
-        "https://api.olympiquemnihla.com/users/verify",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ token }),
-        }
-      );
+      const response = await fetch("http://localhost:3636/users/verify", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ token }),
+      });
       if (!response.ok) throw new Error("Failed to verify token");
       const data = await response.json();
       if (data && data.firstName) {
