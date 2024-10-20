@@ -13,11 +13,11 @@ import BrandAreaTwo from "@/components/BrandArea/BrandAreaTwo";
 
 import TogetherArea from "@/components/TogetherArea/TogetherArea";
 import TestimonialsArea from "@/components/Testimonials/TestimonialsArea";
-import WhyChoose from "@/components/WhyChoose/WhyChoose";
 import Link from "../components/Reuseable/Link";
+import WhyChoose from "@/components/WhyChoose/WhyChoose";
 
 const fetchUser = async (token) => {
-  const response = await fetch("https://api.olympiquemnihla.com/users/verify", {
+  const response = await fetch("http://localhost:3636/users/verify", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ token }),
@@ -28,15 +28,16 @@ const fetchUser = async (token) => {
 
 const fetchSlides = async () => {
   const response = await axios.get(
-    "https://api.olympiquemnihla.com/slider-section/find-all"
+    "http://localhost:3636/slider-section/find-all"
   );
   return response.data;
 };
 
 const fetchTestimonials = async () => {
   const response = await axios.get(
-    "https://api.olympiquemnihla.com/testimonials-section/find-all"
+    "http://localhost:3636/testimonials-section/find-all"
   );
+  console.log("wdwdwdwdwd", response.data);
   return response.data;
 };
 
@@ -101,13 +102,14 @@ const Home = () => {
         <Header />
         <BannerSlider slides={slides} />
         <Categories />
+        {/* <WhyChoose /> */}
+
         <CtaArea />
         {/* <ProjectsArea /> */}
-        <WhyChoose />
-        <FunFacts />
+        {/* <FunFacts /> */}
         <BrandAreaTwo />
         <TogetherArea />
-        <TestimonialsArea testimonials={testimonials} />
+        {/* <TestimonialsArea testimonials={testimonials} /> */}
         <NewsArea />
         <Link
           style={{

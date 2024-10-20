@@ -9,10 +9,11 @@ import {
 } from "../skeletonLoader/skeletonLoader";
 
 const CategoriesBoxItem = ({ categories = [] }) => {
+  console.log(categories);
   return (
     <div className="categories-box-item">
       {categories.length > 0 ? (
-        categories.map(({ id, icon, title }) => (
+        categories.map(({ id, icon }) => (
           <div key={id} className="item">
             <a href="#">
               <Image
@@ -26,7 +27,6 @@ const CategoriesBoxItem = ({ categories = [] }) => {
                 }}
               />
               <br />
-              <span>{title}</span>
             </a>
           </div>
         ))
@@ -45,7 +45,7 @@ const Categories = () => {
     try {
       setLoading(true);
       const res = await axios.get(
-        "https://api.olympiquemnihla.com/categories-section/find-all"
+        "http://localhost:3636/categories-section/find-all"
       );
       setCategoriesSection(res.data);
     } catch (error) {
@@ -86,7 +86,7 @@ const Categories = () => {
                 >
                   {categoriesSection[0]?.description || ""}
                 </p>
-                <div className="item d-flex align-items-center">
+                {/* <div className="item d-flex align-items-center">
                   <div className="thumb">
                     <Image
                       src={categoriesSection[0]?.categoriesUser || ""}
@@ -100,7 +100,7 @@ const Categories = () => {
                     />
                   </div>
                   <p>{categoriesSection[0]?.signature || ""}</p>
-                </div>
+                </div> */}
               </div>
             </Col>
             <Col lg={7}>

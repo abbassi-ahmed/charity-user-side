@@ -37,11 +37,13 @@ const TestimonialsArea = ({ testimonials = [] }) => {
             <div className="testimonials-slide">
               <Swiper {...options}>
                 <div className="swiper-wrapper">
-                  {testimonials.map((testimonial) => (
-                    <SwiperSlide key={testimonial.id}>
-                      <TestimonialsBox testimonial={testimonial} />
-                    </SwiperSlide>
-                  ))}
+                  {/* {testimonials && testimonials.length > 0
+                    ? testimonials.map((testimonial) => (
+                        <SwiperSlide key={testimonial.id}>
+                          <TestimonialsBox testimonial={testimonial} />
+                        </SwiperSlide>
+                      ))
+                    : null} */}
                 </div>
                 <div>
                   <span
