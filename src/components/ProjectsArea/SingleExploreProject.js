@@ -35,9 +35,11 @@ const SingleExploreProject = ({ project, projectSums }) => {
             {new Date(startDate).toLocaleDateString()}
           </p>
         </div>
-        <div onClick={navigateToProject} className="cursor-pointer">
-          <h3 className="title">{name}</h3>
-        </div>
+        {/* <div onClick={navigateToProject} className="cursor-pointer"> */}
+        <Link className="title" href={`/projects/${project.id}`}>
+          {name}
+        </Link>
+        {/* </div> */}
         <div className="projects-range">
           <div className="projects-range-content">
             <ul>

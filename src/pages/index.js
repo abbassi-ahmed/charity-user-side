@@ -139,7 +139,7 @@ const Home = () => {
               fontWeight: "bold",
             }}
           >
-            Donate Now
+            Faire un don
           </p>
         </Link>
       </Layout>
