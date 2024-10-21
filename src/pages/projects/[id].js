@@ -86,7 +86,7 @@ export default function Page() {
   return (
     <Layout>
       <Header />
-      <PageTitle title="Single Project" page="Explore" />
+      <PageTitle title="Projet" />
       <ProjectDetailsArea project={project} sum={projectSums} />
       {similarProjects.length > 0 && (
         <SimilarProjects projects={similarProjects} />

@@ -68,7 +68,7 @@ const Projects2 = () => {
   return (
     <Layout>
       <Header />
-      <PageTitle title="All Projects" />
+      <PageTitle title="Nos Projets" />
       <ExploreProjectsThree projects={projects} projectSums={projectSums} />
     </Layout>
   );

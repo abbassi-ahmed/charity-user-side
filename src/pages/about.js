@@ -53,7 +53,7 @@ const About = () => {
       <Layout>
         <Header />
 
-        <PageTitle title="About" parent="pages" />
+        <PageTitle title="A Propos" parent="Page" />
 
         <div
           className="d-flex justify-content-center align-items-center"
@@ -68,10 +68,10 @@ const About = () => {
   return (
     <Layout>
       <Header />
-      <PageTitle title="About" parent="pages" />
+      <PageTitle title="A Propos" parent="Page" />
       <AboutIntroduction />
-      <FunFacts className="fun-facts-about-area" />
-      {/* <NextBigThing className="next-big-thing-about-area" /> */}
+      {/* <FunFacts className="fun-facts-about-area" /> */}
+      <NextBigThing className="next-big-thing-about-area" />
       {/* <TeamMainArea className="about-team-main-area" /> */}
       <TogetherArea className="together-3-area" />
       <BrandAreaTwo className="brand-area-2" />

@@ -28,7 +28,7 @@ export default function Page() {
   return (
     <Layout>
       <Header />
-      <PageTitle title="Single Project" page="Explore" />
+      <PageTitle title="Projet" />
       <DonationProject project={project} />
     </Layout>
   );

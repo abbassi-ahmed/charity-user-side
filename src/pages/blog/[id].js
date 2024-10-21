@@ -11,7 +11,7 @@ export default function Page() {
   return (
     <Layout>
       <Header />
-      <PageTitle title="News" />
+      <PageTitle title="Nouveautés" />
       <BlogDetails id={id} />
     </Layout>
   );
