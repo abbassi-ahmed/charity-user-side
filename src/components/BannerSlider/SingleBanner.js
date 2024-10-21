@@ -64,7 +64,7 @@ const SingleBanner = ({
                 className={`main-btn${isActive ? " animated zoomIn" : ""}`}
                 href="/news"
               >
-                Latest News
+                Dernières nouvelles
               </Link>
             </div>
           </Col>

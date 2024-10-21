@@ -83,7 +83,7 @@ const ProjectDetailsArea = ({ project, sum }) => {
                 <div className="project-btn mt-25 mr-15">
                   <Link href={`/donation-project/${project.id}`}>
                     <a className="main-btn" href="#">
-                      Donate Now
+                      Faire un don
                     </a>
                   </Link>
                 </div>
