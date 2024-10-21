@@ -8,7 +8,7 @@ const SingleNews = () => {
   return (
     <Layout>
       <Header />
-      <PageTitle title="News" />
+      <PageTitle title="Nouveautés" />
       <BlogDetails />
     </Layout>
   );

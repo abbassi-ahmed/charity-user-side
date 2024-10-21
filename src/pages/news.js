@@ -8,7 +8,7 @@ const News = () => {
   return (
     <Layout>
       <Header />
-      <PageTitle title="News" />
+      <PageTitle title="Nouveautés" />
       <NewsArea className="news-2-area news-page-area" newsTwo newsPage />
     </Layout>
   );

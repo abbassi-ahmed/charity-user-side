@@ -1,6 +1,6 @@
 import bg from "@/images/footer-bg.jpg";
 import shape from "@/images/footer-shape.png";
-import logo from "@/images/logo-2.png";
+import logo from "@/images/output-onlinepngtools.png";
 
 export const socials2 = [
   {
@@ -29,60 +29,65 @@ const footerData = {
   logo,
   bg,
   socials: socials2,
-  text: "Lorem quas utamur delicata qui, vix ei prima mentitum omnesque. Duo corrumpit cotidieque ne.",
+  text: "Olympique Mnihla",
   text2:
     "Sign up for our latest news & articles. We won’t give you spam mails.",
   shape,
   links: [
     {
       id: 1,
-      text: "About us",
-      href: "/about",
+      text: "Anis Aloui",
+      href: "#",
     },
     {
       id: 2,
-      text: "How It Works",
-      href: "/team",
+      text: "Salah Baldi",
+      href: "#",
     },
     {
       id: 3,
-      text: "Knowledge hub",
-      href: "/case",
+      text: "Hela Ben Ghayadha",
+      href: "#",
     },
     {
       id: 4,
-      text: "Success Stories",
-      href: "/blog",
+      text: "Rana Saoudi",
+      href: "#",
     },
     {
       id: 5,
-      text: "Contact",
-      href: "/contact",
+      text: "Olfa",
+      href: "#",
     },
     {
       id: 6,
-      text: "Education",
-      href: "/about",
+      text: "Sport",
+      href: "#",
     },
     {
       id: 7,
-      text: "Design",
-      href: "/about",
+      text: "Clubs",
+      href: "#",
     },
     {
       id: 8,
-      text: "Film & Video",
-      href: "/about",
+      text: "Formation",
+      href: "#",
     },
     {
       id: 9,
-      text: "Technology",
-      href: "/about",
+      text: "Entrepreneuriat sportif et loisirs",
+      href: "#",
     },
     {
       id: 10,
-      text: "Games",
-      href: "/about",
+      text: "Eya Faydi",
+      href: "#",
+    },
+    {
+      id: 11,
+      text: "Walid Neffati",
+      href: "#",
     },
   ],
   author: "Krowd",

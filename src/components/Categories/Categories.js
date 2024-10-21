@@ -20,8 +20,8 @@ const CategoriesBoxItem = ({ categories = [] }) => {
                 src={icon}
                 alt="icon"
                 style={{
-                  width: 80,
-                  height: 80,
+                  width: 180,
+                  height: 150,
                   objectFit: "cover",
                   boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.1)",
                 }}

@@ -1,21 +1,21 @@
 import icon from "@/images/header-icon.png";
 import logo2 from "@/images/logo-2.png";
-import logo from "@/images/logo.png";
+import logo from "@/images/output-onlinepngtools.png";
 
 export const navItems = [
   {
     id: 1,
-    name: "Home",
+    name: "Accueil",
     href: "/",
   },
   {
     id: 2,
-    name: "About",
+    name: "A Propos",
     href: "/about",
   },
   {
     id: 3,
-    name: "Projects",
+    name: "Projets",
     href: "",
 
     subNavItems: [
@@ -27,7 +27,7 @@ export const navItems = [
 
   {
     id: 4,
-    name: "News",
+    name: "Nouveautés",
     href: "/news",
   },
   {
@@ -37,13 +37,8 @@ export const navItems = [
   },
   {
     id: 6,
-    name: "Pages",
-    href: "",
-    subNavItems: [
-      { id: 1, name: "FAQ", href: "/faq" },
-      // { id: 2, name: "Events", href: "/event" },
-      { id: 2, name: "Team Members", href: "/team-members" },
-    ],
+    name: "FAQ",
+    href: "/faq",
   },
   // {
   //   id: 7,
@@ -78,11 +73,6 @@ export const socials = [
   {
     id: 3,
     icon: "fa fa-instagram",
-    href: "#",
-  },
-  {
-    id: 4,
-    icon: "fa fa-dribbble",
     href: "#",
   },
 ];

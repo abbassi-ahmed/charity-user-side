@@ -12,9 +12,7 @@ import ProjectsArea from "@/components/ProjectsArea/ProjectsArea";
 import BrandAreaTwo from "@/components/BrandArea/BrandAreaTwo";
 
 import TogetherArea from "@/components/TogetherArea/TogetherArea";
-import TestimonialsArea from "@/components/Testimonials/TestimonialsArea";
 import Link from "../components/Reuseable/Link";
-import WhyChoose from "@/components/WhyChoose/WhyChoose";
 
 const fetchUser = async (token) => {
   const response = await fetch("http://localhost:3636/users/verify", {
