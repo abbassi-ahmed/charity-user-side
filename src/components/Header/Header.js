@@ -21,9 +21,9 @@ const Header = ({ className = "" }) => {
               <div className="header-info">
                 <ul>
                   <li>
-                    {/* <a href={`mailto:${email}`}>
+                    <a href={`mailto:${email}`}>
                       <i className="flaticon-email"></i> {email}
-                    </a> */}
+                    </a>
                   </li>
                   <li>
                     <a href="#">

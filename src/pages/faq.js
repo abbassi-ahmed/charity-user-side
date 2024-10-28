@@ -14,7 +14,7 @@ const Faq = () => {
     const fetchFaqData = async () => {
       try {
         const response = await axios.post(
-          "https://api.olympiquemnihla.com/faq/find-by-type",
+          "http://localhost:3636/faq/find-by-type",
           {
             type:
               current === "pills-1"
