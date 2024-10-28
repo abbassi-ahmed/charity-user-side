@@ -56,7 +56,12 @@ const SignUp = () => {
       );
 
       if (response.status === 200 || response.status === 201) {
-        router.push("/sign-in");
+        if (response.data.message === "Email already exists") {
+          setErrorMessage("Email already exists");
+          return;
+        } else {
+          router.push("/sign-in");
+        }
       } else {
         setErrorMessage("Unexpected response status: " + response.status);
       }
