@@ -37,10 +37,28 @@ const options = {
   },
 };
 
-const BrandItem = ({ image }) => {
+const BrandItem = ({ image, title, link }) => {
   return (
     <div className="brand-item text-center">
-      <Image src={image} alt="" width={150} height={150} />
+      <Image src={image} alt={title} width={150} height={150} />
+      <a
+        href={link}
+        target="_blank"
+        rel="noreferrer"
+        style={{
+          display: "block",
+          color: "#0073e6",
+          fontWeight: "bold",
+          fontSize: "1.1rem",
+          textDecoration: "none",
+          marginTop: "10px",
+          transition: "color 0.3s ease",
+        }}
+        onMouseOver={(e) => (e.target.style.color = "#005bb5")}
+        onMouseOut={(e) => (e.target.style.color = "#0073e6")}
+      >
+        {title}
+      </a>
     </div>
   );
 };
@@ -50,7 +68,7 @@ const BrandAreaTwo = ({ className = "" }) => {
   const fetchBrands = async () => {
     try {
       const response = await axios.get(
-        "https://api.olympiquemnihla.com/worked-with/find-all"
+        "http://localhost:3636/worked-with/find-all"
       );
       console.log(response.data);
       setBrands(response.data);
@@ -73,9 +91,9 @@ const BrandAreaTwo = ({ className = "" }) => {
                 </div>
               )}
               {brands.length > 0 &&
-                brands.map(({ id, image }) => (
+                brands.map(({ id, image, title, link }) => (
                   <SwiperSlide key={id}>
-                    <BrandItem image={image} />
+                    <BrandItem image={image} title={title} link={link} />
                   </SwiperSlide>
                 ))}
             </div>

@@ -17,34 +17,35 @@ export const navItems = [
     id: 3,
     name: "Projets",
     href: "",
-
     subNavItems: [
-      { id: 1, name: "All Of Them", href: "/projects-2" },
-      { id: 2, name: "Mobile", href: "/projects-type1" },
-      { id: 3, name: "Web", href: "/projects-type1" },
+      { id: 1, name: "Social", href: "/projects-2" },
+      { id: 2, name: "Idee de projet", href: "/projects-type1" },
+      { id: 3, name: "ess", href: "/projects-type1" },
     ],
   },
-
   {
     id: 4,
-    name: "Nouveautés",
+    name: "Event",
     href: "/news",
   },
+
   {
     id: 5,
-    name: "Abonnement",
-    href: "/abonnement",
+    name: "Pages",
+    href: "",
+    subNavItems: [
+      { id: 1, name: "Nos Abonnement", href: "/abonnement" },
+      { id: 2, name: "Gallerie", href: "/projects-type1" },
+      { id: 3, name: "Faq", href: "/faq" },
+      { id: 4, name: "Dérigont", href: "/team-members" },
+      { id: 5, name: "Actualité", href: "/news" },
+    ],
   },
   {
-    id: 6,
-    name: "FAQ",
-    href: "/faq",
+    id: 7,
+    name: "Contact",
+    href: "/contact",
   },
-  // {
-  //   id: 7,
-  //   name: "Contact",
-  //   href: "/contact",
-  // },
 ];
 export const navDefault = [
   {

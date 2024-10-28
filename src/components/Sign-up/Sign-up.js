@@ -3,7 +3,6 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import Layout from "@/components/Layout/Layout";
 import PageTitle from "@/components/Reuseable/PageTitle";
 
 const SignUp = () => {
@@ -40,14 +39,14 @@ const SignUp = () => {
       const data = new FormData();
       data.append("firstName", formData.firstName);
       data.append("lastName", formData.lastName);
-      data.append("email", formData.email);
+      data.append("email", formData.email.toLowerCase());
       data.append("password", formData.password);
       if (formData.avatar) {
         data.append("avatar", formData.avatar);
       }
       setLoader(true);
       const response = await axios.post(
-        `https://api.olympiquemnihla.com/users/signup`,
+        `http://localhost:3636/users/signup`,
         data,
         {
           headers: {

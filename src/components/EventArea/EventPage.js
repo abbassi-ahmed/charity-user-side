@@ -8,9 +8,7 @@ const EventsPage = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await fetch(
-          "https://api.olympiquemnihla.com/events/find-all"
-        );
+        const response = await fetch("http://localhost:3636/events/find-all");
         const data = await response.json();
         setEvents(data);
       } catch (error) {
