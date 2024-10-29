@@ -67,7 +67,15 @@ const NextBigThing = ({ className = "" }) => {
               </div>
             </div>
           </Col>
-          <Col lg={6}>
+          <Col
+            lg={6}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignSelf: "flex-start",
+              alignItems: "flex-start",
+            }}
+          >
             <div className="next-big-thing-content-2">
               <p>{text}</p>
               <div className="next-big-thing-list">

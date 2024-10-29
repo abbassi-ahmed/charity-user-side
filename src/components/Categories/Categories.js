@@ -1,22 +1,19 @@
 import { categoriesSection } from "@/data/categories";
 import axios from "axios";
-import React, { useState, useEffect, Suspense } from "react";
-import { Col, Container, Image, Row } from "react-bootstrap";
-const { text } = categoriesSection;
-import {
-  SkeletonCategoriesBoxItem,
-  SkeletonLoader,
-} from "../skeletonLoader/skeletonLoader";
+import React, { useState, useEffect } from "react";
+import { Col, Container, Row } from "react-bootstrap";
+const { text, categoriesIcons, title } = categoriesSection;
+import { SkeletonLoader } from "../skeletonLoader/skeletonLoader";
 
 const CategoriesBoxItem = ({ categories = [] }) => {
-  console.log(categories);
   return (
     <div className="categories-box-item">
       {categories.length > 0 ? (
         categories.map(({ id, icon }) => (
           <div key={id} className="item">
             <a href="#">
-              <Image
+              <i className={icon}></i>
+              {/* <Image
                 src={icon}
                 alt="icon"
                 style={{
@@ -25,8 +22,9 @@ const CategoriesBoxItem = ({ categories = [] }) => {
                   objectFit: "cover",
                   boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.1)",
                 }}
-              />
+              /> */}
               <br />
+              <span>{title}</span>
             </a>
           </div>
         ))
@@ -105,21 +103,8 @@ const Categories = () => {
             </Col>
             <Col lg={7}>
               <div className="categories-box">
-                <Suspense fallback={<SkeletonCategoriesBoxItem />}>
-                  <CategoriesBoxItem
-                    categories={
-                      categoriesSection[0]?.categories.slice(0, 3) || []
-                    }
-                  />
-
-                  {categoriesSection[0]?.categories.slice(3).length > 3 && (
-                    <CategoriesBoxItem
-                      categories={
-                        categoriesSection[0]?.categories.slice(3) || []
-                      }
-                    />
-                  )}
-                </Suspense>
+                <CategoriesBoxItem categories={categoriesIcons.slice(0, 3)} />
+                <CategoriesBoxItem categories={categoriesIcons.slice(3)} />
               </div>
             </Col>
           </Row>
