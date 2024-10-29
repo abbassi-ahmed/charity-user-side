@@ -35,7 +35,7 @@ const { tagline, title, projects } = exploreProjects;
 const ExploreProjects = () => {
   const [projects, setProjects] = useState([]);
   const [projectSums, setProjectSums] = useState({});
-  const hasFetchedProjects = useRef(false); // Ref to track if the data has been fetched
+  const hasFetchedProjects = useRef(false);
 
   useEffect(() => {
     const fetchProjects = async () => {

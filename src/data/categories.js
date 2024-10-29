@@ -9,7 +9,7 @@ export const categoriesSection = {
   text: " Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the when an unknown was popularised.",
   categoriesUser,
   signIn,
-  categories: [
+  categoriesIcons: [
     {
       id: 1,
       icon: "flaticon-networking",

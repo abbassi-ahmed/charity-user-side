@@ -103,7 +103,7 @@ const Home = () => {
         {/* <WhyChoose /> */}
 
         <CtaArea />
-        {/* <ProjectsArea /> */}
+        <ProjectsArea />
         {/* <FunFacts /> */}
         <BrandAreaTwo />
         <TogetherArea />

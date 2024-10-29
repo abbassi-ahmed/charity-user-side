@@ -14,8 +14,11 @@ const Projects2 = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:3636/projects/find-all"
+        const response = await axios.post(
+          "http://localhost:3636/projects/find-by-type",
+          {
+            type: "social",
+          }
         );
         const projects = response.data;
         setProjects(projects);

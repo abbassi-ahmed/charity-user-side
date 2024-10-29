@@ -20,7 +20,7 @@ export const navItems = [
     subNavItems: [
       { id: 1, name: "Social", href: "/projects-2" },
       { id: 2, name: "Idee de projet", href: "/projects-type1" },
-      { id: 3, name: "ess", href: "/projects-type1" },
+      { id: 3, name: "ess", href: "/projects-type2" },
     ],
   },
   {

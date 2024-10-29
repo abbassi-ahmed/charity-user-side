@@ -17,7 +17,7 @@ const ProjectType1 = () => {
         const response = await axios.post(
           "http://localhost:3636/projects/find-by-type",
           {
-            type: "idee de projet",
+            type: "Economie sociale et solidaire",
           }
         );
         const projects = response.data;
