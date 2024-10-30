@@ -12,8 +12,6 @@ const Contact = () => {
       <Header />
       <PageTitle title="Contact" />
       <ContactFormArea />
-      <ContactInfoArea />
-      <ContactMap />
     </Layout>
   );
 };
