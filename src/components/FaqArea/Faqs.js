@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 
-const Faq = ({ faq, current, handleCurrent }) => {
+const Faq = ({ faq, current, handleCurrent, index }) => {
   const { id, question, answer } = faq;
   const active = current === id;
 
   return (
-    <div className={`accrodion overflow-hidden${active ? " active" : ""}`}>
+    <li className={`accrodion overflow-hidden${active ? " active" : ""}`}>
       <div className="accrodion-inner">
         <div onClick={() => handleCurrent(id)} className="accrodion-title">
           <h4>
-            <span>{id}.</span> {question}
+            <span>{index + 1}.</span> {question}
           </h4>
         </div>
         <div className={`accrodion-content${active ? "" : " d-none"}`}>
@@ -18,7 +18,7 @@ const Faq = ({ faq, current, handleCurrent }) => {
           </div>
         </div>
       </div>
-    </div>
+    </li>
   );
 };
 
@@ -32,21 +32,22 @@ const Faqs = ({ faqs, className = "" }) => {
   }
   return (
     <div className={`faq-accordion overflow-hidden ${className}`}>
-      <div
+      <ol
         className={`accrodion-grp${
           !className ? " animated fadeInLeft" : ""
         } faq-accrodion`}
+        style={{ listStyleType: "decimal" }}
       >
-        {faqs.length > 0 &&
-          faqs.map((faq) => (
-            <Faq
-              faq={faq}
-              key={faq.id}
-              current={current}
-              handleCurrent={handleCurrent}
-            />
-          ))}
-      </div>
+        {faqs.map((faq, i) => (
+          <Faq
+            index={i}
+            faq={faq}
+            key={faq.id}
+            current={current}
+            handleCurrent={handleCurrent}
+          />
+        ))}
+      </ol>
     </div>
   );
 };

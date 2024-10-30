@@ -36,11 +36,9 @@ const SingleTab = ({ current, id, faqsData }) => {
     >
       <Row>
         {faqsData?.length > 0 ? (
-          faqsData.map((faqs, i) => (
-            <Col key={i} lg={12}>
-              <Faqs faqs={faqs} />
-            </Col>
-          ))
+          <Col lg={12}>
+            <Faqs faqs={faqsData} />
+          </Col>
         ) : (
           <div className="text-center">
             <Image src={noData} alt="No Data Found" width={200} height={200} />
@@ -73,20 +71,17 @@ const FaqDesignArea = ({ faqData, current, setCurrent }) => {
             </div>
             <div className="tab-content mt-55" id="pills-tabContent">
               {faqData?.length > 0 ? (
-                faqData.map((tab) => (
-                  <SingleTab
-                    key={tab.id}
-                    id={
-                      current === "pills-1"
-                        ? "pills-1"
-                        : current === "pills-2"
-                        ? "pills-2"
-                        : "pills-3"
-                    }
-                    faqsData={tab}
-                    current={current}
-                  />
-                ))
+                <SingleTab
+                  id={
+                    current === "pills-1"
+                      ? "pills-1"
+                      : current === "pills-2"
+                      ? "pills-2"
+                      : "pills-3"
+                  }
+                  faqsData={faqData}
+                  current={current}
+                />
               ) : (
                 <div className="text-center">
                   <Image
