@@ -1,6 +1,12 @@
 import bg from "@/images/categories-bg.jpg";
 import categoriesUser from "@/images/bg4.jpg";
 import signIn from "@/images/singin.png";
+import culturelles from "../assets/svgs/culturelles.svg";
+import educations from "../assets/svgs/education.svg";
+import defencDroits from "../assets/svgs/defence des droits.svg";
+import environment from "../assets/svgs/environment.svg";
+import social from "../assets/svgs/social.svg";
+import sports from "../assets/svgs/sports.svg";
 
 export const categoriesSection = {
   bg,
@@ -12,33 +18,33 @@ export const categoriesSection = {
   categoriesIcons: [
     {
       id: 1,
-      icon: "flaticon-networking",
-      title: "Technology",
+      icon: social,
+      title: "Activités sociales et humanitaires",
     },
     {
       id: 2,
-      icon: "flaticon-photograph",
-      title: "Film & Videos",
+      icon: educations,
+      title: "Activités éducatives",
     },
     {
       id: 3,
-      icon: "flaticon-translation",
-      title: "Education",
+      icon: culturelles,
+      title: "Activités culturelles",
     },
     {
       id: 4,
-      icon: "flaticon-stethoscope",
-      title: "Medical",
+      icon: sports,
+      title: "Activités sportives et récréatives",
     },
     {
       id: 5,
-      icon: "flaticon-skincare",
-      title: "Fashion",
+      icon: environment,
+      title: "Activités environnementales",
     },
     {
       id: 6,
-      icon: "flaticon-design",
-      title: "Design",
+      icon: defencDroits,
+      title: "Activités de plaidoyer et de défense des droits",
     },
   ],
 };

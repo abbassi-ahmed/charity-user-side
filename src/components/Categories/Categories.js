@@ -2,27 +2,19 @@ import { categoriesSection } from "@/data/categories";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-const { text, categoriesIcons, title } = categoriesSection;
+const { text, categoriesIcons } = categoriesSection;
 import { SkeletonLoader } from "../skeletonLoader/skeletonLoader";
+import Image from "next/image";
 
 const CategoriesBoxItem = ({ categories = [] }) => {
+  console.log(categories);
   return (
     <div className="categories-box-item">
       {categories.length > 0 ? (
-        categories.map(({ id, icon }) => (
+        categories.map(({ id, icon, title }) => (
           <div key={id} className="item">
             <a href="#">
-              <i className={icon}></i>
-              {/* <Image
-                src={icon}
-                alt="icon"
-                style={{
-                  width: 180,
-                  height: 150,
-                  objectFit: "cover",
-                  boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.1)",
-                }}
-              /> */}
+              <Image src={icon} alt="icon" width={65} height={65} />
               <br />
               <span>{title}</span>
             </a>
