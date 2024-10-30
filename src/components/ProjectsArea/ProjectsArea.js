@@ -40,16 +40,16 @@ const options = {
 
 const ProjectsArea = ({ className = "" }) => {
   const [projects, setProjects] = useState([]);
-  const [tagline, setTagline] = useState("Explore projects");
-  const [title, setTitle] = useState("Projects");
+  const [tagline, setTagline] = useState("Voir Les Projets");
+  const [title, setTitle] = useState("Projets à la une");
   const [projectSums, setProjectSums] = useState({});
-  const hasFetchedProjects = useRef(false); // Ref to track if the data has been fetched
+  const hasFetchedProjects = useRef(false);
 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3636/projects/find-all"
+          "http://localhost:3636/projects/find-not-ended"
         );
         setProjects(response.data);
         const projectSumsCopy = { ...projectSums };
