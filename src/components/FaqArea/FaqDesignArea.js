@@ -4,6 +4,7 @@ import { faqDesignArea } from "@/data/faqArea";
 import Faqs from "./Faqs";
 import noData from "../../assets/svgs/noData.svg";
 import Image from "next/image";
+import PrivacyPolicy from "../PrivacyPolicy";
 const { navItems } = faqDesignArea;
 
 const NavItem = ({ navItem = {}, current, setCurrent }) => {
@@ -29,20 +30,24 @@ const SingleTab = ({ current, id, faqsData }) => {
   if (!Array.isArray(faqsData)) {
     faqsData = [faqsData];
   }
+
   return (
     <div
       className={`tab-pane animated${active ? " fadeIn show active" : ""}`}
       id={id}
     >
       <Row>
-        {faqsData?.length > 0 ? (
+        {current === "pills-2" ? (
+          <Col lg={12}>
+            <PrivacyPolicy />
+          </Col>
+        ) : faqsData?.length > 0 ? (
           <Col lg={12}>
             <Faqs faqs={faqsData} />
           </Col>
         ) : (
           <div className="text-center">
             <Image src={noData} alt="No Data Found" width={200} height={200} />
-
             <h2>No FAQs For This Category</h2>
           </div>
         )}
