@@ -4,6 +4,8 @@ import ExploreProjectsThree from "@/components/ProjectsArea/ExploreProjectsThree
 import PageTitle from "@/components/Reuseable/PageTitle";
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
+import Image from "next/image";
+import noData from "../assets/svgs/noData.svg";
 
 const ProjectType1 = () => {
   const [projects, setProjects] = useState([]);
@@ -63,6 +65,23 @@ const ProjectType1 = () => {
           style={{ height: "50vh", width: "100%" }}
         >
           <div className="pageLoader"></div>
+        </div>
+      </Layout>
+    );
+  }
+
+  if (!projects.length) {
+    return (
+      <Layout>
+        <Header />
+        <PageTitle title="Project Type  " />
+
+        <div
+          className="d-flex justify-content-center align-items-center flex-column"
+          style={{ height: "50vh", width: "100%" }}
+        >
+          <Image src={noData} alt="No Data Found" width={200} height={200} />
+          <h1>No projects found</h1>
         </div>
       </Layout>
     );

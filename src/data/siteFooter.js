@@ -36,27 +36,27 @@ const footerData = {
   links: [
     {
       id: 1,
-      text: "Anis Aloui",
+      text: "Accueil",
       href: "#",
     },
     {
       id: 2,
-      text: "Salah Baldi",
+      text: "A propos",
       href: "#",
     },
     {
       id: 3,
-      text: "Hela Ben Ghayadha",
+      text: "Events",
       href: "#",
     },
     {
       id: 4,
-      text: "Rana Saoudi",
+      text: "Nos Abonnements",
       href: "#",
     },
     {
       id: 5,
-      text: "Olfa",
+      text: "Gallerie",
       href: "#",
     },
     {
@@ -94,4 +94,63 @@ const footerData = {
   year: new Date().getFullYear(),
 };
 
+const footerData2 = {
+  linksNav: [
+    {
+      id: 1,
+      text: "Accueil",
+      href: "/",
+    },
+    {
+      id: 2,
+      text: "A propos",
+      href: "/about",
+    },
+
+    {
+      id: 3,
+      text: "Events",
+      href: "#",
+    },
+    {
+      id: 4,
+      text: "Nos Abonnements",
+      href: "/abonnement",
+    },
+    {
+      id: 5,
+      text: "FAQ",
+      href: "/faq",
+    },
+    {
+      id: 6,
+      text: "Gallerie",
+      href: "#",
+    },
+    {
+      id: 7,
+      text: "Contact",
+      href: "/contact",
+    },
+  ],
+  Categories: [
+    {
+      id: 1,
+      text: "Social",
+      href: "/projects-2",
+    },
+    {
+      id: 2,
+      text: "Idee de projet",
+      href: "/projects-type1",
+    },
+    {
+      id: 3,
+      text: "ESS",
+      href: "/projects-type2",
+    },
+  ],
+};
 export default footerData;
+
+export { footerData2 };

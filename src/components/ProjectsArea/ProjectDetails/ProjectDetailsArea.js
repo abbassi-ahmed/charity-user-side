@@ -4,8 +4,16 @@ import Link from "../../Reuseable/Link";
 import CircularProgressBar from "../../../components/circularProgress/progress";
 
 const ProjectDetailsArea = ({ project, sum }) => {
-  const { name, image, description, target, startDate, targetDate, Status } =
-    project;
+  const {
+    name,
+    image,
+    shortDescription,
+    longDescription,
+    target,
+    startDate,
+    targetDate,
+    Status,
+  } = project;
   const [imageLoad, setImageLoad] = useState(false);
 
   const amount = sum && sum.sum ? sum.sum : 0;
@@ -51,11 +59,18 @@ const ProjectDetailsArea = ({ project, sum }) => {
               <h3 className="title">
                 {typeof name === "string" ? name : "Project Name"}
               </h3>
+              {/* <p>
+                {typeof shortDescription === "string"
+                  ? shortDescription
+                  : "No description available."}
+              </p> */}
+
               <p>
-                {typeof description === "string"
-                  ? description
+                {typeof longDescription === "string"
+                  ? longDescription
                   : "No description available."}
               </p>
+
               <div className="project-details-item mt-5">
                 <div className="item text-center">
                   <h5 className="title">{target}</h5>

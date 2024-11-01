@@ -39,7 +39,8 @@ export default function Page() {
           );
           if (!OtherProjects) throw new Error("Failed to fetch other projects");
           const similarProjects = OtherProjects.data.filter(
-            (project) => project.id !== parseInt(id, 10)
+            (project) =>
+              project.id !== parseInt(id, 10) && project.type === project.type
           );
           setSimilarProjects(similarProjects);
         } catch (error) {
