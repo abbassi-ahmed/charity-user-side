@@ -101,7 +101,6 @@ const Home = () => {
         <BannerSlider slides={slides} />
         <Categories />
         {/* <WhyChoose /> */}
-
         <CtaArea />
         <ProjectsArea />
         {/* <FunFacts /> */}

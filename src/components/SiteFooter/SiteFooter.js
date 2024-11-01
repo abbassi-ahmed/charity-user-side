@@ -1,13 +1,14 @@
-import footerData from "@/data/siteFooter";
+import footerData, { footerData2 } from "@/data/siteFooter";
 import handleSubmit from "@/utils/handleSubmit";
 import React from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
 import Link from "../Reuseable/Link";
 import FooterList from "./FooterList";
+import FooterContact from "./FooterList";
 
 const { bg, logo, text, author, year, links, socials, text2, shape } =
   footerData;
-
+const { linksNav, Categories } = footerData2;
 const SiteFooter = () => {
   const onSubmit = (data) => console.log(data);
 
@@ -23,9 +24,23 @@ const SiteFooter = () => {
               <Image src={logo.src} alt="" width={300} height={300} />
             </Link>
           </Col>
-          <FooterList title="Membres" list={links.slice(0, 5)} />
-          <FooterList title="Activité" list={links.slice(5, 9)} />
-          <FooterList title="Support" list={links.slice(9)} />
+          <FooterList title="Olympique mnhila" list={linksNav} />
+          <FooterList title="Crowd Funding" list={Categories} />
+          <Col lg={4} md={6} sm={8}>
+            <div className="footer-newsletter mt-30">
+              <div className="footer-title">
+                <h4 className="title">Become a Volunteer</h4>
+              </div>
+              <form>
+                <div className="form-group">
+                  <a href="/signup" className="main-btn">
+                    Signup
+                  </a>
+                </div>
+              </form>
+              <p>{text2}</p>
+            </div>
+          </Col>
         </Row>
       </Container>
       <div className="footer-shape">

@@ -10,7 +10,9 @@ const FooterList = ({ title = "", list = [] }) => {
           <ul>
             {list.map(({ id, text, href }) => (
               <li key={id}>
-                <p className="mb-3">{text}</p>
+                <a className="mb-3" href={href}>
+                  {text}
+                </a>
               </li>
             ))}
           </ul>

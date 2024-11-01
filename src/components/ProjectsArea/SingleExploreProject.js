@@ -3,15 +3,15 @@ import { Image } from "react-bootstrap";
 import Link from "../Reuseable/Link";
 import { useRouter } from "next/router";
 
-const truncateText = (text, maxLength) => {
-  if (text.length <= maxLength) return text;
-  return text.slice(0, maxLength) + "...";
-};
+// const truncateText = (text, maxLength) => {
+//   if (!text || text.length <= maxLength) return text || "";
+//   return text.slice(0, maxLength) + "...";
+// };
 
 const SingleExploreProject = ({ project, projectSums }) => {
-  const { image, description, startDate, name, target } = project;
+  const { image, shortDescription, startDate, name, target } = project;
   const amount = projectSums[project.id] || 0;
-  const truncatedDescription = truncateText(description, 100);
+  // const truncatedDescription = truncateText(shortDescription, 100);
   const progress = (amount / target) * 100;
 
   const router = useRouter();
@@ -35,11 +35,9 @@ const SingleExploreProject = ({ project, projectSums }) => {
             {new Date(startDate).toLocaleDateString()}
           </p>
         </div>
-        {/* <div onClick={navigateToProject} className="cursor-pointer"> */}
-        <Link className="title" href={`/projects/${project.id}`}>
-          {name}
-        </Link>
-        {/* </div> */}
+        <div onClick={navigateToProject} className="cursor-pointer">
+          <h3 className="title">{name}</h3>
+        </div>
         <div className="projects-range">
           <div className="projects-range-content">
             <ul>
