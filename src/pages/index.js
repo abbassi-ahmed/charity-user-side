@@ -35,7 +35,6 @@ const fetchTestimonials = async () => {
   const response = await axios.get(
     "http://localhost:3636/testimonials-section/find-all"
   );
-  console.log("wdwdwdwdwd", response.data);
   return response.data;
 };
 
