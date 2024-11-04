@@ -15,7 +15,10 @@ const Profile = () => {
     lastName: "",
     email: "",
   });
-  const [avatarFile, setAvatarFile] = useState(null); // State to hold the selected avatar file
+  const [avatarFile, setAvatarFile] = useState(null);
+
+  const [avatarPreview, setAvatarPreview] = useState(null);
+
   const [loading, setLoading] = useState(true);
   const [loader, setLoader] = useState(false);
   const router = useRouter();
@@ -38,15 +41,15 @@ const Profile = () => {
             lastName: data.lastName,
             email: data.email,
           });
-          setAvatarFile(data.avatar);
+          setAvatarPreview(data.avatar);
+
           setLoading(false);
         })
         .catch((error) => {
           console.error("Error fetching user data:", error);
           setLoading(false);
         });
-    }
-    if (!token) {
+    } else {
       router.push("/sign-in");
       setLoading(false);
     }
@@ -63,9 +66,11 @@ const Profile = () => {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
+      setAvatarFile(file);
+
       const reader = new FileReader();
       reader.onloadend = () => {
-        setAvatarFile(reader.result);
+        setAvatarPreview(reader.result);
       };
       reader.readAsDataURL(file);
     }
@@ -83,15 +88,20 @@ const Profile = () => {
     setLoader(true);
     fetch(`http://localhost:3636/users/update/${user.id}`, {
       method: "PUT",
-      headers: {},
       body: formDataToSend,
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
       .then((data) => {
         setUser(data);
         toast.success("Profile updated successfully.");
       })
       .catch((error) => {
+        console.error("Error updating profile:", error);
         toast.error("Error updating profile.");
       })
       .finally(() => {
@@ -141,9 +151,9 @@ const Profile = () => {
                   cursor: "pointer",
                 }}
               >
-                {avatarFile ? (
+                {avatarPreview ? (
                   <Image
-                    src={avatarFile}
+                    src={avatarPreview}
                     alt="Avatar Preview"
                     className="avatar-image"
                     width={100}
@@ -212,7 +222,7 @@ const Profile = () => {
             </Button>
           </Form>
         </Col>
-        <Col lg={(4, 5)} className="mb-3 text-center">
+        <Col lg={4} className="mb-3 text-center">
           <h2 className="mb-5">Subscription</h2>
           {user?.subscription ? (
             <div className="container-card">
