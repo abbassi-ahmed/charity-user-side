@@ -9,9 +9,7 @@ import { useRouter } from "next/router";
 
 const TeamMembers = () => {
   const router = useRouter();
-  const hasFetchedUsers = useRef(false);
 
-  // Fetch the current user and handle token verification
   const { data: user, isLoading: loadingUser } = useQuery({
     queryKey: ["user"],
     queryFn: async () => {
