@@ -13,6 +13,8 @@ import BrandAreaTwo from "@/components/BrandArea/BrandAreaTwo";
 
 import TogetherArea from "@/components/TogetherArea/TogetherArea";
 import Link from "../components/Reuseable/Link";
+import TeamMembers from "./team-members";
+import TeamHome from "./team-home";
 
 const fetchUser = async (token) => {
   const response = await fetch("http://localhost:3636/users/verify", {
@@ -28,6 +30,10 @@ const fetchSlides = async () => {
   const response = await axios.get(
     "http://localhost:3636/slider-section/find-all"
   );
+  return response.data;
+};
+const fetchUsers = async () => {
+  const response = await axios.get("http://localhost:3636/admins/find-all");
   return response.data;
 };
 
@@ -60,6 +66,13 @@ const Home = () => {
   const { data: testimonials, isLoading: isTestimonialsLoading } = useQuery({
     queryKey: ["testimonials"],
     queryFn: fetchTestimonials,
+    initialData: [],
+  });
+
+  const { data: users, isLoading: isUsersLoading } = useQuery({
+    queryKey: ["users"],
+    queryFn: fetchUsers,
+    enabled: !!user,
     initialData: [],
   });
 
@@ -104,7 +117,10 @@ const Home = () => {
         <ProjectsArea />
         {/* <FunFacts /> */}
         <BrandAreaTwo />
+
         <TogetherArea />
+        <TeamHome users={users.slice(0, 3)} />
+
         {/* <TestimonialsArea testimonials={testimonials} /> */}
         <NewsArea />
         <Link
