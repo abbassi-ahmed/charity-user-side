@@ -75,28 +75,7 @@ export default function Subscription({
       <p className="body-card">{description}</p>
       <div className="payment-card" style={{ width: "110px" }}>
         {price} TND
-        <span className="text-lg">
-          /
-          {duration === 30
-            ? "month"
-            : duration === 365
-            ? "year"
-            : duration === 7
-            ? "week"
-            : duration === 1
-            ? "day"
-            : duration === 60
-            ? "2 months"
-            : duration === 90
-            ? "3 months"
-            : duration === 180
-            ? "6 months"
-            : duration === 270
-            ? "9 months"
-            : duration === 365
-            ? "year"
-            : "days"}
-        </span>
+        <span className="text-lg">{duration}/ Month</span>
       </div>
       {user?.subscription && user.subscription.id === subscriptionId ? (
         <button className="btn-card" disabled>
