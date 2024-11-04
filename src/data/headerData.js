@@ -26,7 +26,7 @@ export const navItems = [
   {
     id: 4,
     name: "Event",
-    href: "/news",
+    href: "/events",
   },
 
   {
