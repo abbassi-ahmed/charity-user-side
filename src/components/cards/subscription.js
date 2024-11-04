@@ -34,7 +34,7 @@ export default function Subscription({
 
   const handleDonate = async (e) => {
     e.preventDefault();
-    if (phone === "") {
+    if (phone === "" || phone === undefined) {
       setErrors({ phone: "Please enter your phone number" });
     } else {
       try {
@@ -42,9 +42,10 @@ export default function Subscription({
           "http://localhost:3636/payments/create",
           {
             token: "TND",
-            amount: price,
+            amount: parseFloat(price),
             firstName: firstName,
             lastName: lastName,
+            description: "Subscribe to " + title,
             email: email,
             phoneNumber: phone,
             subscriptionId: subscriptionId,
