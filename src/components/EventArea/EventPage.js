@@ -24,8 +24,8 @@ const EventsPage = () => {
       <Container>
         <Row>
           {events.map((event) => (
-            <Col key={event.id} lg={4} md={6} sm={6}>
-              <EventItem event={event} className="mt-30" />
+            <Col key={event.id} lg={4} md={6} sm={6} className="mb-20 mt-20">
+              <EventItem event={event} />
             </Col>
           ))}
         </Row>
