@@ -42,7 +42,7 @@ const BlogDetailsMain = ({
               style={{ width: "100%", height: "400px", objectFit: "contain" }}
             />
           </div>
-          <p>{content}</p>
+          <p style={{ textAlign: "justify" }}>{content}</p>
         </Col>
       </Row>
       <Row className="comments-section mt-5">

@@ -4192,6 +4192,97 @@ p {
   }
 }
 
+
+
+.go-top-area-don {
+  position: relative;
+  z-index: 999;
+}
+
+.go-top-area-don .go-top-don {
+  position: fixed;
+  cursor: pointer;
+  top: 0;
+  left: 24px;
+  color: #ffffff;
+  background-color: #29AAE1;
+  z-index: 9999;
+  width: 100px;
+  /* Increased width from 40px */
+  text-align: center;
+  height: 42px;
+  line-height: 42px;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all 0.9s ease-out 0s;
+  -moz-transition: all 0.9s ease-out 0s;
+  -ms-transition: all 0.9s ease-out 0s;
+  -o-transition: all 0.9s ease-out 0s;
+  transition: all 0.9s ease-out 0s;
+  border-radius: 0px;
+}
+
+.go-top-area-don .go-top-don.active {
+  top: 98%;
+  -webkit-transform: translateY(-98%);
+  -moz-transform: translateY(-98%);
+  -ms-transform: translateY(-98%);
+  -o-transform: translateY(-98%);
+  transform: translateY(-98%);
+  opacity: 1;
+  visibility: visible;
+  border-radius: 0px;
+  left: 20px;
+  width: 100px;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+  .go-top-area-don .go-top-don.active {
+    top: 93%;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .go-top-area-don .go-top-don.active {
+    top: 93%;
+  }
+}
+
+
+.go-top-wrap-don .go-top-btn i {
+  font-size: 20px;
+  font-weight: 700;
+  padding-left: 4px;
+  color: #fff;
+}
+
+.go-top-wrap-don .go-top-btn::after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100px;
+  height: 40px;
+  -webkit-animation: ripple 1.6s ease-out infinite;
+  -moz-animation: ripple 1.6s ease-out infinite;
+  -o-animation: ripple 1.6s ease-out infinite;
+  animation: ripple 1.6s ease-out infinite;
+  opacity: 0;
+  background: #29AAE1;
+  border-radius: 0px;
+}
+
+.go-top-wrap-don .go-top-btn:hover {
+  background-color: #222;
+  color: #fff;
+}
+
+
+
+
+
+
 .go-top-wrap {
   position: relative;
 }

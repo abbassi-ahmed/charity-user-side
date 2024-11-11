@@ -65,9 +65,9 @@ const ProjectDetailsArea = ({ project, sum }) => {
                   : "No description available."}
               </p> */}
 
-              <p>
-                {typeof longDescription === "string"
-                  ? longDescription
+              <p style={{ textAlign: "justify" }}>
+                {typeof shortDescription === "string"
+                  ? shortDescription
                   : "No description available."}
               </p>
 
@@ -103,6 +103,18 @@ const ProjectDetailsArea = ({ project, sum }) => {
                   </Link>
                 </div>
               </div>
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <div className="project-details-content mt-30">
+              <h3 className="title">Description</h3>
+              <p style={{ textAlign: "justify" }}>
+                {typeof longDescription === "string"
+                  ? longDescription
+                  : "No description available."}
+              </p>
             </div>
           </Col>
         </Row>

@@ -63,15 +63,17 @@ const EventDetails = () => {
           width={800}
           height={400}
           layout="responsive"
+          objectFit="contain"
           className="rounded shadow-sm"
         />
       </div>
-
       <div className="event-content bg-light p-4 rounded shadow-sm">
         <h2 className="mb-3">Event Description</h2>
         <p
           className="text-wrap"
-          style={{ wordWrap: "break-word", whiteSpace: "pre-wrap" }}
+          style={{
+            textAlign: "justify",
+          }}
         >
           {event.description}
         </p>

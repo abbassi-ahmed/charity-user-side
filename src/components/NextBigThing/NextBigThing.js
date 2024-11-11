@@ -29,6 +29,7 @@ const TabContent = ({ tab = {}, current }) => {
     <div
       className={`tab-pane animated${active ? " fadeIn show active" : ""}`}
       id={id}
+      style={{ textAlign: "justify" }}
     >
       <p>{text}</p>
     </div>
@@ -77,7 +78,7 @@ const NextBigThing = ({ className = "" }) => {
             }}
           >
             <div className="next-big-thing-content-2">
-              <p>{text}</p>
+              <p style={{ textAlign: "justify" }}>{text}</p>
               <div className="next-big-thing-list">
                 <div className="thumb">
                   <Image src={image.src} alt="" />
