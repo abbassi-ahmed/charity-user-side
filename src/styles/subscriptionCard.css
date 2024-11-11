@@ -21,6 +21,7 @@
     width: 100%;
 }
 
+
 .container-card {
     display: flex;
     flex-direction: column;
@@ -40,6 +41,31 @@
     color: #666;
     margin-bottom: 15px;
 }
+
+.payment-card {
+    padding: 10px;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 120px;
+    align-self: flex-end;
+    text-align: center;
+}
+
+.payment-card:hover {
+    background-color: #29AAE1;
+}
+
+.payment-card span {
+    font-weight: bold;
+}
+
 
 .btn-card {
     margin-top: auto;

@@ -123,39 +123,6 @@ const Home = () => {
 
         {/* <TestimonialsArea testimonials={testimonials} /> */}
         <NewsArea />
-        <Link
-          style={{
-            position: "fixed",
-            bottom: "15px",
-            left: "10px",
-            padding: "10px",
-            borderRadius: "5px",
-            border: "none",
-            zIndex: 1000,
-            width: "110px",
-            height: "50px",
-            backgroundColor: "#29AAE1",
-            color: "#fff",
-            cursor: "pointer",
-            textAlign: "center",
-            display: "flex",
-            cursor: "pointer",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-          href={"/donate"}
-        >
-          <p
-            style={{
-              width: "100%",
-              color: "#fff",
-              fontSize: "16px",
-              fontWeight: "bold",
-            }}
-          >
-            Faire un don
-          </p>
-        </Link>
       </Layout>
     </div>
   );

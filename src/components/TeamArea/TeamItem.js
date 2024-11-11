@@ -2,7 +2,8 @@ import React from "react";
 import { Col, Image } from "react-bootstrap";
 
 const TeamItem = ({ team = {} }) => {
-  const { avatar, socials, firstName, lastName, email } = team;
+  const { avatar, twitter, facebook, instagram, firstName, lastName, email } =
+    team;
 
   return (
     <Col lg={4} md={7}>
@@ -12,13 +13,21 @@ const TeamItem = ({ team = {} }) => {
           <div className="share">
             <i className="fa fa-share-alt"></i>
             <ul>
-              {/* {socials.map(({ id, icon, href }) => (
-                <li key={id}>
-                  <a href={href}>
-                    <i className={icon}></i>
-                  </a>
-                </li>
-              ))} */}
+              <li>
+                <a href={twitter}>
+                  <i className="fa fa-twitter"></i>
+                </a>
+              </li>
+              <li>
+                <a href={facebook}>
+                  <i className="fa fa-facebook-official"></i>
+                </a>
+              </li>
+              <li>
+                <a href={instagram}>
+                  <i className="fa fa-instagram"></i>
+                </a>
+              </li>
             </ul>
           </div>
         </div>

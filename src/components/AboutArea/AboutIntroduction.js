@@ -39,11 +39,15 @@ const AboutIntroduction = () => {
                   <p>{aboutData[0]?.text}</p>
                   <div className="item mt-35">
                     <i className="flaticon-checkmark"></i>
-                    <h4 className="title">{aboutData[0]?.item1}</h4>
+                    <h4 className="title" style={{ textAlign: "justify" }}>
+                      {aboutData[0]?.item1}
+                    </h4>
                   </div>
                   <div className="item mt-35">
                     <i className="flaticon-checkmark"></i>
-                    <h4 className="title">{aboutData[0]?.item2}</h4>
+                    <h4 className="title" style={{ textAlign: "justify" }}>
+                      {aboutData[0]?.item2}
+                    </h4>
                   </div>
                 </div>
               ) : (

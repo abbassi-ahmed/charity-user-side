@@ -72,6 +72,7 @@ const Categories = () => {
                     wordWrap: "break-word",
                     overflowWrap: "break-word",
                     wordBreak: "break-word",
+                    textAlign: "justify",
                   }}
                 >
                   {categoriesSection[0]?.description || ""}

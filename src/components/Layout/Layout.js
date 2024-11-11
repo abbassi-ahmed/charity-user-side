@@ -4,6 +4,7 @@ import OffCanvasMenu from "../Header/OffCanvasMenu";
 import SearchPopup from "../Header/SearchPopup";
 import SiteFooter from "../SiteFooter/SiteFooter";
 import ScrollToTop from "./ScrollToTop";
+import DonateScroll from "./donateScroll";
 
 const Layout = ({ children }) => {
   return (
@@ -19,6 +20,7 @@ const Layout = ({ children }) => {
       <OffCanvasMenu />
       <SearchPopup />
       <ScrollToTop />
+      <DonateScroll />
     </div>
   );
 };
