@@ -7,7 +7,7 @@ const TeamMainArea = ({ className = "", count = 3, users = null }) => {
   return (
     <div className={`team-main-area ${className}`}>
       <Container>
-        <Row className="justify-content-center">
+        <Row className="justify-content-center title">
           {users &&
             users
               .slice(0, count)

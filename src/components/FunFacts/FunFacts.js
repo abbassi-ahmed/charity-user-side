@@ -29,13 +29,11 @@ const FunFacts = ({ className = "" }) => {
 
   return (
     <section className={`fun-facts-area ${className}`}>
-      <Container>
-        <Row>
-          {facts.map((fact) => (
-            <FunFactsItem key={fact.id} fact={fact} loading={loading} />
-          ))}
-        </Row>
-      </Container>
+      <Row>
+        {facts.map((fact) => (
+          <FunFactsItem key={fact.id} fact={fact} loading={loading} />
+        ))}
+      </Row>
       <div className="fun-facts-shape-1">
         <Image src={shape1.src} alt="" />
       </div>

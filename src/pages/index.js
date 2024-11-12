@@ -15,6 +15,7 @@ import TogetherArea from "@/components/TogetherArea/TogetherArea";
 import Link from "../components/Reuseable/Link";
 import TeamMembers from "./team-members";
 import TeamHome from "./team-home";
+import TeamMainArea from "@/components/TeamArea/TeamMainArea";
 
 const fetchUser = async (token) => {
   const response = await fetch("http://localhost:3636/users/verify", {
@@ -33,7 +34,7 @@ const fetchSlides = async () => {
   return response.data;
 };
 const fetchUsers = async () => {
-  const response = await axios.get("http://localhost:3636/admins/find-all");
+  const response = await axios.get("http://localhost:3636/derigant/find-all");
   return response.data;
 };
 
@@ -72,7 +73,6 @@ const Home = () => {
   const { data: users, isLoading: isUsersLoading } = useQuery({
     queryKey: ["users"],
     queryFn: fetchUsers,
-    enabled: !!user,
     initialData: [],
   });
 
@@ -115,12 +115,11 @@ const Home = () => {
         {/* <WhyChoose /> */}
         <CtaArea />
         <ProjectsArea />
-        {/* <FunFacts /> */}
+        <FunFacts />
         <BrandAreaTwo />
 
         <TogetherArea />
-        <TeamHome users={users.slice(0, 3)} />
-
+        {users && users.length > 0 && <TeamHome users={users.slice(0, 3)} />}
         {/* <TestimonialsArea testimonials={testimonials} /> */}
         <NewsArea />
       </Layout>

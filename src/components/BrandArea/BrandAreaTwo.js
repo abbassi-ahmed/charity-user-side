@@ -70,7 +70,6 @@ const BrandAreaTwo = ({ className = "" }) => {
       const response = await axios.get(
         "http://localhost:3636/worked-with/find-all"
       );
-      console.log(response.data);
       setBrands(response.data);
     } catch (error) {
       console.log(error);

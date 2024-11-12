@@ -93,7 +93,6 @@ const BlogDetailsMain = ({
               <Button
                 variant="primary"
                 onClick={() => {
-                  console.log("dzdz");
                   handleAddComment();
                 }}
               >

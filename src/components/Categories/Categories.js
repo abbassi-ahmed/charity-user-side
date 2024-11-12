@@ -7,7 +7,6 @@ import { SkeletonLoader } from "../skeletonLoader/skeletonLoader";
 import Image from "next/image";
 
 const CategoriesBoxItem = ({ categories = [] }) => {
-  console.log(categories);
   return (
     <div className="categories-box-item">
       {categories.length > 0 ? (

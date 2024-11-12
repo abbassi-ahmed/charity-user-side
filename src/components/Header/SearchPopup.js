@@ -7,7 +7,6 @@ const SearchPopup = () => {
   const { openSearch, toggleSearch } = useRootContext();
 
   const onSubmit = (data) => {
-    console.log(data);
     toggleSearch(false);
   };
 

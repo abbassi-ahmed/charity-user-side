@@ -117,21 +117,6 @@ const footerData2 = {
       text: "Nos Abonnements",
       href: "/abonnement",
     },
-    {
-      id: 5,
-      text: "FAQ",
-      href: "/faq",
-    },
-    {
-      id: 6,
-      text: "Gallerie",
-      href: "#",
-    },
-    {
-      id: 7,
-      text: "Contact",
-      href: "/contact",
-    },
   ],
   Categories: [
     {

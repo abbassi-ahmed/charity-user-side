@@ -9,29 +9,46 @@ const TeamItem = ({ team = {} }) => {
     <Col lg={4} md={7}>
       <div className="team-item mt-30">
         <div className="team-thumb">
-          <Image src={avatar} alt="team" />
+          <Image
+            src={avatar}
+            alt="team"
+            height={400}
+            style={{ objectFit: "cover" }}
+          />
           <div className="share">
             <i className="fa fa-share-alt"></i>
             <ul>
               <li>
-                <a href={twitter}>
+                <a
+                  href={`https://${twitter}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <i className="fa fa-twitter"></i>
                 </a>
               </li>
               <li>
-                <a href={facebook}>
+                <a
+                  href={`https://${facebook}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <i className="fa fa-facebook-official"></i>
                 </a>
               </li>
               <li>
-                <a href={instagram}>
+                <a
+                  href={`https://${instagram}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <i className="fa fa-instagram"></i>
                 </a>
               </li>
             </ul>
           </div>
         </div>
-        <div className="team-content text-center">
+        <div className="team-content text-center bg-white">
           <h5 className="title">{firstName + " " + lastName}</h5>
           <span>{email}</span>
         </div>

@@ -7,8 +7,6 @@ import SearchIcon from "../Header/SearchIcon";
 const { tagline, title } = faqTitleArea;
 
 const FaqTitleArea = () => {
-  const onSubmit = (data) => console.log(data);
-
   return (
     <section className="faq-title-area">
       <Container>
