@@ -10,6 +10,15 @@ import TestimonialsArea from "@/components/Testimonials/TestimonialsArea";
 import TogetherArea from "@/components/TogetherArea/TogetherArea";
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
+import TeamHome from "./team-home";
+import { useQuery } from "@tanstack/react-query";
+
+const fetchUsers = async () => {
+  console.log("fetching users");
+  const response = await axios.get("http://localhost:3636/derigant/find-all");
+  console.log("users", response.data);
+  return response.data;
+};
 
 const About = () => {
   const [user, setUser] = useState(null);
@@ -48,7 +57,13 @@ const About = () => {
     }
   }, [router]);
 
-  if (loader) {
+  const { data: users, isLoading: isUsersLoading } = useQuery({
+    queryKey: ["users"],
+    queryFn: fetchUsers,
+    initialData: [],
+  });
+
+  if (loader || isUsersLoading) {
     return (
       <Layout>
         <Header />
@@ -70,9 +85,9 @@ const About = () => {
       <Header />
       <PageTitle title="A Propos" parent="Page" />
       <AboutIntroduction />
-      {/* <FunFacts className="fun-facts-about-area" /> */}
+      <FunFacts className="fun-facts-about-area" />
       <NextBigThing className="next-big-thing-about-area" />
-      {/* <TeamMainArea className="about-team-main-area" /> */}
+      {users && users.length > 0 && <TeamHome users={users.slice(0, 3)} />}
       <TogetherArea className="together-3-area" />
       <BrandAreaTwo className="brand-area-2" />
     </Layout>
