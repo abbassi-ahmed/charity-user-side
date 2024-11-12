@@ -12,10 +12,7 @@ import ProjectsArea from "@/components/ProjectsArea/ProjectsArea";
 import BrandAreaTwo from "@/components/BrandArea/BrandAreaTwo";
 
 import TogetherArea from "@/components/TogetherArea/TogetherArea";
-import Link from "../components/Reuseable/Link";
-import TeamMembers from "./team-members";
 import TeamHome from "./team-home";
-import TeamMainArea from "@/components/TeamArea/TeamMainArea";
 
 const fetchUser = async (token) => {
   const response = await fetch("http://localhost:3636/users/verify", {
