@@ -224,22 +224,31 @@ const Profile = () => {
         </Col>
         <Col lg={4} className="mb-3 text-center">
           <h2 className="mb-5">Subscription</h2>
-          {user?.subscription ? (
-            <div className="container-card">
-              <h2 className="title-card">{user.subscription.title}</h2>
-              <p className="body-card">{user.subscription.description}</p>
-              <div className="btn-card">
-                <span className="text-lg">
-                  Ends on: {new Date(user.dateEnd).toLocaleDateString()}
-                </span>
-              </div>
+          {user?.userSubscriptions?.length ? (
+            <div className="scrollable-container">
+              {user.userSubscriptions.map((subscription, index) => (
+                <div key={index} className="container-card">
+                  <h3 className="title-card">
+                    {subscription.subscription.title}
+                  </h3>
+                  <p className="body-card">
+                    {subscription.subscription.description}
+                  </p>
+                  <div className="btn-card">
+                    <span className="text-lg">
+                      Ends on:{" "}
+                      {new Date(subscription.dateEnd).toLocaleDateString()}
+                    </span>
+                  </div>
+                </div>
+              ))}
             </div>
           ) : (
             <div className="text-center">
               <Image
                 src={NoPayment}
                 alt="No Payment"
-                className="mr-5 "
+                className="no-payment-image"
                 style={{
                   display: "block",
                   margin: "0 auto",

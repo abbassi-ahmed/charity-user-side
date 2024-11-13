@@ -77,7 +77,10 @@ export default function Subscription({
         {price} TND
         <span className="text-lg">{duration}/ Month</span>
       </div>
-      {user?.subscription && user.subscription.id === subscriptionId ? (
+
+      {user?.userSubscriptions?.some(
+        (subscription) => subscription.subscription.id === subscriptionId
+      ) ? (
         <button className="btn-card" disabled>
           You are already subscribed to this plan
         </button>
@@ -96,7 +99,6 @@ export default function Subscription({
         </button>
       )}
 
-      {/* Modal */}
       {modal && user && (
         <div className="modal">
           <div className="modal-content">
