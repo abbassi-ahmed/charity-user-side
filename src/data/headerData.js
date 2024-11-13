@@ -35,7 +35,7 @@ export const navItems = [
     href: "",
     subNavItems: [
       { id: 1, name: "Nos Abonnement", href: "/abonnement" },
-      { id: 2, name: "Gallerie", href: "/projects-type1" },
+      { id: 2, name: "Gallerie", href: "/gallery" },
       { id: 3, name: "Faq", href: "/faq" },
       { id: 4, name: "Dérigont", href: "/team-members" },
       { id: 5, name: "Actualité", href: "/news" },
