@@ -48,7 +48,7 @@ const SingleTab = ({ current, id, faqsData }) => {
         ) : (
           <div className="text-center">
             <Image src={noData} alt="No Data Found" width={200} height={200} />
-            <h2>No FAQs For This Category</h2>
+            <h2>Il n&apos;y a pas de FAQ pour cette catégorie</h2>
           </div>
         )}
       </Row>
@@ -75,29 +75,17 @@ const FaqDesignArea = ({ faqData, current, setCurrent }) => {
               </ul>
             </div>
             <div className="tab-content mt-55" id="pills-tabContent">
-              {faqData?.length > 0 ? (
-                <SingleTab
-                  id={
-                    current === "pills-1"
-                      ? "pills-1"
-                      : current === "pills-2"
-                      ? "pills-2"
-                      : "pills-3"
-                  }
-                  faqsData={faqData}
-                  current={current}
-                />
-              ) : (
-                <div className="text-center">
-                  <Image
-                    src={noData}
-                    alt="No Data Found"
-                    width={200}
-                    height={200}
-                  />
-                  <h2>No FAQs For This Category</h2>
-                </div>
-              )}
+              <SingleTab
+                id={
+                  current === "pills-1"
+                    ? "pills-1"
+                    : current === "pills-2"
+                    ? "pills-2"
+                    : "pills-3"
+                }
+                faqsData={faqData}
+                current={current}
+              />
             </div>
           </Col>
         </Row>

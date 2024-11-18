@@ -34,7 +34,7 @@ const BlogDetailsSidebar = ({ posts }) => {
   return (
     <div className="sidebar">
       <div className="sidebar__single sidebar__post">
-        <h3 className="sidebar__title">Other Posts</h3>
+        <h3 className="sidebar__title"> Autres articles </h3>
         <div className="sidebar__post-wrap">
           {posts.map((post) => (
             <SidebarPostSingle post={post} key={post.id} />

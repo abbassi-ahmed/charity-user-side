@@ -1,18 +1,18 @@
 export const contactFormArea = {
-  tagline: "Contact With Us Now",
-  title: "Write a Message",
+  tagline: "Contactez-nous maintenant",
+  title: "Écrire un message",
   inputs: [
     {
       id: 1,
       type: "text",
       placeholder: "First Name",
-      name: "fname",
+      name: "firstName",
     },
     {
       id: 2,
       type: "text",
       placeholder: "Last Name",
-      name: "lname",
+      name: "lastName",
     },
     {
       id: 3,
@@ -24,7 +24,7 @@ export const contactFormArea = {
       id: 4,
       type: "text",
       placeholder: "Phone Number",
-      name: "number",
+      name: "phone",
     },
     {
       id: 5,

@@ -29,8 +29,8 @@ const NewsArea = ({ className = "", newsTwo = false, newsPage = false }) => {
           <Row className="justify-content-center">
             <Col lg={6}>
               <Title
-                title="Our Blogs"
-                tagline="Latest News and Updates"
+                title="Dernières nouvelles"
+                tagline="Dernières nouvelles et mises à jour"
                 className="text-center"
               />
             </Col>

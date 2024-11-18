@@ -74,14 +74,14 @@ const ProjectType1 = () => {
     return (
       <Layout>
         <Header />
-        <PageTitle title="Project Type  " />
+        <PageTitle title="Idee de projet" />
 
         <div
           className="d-flex justify-content-center align-items-center flex-column"
           style={{ height: "50vh", width: "100%" }}
         >
           <Image src={noData} alt="No Data Found" width={200} height={200} />
-          <h1>No projects found</h1>
+          <h1>Aucun projet trouvé</h1>
         </div>
       </Layout>
     );
@@ -90,7 +90,7 @@ const ProjectType1 = () => {
   return (
     <Layout>
       <Header />
-      <PageTitle title="Project Type  " />
+      <PageTitle title="Idee de projet" />
       <ExploreProjectsThree projects={projects} projectSums={projectSums} />
     </Layout>
   );

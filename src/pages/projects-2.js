@@ -68,10 +68,24 @@ const Projects2 = () => {
     );
   }
 
+  if (!projects.length) {
+    return (
+      <Layout>
+        <Header />
+        <div
+          className="d-flex justify-content-center align-items-center"
+          style={{ height: "50vh", width: "100%" }}
+        >
+          <h1>Aucun projet trouvé</h1>
+        </div>
+      </Layout>
+    );
+  }
+
   return (
     <Layout>
       <Header />
-      <PageTitle title="Nos Projets" />
+      <PageTitle title="Project Social" />
       <ExploreProjectsThree projects={projects} projectSums={projectSums} />
     </Layout>
   );
