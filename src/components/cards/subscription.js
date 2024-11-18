@@ -75,14 +75,14 @@ export default function Subscription({
       <p className="body-card">{description}</p>
       <div className="payment-card" style={{ width: "110px" }}>
         {price} TND
-        <span className="text-lg">{duration}/ Month</span>
+        <span className="text-lg">{duration}/ Mois</span>
       </div>
 
       {user?.userSubscriptions?.some(
         (subscription) => subscription.subscription.id === subscriptionId
       ) ? (
         <button className="btn-card" disabled>
-          You are already subscribed to this plan
+          Vous êtes déjà abonné
         </button>
       ) : (
         <button
@@ -95,7 +95,7 @@ export default function Subscription({
             }
           }}
         >
-          Subscribe
+          S&apos;abonner
         </button>
       )}
 
@@ -105,7 +105,7 @@ export default function Subscription({
             <span className="close" onClick={toggleModal}>
               &times;
             </span>
-            <h2 className="title-card">Subscribe to {title}</h2>
+            <h2 className="title-card"> S&apos;abonner à {title}</h2>
             <form
               onSubmit={handleDonate}
               className="project-form d-flex flex-column gap-3"
@@ -160,7 +160,7 @@ export default function Subscription({
               />
 
               <button className="btn-card" type="submit">
-                Submit Donation
+                S&apos;abonner pour {price} TND
               </button>
             </form>
           </div>

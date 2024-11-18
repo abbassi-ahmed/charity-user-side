@@ -3,11 +3,24 @@ import handleSubmit from "@/utils/handleSubmit";
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Title from "../Reuseable/Title";
+import axios from "axios";
+import toast, { Toaster } from "react-hot-toast";
 
 const { tagline, title, inputs } = contactFormArea;
 
 const ContactFormArea = () => {
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) =>
+    await axios
+      .post("http://localhost:3636/contact/create", data)
+      .then((res) => {
+        const form = document.querySelector("#contact-form");
+        form.reset();
+        toast.success("Message sent successfully");
+      })
+      .catch((err) => {
+        document.querySelector(".form-message").innerHTML =
+          err.response.data.message;
+      });
 
   return (
     <section className="contact-form-area">
@@ -46,7 +59,7 @@ const ContactFormArea = () => {
                   <Col lg={12}>
                     <div className="input-box mt-20 text-center">
                       <button className="main-btn" type="submit">
-                        Submit message
+                        Envoyer un message
                       </button>
                     </div>
                   </Col>
@@ -57,6 +70,7 @@ const ContactFormArea = () => {
           </Col>
         </Row>
       </Container>
+      <Toaster />
     </section>
   );
 };

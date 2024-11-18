@@ -74,24 +74,24 @@ const ProjectDetailsArea = ({ project, sum }) => {
               <div className="project-details-item mt-5">
                 <div className="item text-center">
                   <h5 className="title">{target}</h5>
-                  <span>Target</span>
+                  <span>Cible</span>
                 </div>
                 <div className="item text-center">
                   <h5 className="title">{amount}</h5>
-                  <span>Amount Raised</span>
+                  <span>Montant collecté</span>
                 </div>
 
                 <div className="item text-center">
                   <h5 className="title">
                     {new Date(startDate).toLocaleDateString()}
                   </h5>
-                  <span>Start Date</span>
+                  <span>Date de début</span>
                 </div>
                 <div className="item text-center">
                   <h5 className="title">
                     {new Date(targetDate).toLocaleDateString()}
                   </h5>
-                  <span>Target Date</span>
+                  <span>Date de fin</span>
                 </div>
               </div>
               <div className="d-flex justify-content-between mt-30">

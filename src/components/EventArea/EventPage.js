@@ -1,6 +1,11 @@
 import { Col, Container, Row } from "react-bootstrap";
 import EventItem from "./EventItem";
 import { useEffect, useState } from "react";
+import Layout from "../Layout/Layout";
+import Header from "../Header/Header";
+import PageTitle from "../Reuseable/PageTitle";
+import noData from "../../assets/svgs/noData.svg";
+import Image from "next/image";
 
 const EventsPage = () => {
   const [events, setEvents] = useState([]);
@@ -19,6 +24,17 @@ const EventsPage = () => {
     fetchEvents();
   }, []);
 
+  if (!events.length) {
+    return (
+      <div
+        className="d-flex justify-content-center align-items-center flex-column"
+        style={{ height: "50vh", width: "100%" }}
+      >
+        <Image src={noData} alt="No Data Found" width={200} height={200} />
+        <h1>Aucun événement trouvé</h1>
+      </div>
+    );
+  }
   return (
     <div className="events-page-area">
       <Container>

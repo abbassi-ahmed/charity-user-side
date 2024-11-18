@@ -67,11 +67,11 @@ const TeamMembers = () => {
   return (
     <Layout>
       <Header />
-      <PageTitle title="Team Members" parent="pages" />
+      <PageTitle title="Membres de l'équipe" />
       {users.length === 0 ? (
         <div className="text-center my-4">
           <Image src={noData} alt="No Data Found" width={200} height={200} />
-          <h2> No Team Members Now</h2>
+          <h2> Aucun membre pour le moment</h2>
         </div>
       ) : (
         <TeamMainArea
