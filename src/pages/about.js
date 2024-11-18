@@ -14,9 +14,7 @@ import TeamHome from "./team-home";
 import { useQuery } from "@tanstack/react-query";
 
 const fetchUsers = async () => {
-  console.log("fetching users");
   const response = await axios.get("http://localhost:3636/derigant/find-all");
-  console.log("users", response.data);
   return response.data;
 };
 
