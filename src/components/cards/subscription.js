@@ -39,7 +39,7 @@ export default function Subscription({
     } else {
       try {
         const response = await axios.post(
-          "http://localhost:3636/payments/create",
+          "https://api.olympiquemnihla.com/payments/create",
           {
             token: "TND",
             amount: parseFloat(price),

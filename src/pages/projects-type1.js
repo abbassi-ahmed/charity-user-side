@@ -17,7 +17,7 @@ const ProjectType1 = () => {
     const fetchProjects = async () => {
       try {
         const response = await axios.post(
-          "http://localhost:3636/projects/find-by-type",
+          "https://api.olympiquemnihla.com/projects/find-by-type",
           {
             type: "idee de projet",
           }
@@ -30,7 +30,7 @@ const ProjectType1 = () => {
           projects.map(async (project) => {
             try {
               const response = await axios.get(
-                `http://localhost:3636/project-donation/get-sum-of-donations/${project.id}`
+                `https://api.olympiquemnihla.com/project-donation/get-sum-of-donations/${project.id}`
               );
               projectSumsCopy[project.id] = response.data.sum;
             } catch (error) {

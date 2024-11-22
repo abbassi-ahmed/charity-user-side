@@ -26,7 +26,7 @@ const Profile = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      fetch("http://localhost:3636/users/verify", {
+      fetch("https://api.olympiquemnihla.com/users/verify", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -86,7 +86,7 @@ const Profile = () => {
       formDataToSend.append("avatar", avatarFile);
     }
     setLoader(true);
-    fetch(`http://localhost:3636/users/update/${user.id}`, {
+    fetch(`https://api.olympiquemnihla.com/users/update/${user.id}`, {
       method: "PUT",
       body: formDataToSend,
     })

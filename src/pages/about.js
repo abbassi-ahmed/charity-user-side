@@ -14,7 +14,9 @@ import TeamHome from "./team-home";
 import { useQuery } from "@tanstack/react-query";
 
 const fetchUsers = async () => {
-  const response = await axios.get("http://localhost:3636/derigant/find-all");
+  const response = await axios.get(
+    "https://api.olympiquemnihla.com/derigant/find-all"
+  );
   return response.data;
 };
 
@@ -26,7 +28,7 @@ const About = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      fetch("http://localhost:3636/users/verify", {
+      fetch("https://api.olympiquemnihla.com/users/verify", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

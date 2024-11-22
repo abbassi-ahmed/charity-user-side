@@ -26,7 +26,7 @@ const ContactFormArea = ({ email }) => {
 
   const onSubmit = async (data) =>
     await axios
-      .post("http://localhost:3636/contact/create", data)
+      .post("https://api.olympiquemnihla.com/contact/create", data)
       .then((res) => {
         const form = document.querySelector("#contact-form");
         form.reset();
