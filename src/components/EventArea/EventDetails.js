@@ -14,7 +14,7 @@ const EventDetails = () => {
       const fetchEvent = async () => {
         try {
           const response = await fetch(
-            `http://localhost:3636/events/find-one/${id}`
+            `https://api.olympiquemnihla.com/events/find-one/${id}`
           );
           const data = await response.json();
           setEvent(data);

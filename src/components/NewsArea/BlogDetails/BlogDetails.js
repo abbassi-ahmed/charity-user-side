@@ -16,13 +16,16 @@ const BlogDetails = ({ id }) => {
     const token = localStorage.getItem("token");
     if (!token) return;
     try {
-      const response = await fetch("http://localhost:3636/users/verify", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ token }),
-      });
+      const response = await fetch(
+        "https://api.olympiquemnihla.com/users/verify",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ token }),
+        }
+      );
       if (!response.ok) throw new Error("Failed to verify token");
       const data = await response.json();
       if (data && data.firstName) {
@@ -42,12 +45,12 @@ const BlogDetails = ({ id }) => {
         return;
       }
       const response = await axios.get(
-        `http://localhost:3636/blogs/find-one/${id}`
+        `https://api.olympiquemnihla.com/blogs/find-one/${id}`
       );
       setBlog(response.data);
 
       const postsResponse = await axios.get(
-        "http://localhost:3636/blogs/find-all"
+        "https://api.olympiquemnihla.com/blogs/find-all"
       );
       const uniquePosts = postsResponse.data.filter(
         (post) => post.id !== response.data.id
@@ -55,7 +58,7 @@ const BlogDetails = ({ id }) => {
       setPosts(uniquePosts);
 
       const commentsResponse = await axios.get(
-        `http://localhost:3636/comments/find-by-blog/${response.data.id}`
+        `https://api.olympiquemnihla.com/comments/find-by-blog/${response.data.id}`
       );
       setComments(commentsResponse.data);
     } catch (error) {
@@ -66,11 +69,14 @@ const BlogDetails = ({ id }) => {
   const handleAddComment = async () => {
     if (newComment.trim()) {
       try {
-        const response = await axios.post(`http://localhost:3636/comments`, {
-          userId: user.id,
-          blogId: blog.id,
-          content: newComment,
-        });
+        const response = await axios.post(
+          `https://api.olympiquemnihla.com/comments`,
+          {
+            userId: user.id,
+            blogId: blog.id,
+            content: newComment,
+          }
+        );
         setComments((prevComments) => [...prevComments, response.data]);
         setNewComment("");
       } catch (error) {
