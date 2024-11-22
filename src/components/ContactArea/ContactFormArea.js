@@ -1,6 +1,6 @@
 import { contactFormArea } from "@/data/contactArea";
 import handleSubmit from "@/utils/handleSubmit";
-import React from "react";
+import React, { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Title from "../Reuseable/Title";
 import axios from "axios";
@@ -8,7 +8,22 @@ import toast, { Toaster } from "react-hot-toast";
 
 const { tagline, title, inputs } = contactFormArea;
 
-const ContactFormArea = () => {
+const ContactFormArea = ({ email }) => {
+  const [formValues, setFormValues] = useState(
+    inputs.reduce(
+      (acc, { name }) => ({
+        ...acc,
+        [name]: name === "email" ? email || "" : "",
+      }),
+      {}
+    )
+  );
+
+  const onChangeHandler = (e) => {
+    const { name, value } = e.target;
+    setFormValues((prev) => ({ ...prev, [name]: value }));
+  };
+
   const onSubmit = async (data) =>
     await axios
       .post("http://localhost:3636/contact/create", data)
@@ -16,6 +31,9 @@ const ContactFormArea = () => {
         const form = document.querySelector("#contact-form");
         form.reset();
         toast.success("Message sent successfully");
+        setFormValues(
+          inputs.reduce((acc, { name }) => ({ ...acc, [name]: "" }), {})
+        ); // Reset state
       })
       .catch((err) => {
         document.querySelector(".form-message").innerHTML =
@@ -43,14 +61,17 @@ const ContactFormArea = () => {
                             type={type}
                             placeholder={placeholder}
                             name={name}
+                            value={formValues[name] || ""}
+                            onChange={onChangeHandler}
                           />
                         ) : (
                           <textarea
-                            id="#"
                             cols={cols}
                             rows={rows}
                             placeholder={placeholder}
                             name={name}
+                            value={formValues[name] || ""}
+                            onChange={onChangeHandler}
                           ></textarea>
                         )}
                       </div>

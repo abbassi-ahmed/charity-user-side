@@ -1,11 +1,14 @@
 import footerData, { footerData2 } from "@/data/siteFooter";
-import React from "react";
+import React, { useState } from "react";
 import { Col, Container, Image, Row } from "react-bootstrap";
 import FooterList from "./FooterList";
+import Link from "../Reuseable/Link";
 
 const { bg, logo, text2, shape, socials } = footerData;
 const { linksNav, Categories } = footerData2;
 const SiteFooter = () => {
+  const [email, setEmail] = useState("");
+
   return (
     <footer
       className="footer-area bg_cover"
@@ -36,15 +39,22 @@ const SiteFooter = () => {
           <Col lg={4} md={6} sm={8}>
             <div className="footer-newsletter mt-30">
               <div className="footer-title">
-                <h4 className="title">Become a Volunteer</h4>
+                <h4 className="title">Newsletter</h4>
               </div>
-              <form>
-                <div className="form-group">
-                  <a href="/signup" className="main-btn">
-                    Signup
-                  </a>
-                </div>
-              </form>
+              <div className="input-box">
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email Address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+                <Link href={`/contact/${email}`}>
+                  <button>
+                    <i className="fa fa-envelope"></i>
+                  </button>
+                </Link>
+              </div>
               <p>{text2}</p>
             </div>
           </Col>
