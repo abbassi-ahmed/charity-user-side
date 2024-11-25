@@ -31,12 +31,12 @@ jobs:
     # Step 4: Build the Docker image
     - name: Build Docker image
       run: |
-        docker build -t your-username/your-image-name:${{ github.sha }} .
+        docker build -t nassimbennsib/innosys-charity-user-side:${{ github.sha }} .
 
     # Step 5: Push the Docker image to Docker Hub (or GitHub Container Registry)
     - name: Push Docker image
       run: |
-        docker push your-username/your-image-name:${{ github.sha }}
+        docker push nassimbennsib/innosys-charity-user-side:${{ github.sha }}
 
   deploy:
     runs-on: ubuntu-latest
@@ -56,11 +56,11 @@ jobs:
         key: ${{ secrets.SERVER_SSH_KEY }}
         script: |
           # Step 3: Pull the newly pushed Docker image
-          docker pull your-username/your-image-name:${{ github.sha }}
+          docker pull nassimbennsib/innosys-charity-user-side:${{ github.sha }}
 
           # Step 4: Stop and remove the running container (if it exists)
           docker stop your-container-name || true
           docker rm your-container-name || true
 
           # Step 5: Run the new Docker container
-          docker run -d --name your-container-name -p 3000:3000 your-username/your-image-name:${{ github.sha }}
+          docker run -d --name your-container-name -p 3000:3000 nassimbennsib/innosys-charity-user-side:${{ github.sha }}
