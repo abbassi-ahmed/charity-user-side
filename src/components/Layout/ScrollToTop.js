@@ -8,7 +8,7 @@ const ScrollToTop = () => {
   return (
     <ScrollLink
       to="wrapper"
-      smooth={true}
+      smooth="true"
       duration={500}
       id="backToTop"
       className="go-top-area d-inline cursor-pointer"

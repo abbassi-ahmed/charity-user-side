@@ -7,7 +7,7 @@ const DonateScroll = () => {
 
   return (
     <Link
-      smooth={true}
+      smooth="true"
       href="/donate"
       duration={500}
       className="go-top-area-don d-inline cursor-pointer"
