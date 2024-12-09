@@ -62,12 +62,12 @@ const SignIn = () => {
 
   return (
     <section className="auth-section">
-      <PageTitle title="Sign In" />
+      <PageTitle title="Se connecter" />
       <Container>
         <Row className="justify-content-center">
           <Col lg={6} md={8}>
             <div className="auth-form">
-              <h2 className="mt-4 text-center">Sign In</h2>
+              <h2 className="mt-4 text-center">Se connecter</h2>
               <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="formEmail" className="mb-3">
                   <Form.Label>Email</Form.Label>
@@ -101,7 +101,7 @@ const SignIn = () => {
                       role="status"
                     ></div>
                   ) : (
-                    "Sign In"
+                    "Se connecter"
                   )}
                 </Button>
               </Form>
@@ -109,7 +109,8 @@ const SignIn = () => {
                 <p className="mt-3 text-center text-danger">{errorMessage}</p>
               )}
               <p className="mt-3 text-center mb-5">
-                Don&apos;t have an account? <Link href="/sign-up">Sign Up</Link>
+                Don&apos;t have an account?{" "}
+                <Link href="/sign-up">S&apos;inscrire</Link>
               </p>
             </div>
           </Col>

@@ -319,7 +319,6 @@ p {
 .section-title span {
   font-size: 18px;
   color: #674df0;
-  text-transform: capitalize;
   padding-left: 16px;
   position: relative;
 }

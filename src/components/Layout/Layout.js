@@ -20,7 +20,7 @@ const Layout = ({ children }) => {
       <OffCanvasMenu />
       <SearchPopup />
       <ScrollToTop />
-      <DonateScroll />
+      {/* <DonateScroll /> */}
     </div>
   );
 };

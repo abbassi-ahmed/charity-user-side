@@ -13,6 +13,7 @@ import BrandAreaTwo from "@/components/BrandArea/BrandAreaTwo";
 
 import TogetherArea from "@/components/TogetherArea/TogetherArea";
 import TeamHome from "./team-home";
+import { Link } from "react-scroll";
 
 const fetchUser = async (token) => {
   const response = await fetch("https://api.olympiquemnihla.com/users/verify", {
@@ -46,6 +47,20 @@ const fetchTestimonials = async () => {
 
 const Home = () => {
   const [token, setToken] = useState(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 80);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const {
     data: user,
     isLoading: isUserLoading,
@@ -121,6 +136,23 @@ const Home = () => {
         {users && users.length > 0 && <TeamHome users={users.slice(0, 3)} />}
         {/* <TestimonialsArea testimonials={testimonials} /> */}
         <NewsArea />
+        {slides && slides.length > 0 && (
+          <Link
+            style={{
+              position: "fixed",
+              top: isScrolled ? "unset" : "75%",
+              left: isScrolled ? "10px" : "50%",
+              bottom: isScrolled ? "18px" : "unset",
+              transform: isScrolled ? "none" : "translate(-50%, -50%)",
+              zIndex: 9999,
+              transition: "all 0.8s ease",
+            }}
+            className="main-btn"
+            href="/donate"
+          >
+            Faire Un Don
+          </Link>
+        )}
       </Layout>
     </div>
   );

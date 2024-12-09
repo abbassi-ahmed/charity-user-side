@@ -3,7 +3,9 @@ import Layout from "@/components/Layout/Layout";
 import ExploreProjectsThree from "@/components/ProjectsArea/ExploreProjectsThree";
 import PageTitle from "@/components/Reuseable/PageTitle";
 import React, { useEffect, useState, useRef } from "react";
+import noData from "../assets/svgs/noData.svg";
 import axios from "axios";
+import Image from "next/image";
 
 const Projects2 = () => {
   const [projects, setProjects] = useState([]);
@@ -72,10 +74,13 @@ const Projects2 = () => {
     return (
       <Layout>
         <Header />
+        <PageTitle title="Project social" />
+
         <div
-          className="d-flex justify-content-center align-items-center"
+          className="d-flex justify-content-center align-items-center flex-column"
           style={{ height: "50vh", width: "100%" }}
         >
+          <Image src={noData} alt="No Data Found" width={200} height={200} />
           <h1>Aucun projet trouvé</h1>
         </div>
       </Layout>

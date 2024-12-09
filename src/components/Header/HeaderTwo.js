@@ -68,10 +68,10 @@ const HeaderTwo = () => {
             ) : (
               <>
                 <Link href="/sign-in">
-                  <a className="main-btn">Sign In</a>
+                  <a className="main-btn">Se connecter</a>
                 </Link>
                 <Link href="/sign-up">
-                  <a className="main-btn">Sign Up</a>
+                  <a className="main-btn">S&apos;inscrire</a>
                 </Link>
               </>
             )}
