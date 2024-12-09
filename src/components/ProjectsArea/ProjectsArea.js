@@ -40,7 +40,7 @@ const options = {
 
 const ProjectsArea = ({ className = "" }) => {
   const [projects, setProjects] = useState([]);
-  const [tagline, setTagline] = useState("Voir Les Projets");
+  const [tagline, setTagline] = useState("Voir les projets");
   const [title, setTitle] = useState("Projets à la une");
   const [projectSums, setProjectSums] = useState({});
   const hasFetchedProjects = useRef(false);

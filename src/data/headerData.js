@@ -18,14 +18,14 @@ export const navItems = [
     name: "Projets",
     href: "",
     subNavItems: [
-      { id: 1, name: "Social", href: "/projects-2" },
-      { id: 2, name: "Idee de projet", href: "/projects-type1" },
-      { id: 3, name: "ess", href: "/projects-type2" },
+      { id: 1, name: "SOCIAL", href: "/projects-2" },
+      { id: 2, name: "IDÉE DE PROJET", href: "/projects-type1" },
+      { id: 3, name: "ESS", href: "/projects-type2" },
     ],
   },
   {
     id: 4,
-    name: "Event",
+    name: "Événement",
     href: "/events",
   },
 

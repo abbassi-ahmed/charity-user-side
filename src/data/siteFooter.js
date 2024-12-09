@@ -30,8 +30,7 @@ const footerData = {
   bg,
   socials: socials2,
   text: "Olympique Mnihla",
-  text2:
-    "Sign up for our latest news & articles. We won’t give you spam mails.",
+  text2: "Contactez-nous maintenant écrire un message",
   shape,
   links: [
     {
@@ -109,7 +108,7 @@ const footerData2 = {
 
     {
       id: 3,
-      text: "Events",
+      text: "Événement",
       href: "#",
     },
     {
@@ -126,7 +125,7 @@ const footerData2 = {
     },
     {
       id: 2,
-      text: "Idee de projet",
+      text: "Idée de projet",
       href: "/projects-type1",
     },
     {

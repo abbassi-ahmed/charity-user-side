@@ -1,35 +1,22 @@
 import image from "@/images/bg4.jpg";
 
-export const brands = [
+export const Dbrands = [
   {
     id: 1,
     image,
+    title: "Brand 1",
+    link: "#",
   },
   {
     id: 2,
     image,
-  },
-  {
-    id: 3,
-    image,
-  },
-  {
-    id: 4,
-    image,
-    className: " mt-60",
-  },
-  {
-    id: 5,
-    image,
-    className: " mt-60",
-  },
-  {
-    id: 6,
-    image,
+
+    title: "Brand 1",
+    link: "#",
   },
 ];
 
 export const brandArea = {
   title: "Clients we have worked with",
-  brands: brands.slice(0, 5),
+  brands: Dbrands.slice(0, 5),
 };

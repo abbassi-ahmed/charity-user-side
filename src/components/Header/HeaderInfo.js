@@ -74,16 +74,21 @@ const HeaderInfo = ({ socials, icon, phone = "", searchColor }) => {
             onClick={handleToggleMenu}
           >
             <span className="welcome-message mr-10">{user.firstName}</span>
-            <Image
-              src={user.avatar}
-              alt="avatar"
-              width={30}
-              height={30}
-              className="rounded-circle"
+            <div
+              className="avatar"
+              style={{
+                width: "30px",
+                height: "30px",
+                borderRadius: "50%",
+                overflow: "hidden",
+                backgroundImage: `url(${user.avatar})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
             />
           </div>
           {showMenu && (
-            <div className="menu" ref={menuRef}>
+            <div className="menu" ref={menuRef} style={{ width: "170px" }}>
               <ul>
                 <li>
                   <Link href="/profile">
@@ -92,7 +97,7 @@ const HeaderInfo = ({ socials, icon, phone = "", searchColor }) => {
                 </li>
                 <li>
                   <a href="#" onClick={handleLogout}>
-                    Logout
+                    Se déconnecter
                   </a>
                 </li>
               </ul>
@@ -103,7 +108,7 @@ const HeaderInfo = ({ socials, icon, phone = "", searchColor }) => {
         <Link href="/sign-in">
           <a className="d-flex align-items-center">
             <FontAwesomeIcon icon={faSignInAlt} className="mr-10" />
-            <span>Sign In</span>
+            <span>Se connecter</span>
           </a>
         </Link>
       )}

@@ -38,7 +38,7 @@ const SuperstarsArea = () => {
         <h3 className="title">{title2}</h3>
         <p>{text2}</p>
         <Link className="main-btn" href="/sign-up">
-          Sign up now
+          S&apos;inscrire now
         </Link>
       </div>
     </section>

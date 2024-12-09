@@ -39,13 +39,13 @@ const SiteFooter = () => {
           <Col lg={4} md={6} sm={8}>
             <div className="footer-newsletter mt-30">
               <div className="footer-title">
-                <h4 className="title">Newsletter</h4>
+                <h4 className="title">Contact</h4>
               </div>
               <div className="input-box">
                 <input
                   type="email"
                   name="email"
-                  placeholder="Email Address"
+                  placeholder="Adresse e-mail"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />

@@ -5,6 +5,7 @@ import { Col, Container, Row } from "react-bootstrap";
 const { text, categoriesIcons } = categoriesSection;
 import { SkeletonLoader } from "../skeletonLoader/skeletonLoader";
 import Image from "next/image";
+import Link from "../Reuseable/Link";
 
 const CategoriesBoxItem = ({ categories = [] }) => {
   return (
@@ -12,11 +13,11 @@ const CategoriesBoxItem = ({ categories = [] }) => {
       {categories.length > 0 ? (
         categories.map(({ id, icon, title }) => (
           <div key={id} className="item">
-            <a href="#">
+            <Link href="about">
               <Image src={icon} alt="icon" width={65} height={65} />
               <br />
               <span>{title}</span>
-            </a>
+            </Link>
           </div>
         ))
       ) : (
@@ -76,21 +77,6 @@ const Categories = () => {
                 >
                   {categoriesSection[0]?.description || ""}
                 </p>
-                {/* <div className="item d-flex align-items-center">
-                  <div className="thumb">
-                    <Image
-                      src={categoriesSection[0]?.categoriesUser || ""}
-                      alt=""
-                      style={{
-                        width: 72,
-                        height: 72,
-                        borderRadius: 50,
-                        objectFit: "cover",
-                      }}
-                    />
-                  </div>
-                  <p>{categoriesSection[0]?.signature || ""}</p>
-                </div> */}
               </div>
             </Col>
             <Col lg={7}>

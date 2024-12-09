@@ -55,12 +55,6 @@ const SingleBanner = ({
               >
                 {title}
               </h3>
-              <Link
-                className={`main-btn${isActive ? " animated zoomIn" : ""}`}
-                href="/donate"
-              >
-                Faire Un Don
-              </Link>
             </div>
           </Col>
         </Row>

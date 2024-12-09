@@ -131,7 +131,7 @@ const Profile = () => {
     >
       <Row className="justify-content-between" style={{ height: "100%" }}>
         <Col lg={6} className="mb-5">
-          <h2 className="text-center mb-3">Edit Profile</h2>
+          <h2 className="text-center mb-3"> Profile</h2>
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formAvatar">
               <Form.Label>Upload Avatar</Form.Label>
@@ -172,20 +172,20 @@ const Profile = () => {
               </label>
             </Form.Group>
             <Form.Group controlId="formFirstName">
-              <Form.Label>First Name</Form.Label>
+              <Form.Label>Prénom</Form.Label>
               <Form.Control
                 type="text"
-                name="firstName"
+                name="Prénom"
                 value={formData.firstName}
                 onChange={handleChange}
                 required
               />
             </Form.Group>
             <Form.Group controlId="formLastName">
-              <Form.Label>Last Name</Form.Label>
+              <Form.Label>Nom</Form.Label>
               <Form.Control
                 type="text"
-                name="lastName"
+                name="Nom"
                 value={formData.lastName}
                 onChange={handleChange}
                 required
@@ -216,14 +216,14 @@ const Profile = () => {
                 ></div>
               ) : (
                 <>
-                  <FontAwesomeIcon icon={faSave} /> Save Changes{" "}
+                  <FontAwesomeIcon icon={faSave} /> Enregistrer
                 </>
               )}
             </Button>
           </Form>
         </Col>
         <Col lg={4} className="mb-3 text-center">
-          <h2 className="mb-5">Subscription</h2>
+          <h2 className="mb-5"> Abonnements</h2>
           {user?.userSubscriptions?.length ? (
             <div className="scrollable-container">
               {user.userSubscriptions.map((subscription, index) => (
@@ -236,7 +236,7 @@ const Profile = () => {
                   </p>
                   <div className="btn-card">
                     <span className="text-lg">
-                      Ends on:{" "}
+                      Se termine le:{" "}
                       {new Date(subscription.dateEnd).toLocaleDateString()}
                     </span>
                   </div>
@@ -254,7 +254,7 @@ const Profile = () => {
                   margin: "0 auto",
                 }}
               />
-              <h4>No Subscription Found</h4>
+              <h4>Vous n&apos;avez pas dapos;abonnements</h4>
             </div>
           )}
         </Col>

@@ -1,9 +1,6 @@
 import { Col, Container, Row } from "react-bootstrap";
 import EventItem from "./EventItem";
 import { useEffect, useState } from "react";
-import Layout from "../Layout/Layout";
-import Header from "../Header/Header";
-import PageTitle from "../Reuseable/PageTitle";
 import noData from "../../assets/svgs/noData.svg";
 import Image from "next/image";
 

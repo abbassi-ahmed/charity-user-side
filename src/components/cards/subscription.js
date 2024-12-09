@@ -70,42 +70,43 @@ export default function Subscription({
   };
 
   return (
-    <div className="container-card">
-      <h2 className="title-card">{title}</h2>
-      <p className="body-card">{description}</p>
-      <div className="payment-card" style={{ width: "110px" }}>
-        {price} TND
-        <span className="text-lg">{duration}/ Mois</span>
+    <>
+      <div className="container-card">
+        <h2 className="title-card">{title}</h2>
+        <p className="body-card">{description}</p>
+        <div className="payment-card" style={{ width: "110px" }}>
+          {price} TND
+          <span className="text-lg">{duration}/ Mois</span>
+        </div>
+
+        {user?.userSubscriptions?.some(
+          (subscription) => subscription.subscription.id === subscriptionId
+        ) ? (
+          <button className="btn-card" disabled>
+            Vous êtes déjà abonné
+          </button>
+        ) : (
+          <button
+            className="btn-card"
+            onClick={() => {
+              if (!user) {
+                router.push("/sign-in");
+              } else {
+                toggleModal();
+              }
+            }}
+          >
+            S&apos;abonner
+          </button>
+        )}
       </div>
-
-      {user?.userSubscriptions?.some(
-        (subscription) => subscription.subscription.id === subscriptionId
-      ) ? (
-        <button className="btn-card" disabled>
-          Vous êtes déjà abonné
-        </button>
-      ) : (
-        <button
-          className="btn-card"
-          onClick={() => {
-            if (!user) {
-              router.push("/sign-in");
-            } else {
-              toggleModal();
-            }
-          }}
-        >
-          S&apos;abonner
-        </button>
-      )}
-
       {modal && user && (
         <div className="modal">
           <div className="modal-content">
             <span className="close" onClick={toggleModal}>
               &times;
             </span>
-            <h2 className="title-card"> S&apos;abonner à {title}</h2>
+            <h2 className="title-card">S&apos;abonner à {title}</h2>
             <form
               onSubmit={handleDonate}
               className="project-form d-flex flex-column gap-3"
@@ -158,7 +159,6 @@ export default function Subscription({
                   setErrors({ ...errors, phone: "" });
                 }}
               />
-
               <button className="btn-card" type="submit">
                 S&apos;abonner pour {price} TND
               </button>
@@ -166,6 +166,6 @@ export default function Subscription({
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }

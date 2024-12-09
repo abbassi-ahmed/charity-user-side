@@ -1,4 +1,3 @@
-import { brands } from "@/data/brandArea";
 import React, { useEffect, useState } from "react";
 import { Container, Image } from "react-bootstrap";
 import SwiperCore, { Autoplay } from "swiper";
@@ -7,7 +6,7 @@ import axios from "axios";
 SwiperCore.use([Autoplay]);
 
 const options = {
-  slidesPerView: 3,
+  slidesPerView: 4,
   spaceBetween: 30,
   loop: true,
   autoplay: {
@@ -65,37 +64,40 @@ const BrandItem = ({ image, title, link }) => {
 
 const BrandAreaTwo = ({ className = "" }) => {
   const [brands, setBrands] = useState([]);
+
   const fetchBrands = async () => {
     try {
       const response = await axios.get(
         "https://api.olympiquemnihla.com/worked-with/find-all"
       );
-      setBrands(response.data);
+      if (response.data) {
+        setBrands(response.data);
+      } else {
+        setBrands([]);
+      }
     } catch (error) {
-      console.log(error);
+      console.error("Error fetching brands:", error);
+      setBrands([]);
     }
   };
+
   useEffect(() => {
     fetchBrands();
   }, []);
+
+  const adjustedBrands =
+    brands.length < 4 ? [...brands, ...brands, ...brands] : brands;
+
   return (
     <div className={`brand-area-2 pt-120 pb-120 ${className}`}>
       <Container>
         <div className="brand-active">
           <Swiper {...options}>
-            <div className="swiper-wrapper">
-              {brands.message === "No workedWidth found" && (
-                <div className="text-center w-100">
-                  <h3>No workedWidth found</h3>
-                </div>
-              )}
-              {brands.length > 0 &&
-                brands.map(({ id, image, title, link }) => (
-                  <SwiperSlide key={id}>
-                    <BrandItem image={image} title={title} link={link} />
-                  </SwiperSlide>
-                ))}
-            </div>
+            {adjustedBrands.map(({ image, title, link }, index) => (
+              <SwiperSlide key={index}>
+                <BrandItem image={image} title={title} link={link} />
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
       </Container>

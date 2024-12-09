@@ -74,7 +74,7 @@ const ProjectType1 = () => {
     return (
       <Layout>
         <Header />
-        <PageTitle title="Idee de projet" />
+        <PageTitle title="Idée de projet" />
 
         <div
           className="d-flex justify-content-center align-items-center flex-column"
@@ -90,7 +90,7 @@ const ProjectType1 = () => {
   return (
     <Layout>
       <Header />
-      <PageTitle title="Idee de projet" />
+      <PageTitle title="Idée de projet" />
       <ExploreProjectsThree projects={projects} projectSums={projectSums} />
     </Layout>
   );
