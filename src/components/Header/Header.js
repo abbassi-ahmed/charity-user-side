@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import MainHeaderItem from "./MainHeaderItem";
 import Social from "./Social";
-import Link from "next/link";
 
 const { logo, navItems, phone, icon, email, address, socials, navDefault } =
   headerData;

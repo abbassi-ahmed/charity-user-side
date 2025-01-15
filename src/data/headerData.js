@@ -11,41 +11,50 @@ export const navItems = [
   {
     id: 2,
     name: "A Propos",
-    href: "/about",
+    href: "",
+    subNavItems: [
+      { id: 1, name: "Olympique Mnihla", href: "/about-om" },
+      { id: 2, name: "Équipe", href: "/about" },
+    ],
   },
   {
     id: 3,
-    name: "Projets",
+    name: "Crowdfunding",
     href: "",
     subNavItems: [
       { id: 1, name: "SOCIAL", href: "/projects-2" },
-      { id: 2, name: "IDÉE DE PROJET", href: "/projects-type1" },
-      { id: 3, name: "ESS", href: "/projects-type2" },
+      { id: 2, name: "Startup", href: "/projects-type1" },
+      { id: 3, name: "Projet participatif", href: "/projects-type2" },
     ],
   },
   {
     id: 4,
-    name: "Événement",
-    href: "/events",
-  },
-
-  {
-    id: 5,
-    name: "Pages",
+    name: "Nos Abonnements",
     href: "",
     subNavItems: [
-      { id: 1, name: "Nos Abonnement", href: "/abonnement" },
-      { id: 2, name: "Gallerie", href: "/gallery" },
-      { id: 3, name: "Faq", href: "/faq" },
-      { id: 4, name: "Dérigont", href: "/team-members" },
-      { id: 5, name: "Actualité", href: "/news" },
+      { id: 1, name: "Club", href: "/abonnement-club" },
+      { id: 2, name: "Sport", href: "/abonnement-sport" },
     ],
   },
   {
-    id: 7,
-    name: "Contact",
-    href: "/contact",
+    id: 5,
+    name: "Donner abonnement",
+    href: "/abonnement-form",
+    role: "moderator",
   },
+
+  // {
+  //   id: 5,
+  //   name: "Pages",
+  //   href: "",
+  //   subNavItems: [
+  //     { id: 1, name: "Nos Abonnement", href: "/abonnement" },
+  //     { id: 2, name: "Gallerie", href: "/gallery" },
+  //     { id: 3, name: "Faq", href: "/faq" },
+  //     { id: 4, name: "Dérigont", href: "/team-members" },
+  //     { id: 5, name: "Actualité", href: "/news" },
+  //   ],
+  // },
 ];
 export const navDefault = [
   {
@@ -68,12 +77,17 @@ export const socials = [
   },
   {
     id: 2,
-    icon: "fa fa-twitter",
+    icon: "fa fa-instagram",
     href: "#",
   },
   {
     id: 3,
-    icon: "fa fa-instagram",
+    icon: "fa fa-linkedin",
+    href: "#",
+  },
+  {
+    id: 4,
+    icon: "fa fa-tiktok",
     href: "#",
   },
 ];
