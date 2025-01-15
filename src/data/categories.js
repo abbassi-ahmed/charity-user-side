@@ -19,17 +19,17 @@ export const categoriesSection = {
     {
       id: 1,
       icon: social,
-      title: "Activités sociales et humanitaires",
+      title: "Sportif professionnel",
     },
     {
       id: 2,
       icon: educations,
-      title: "Activités éducatives",
+      title: "Éducative et culturelle",
     },
     {
       id: 3,
       icon: culturelles,
-      title: "Activités culturelles",
+      title: "Activité économique",
     },
     {
       id: 4,
@@ -44,7 +44,7 @@ export const categoriesSection = {
     {
       id: 6,
       icon: defencDroits,
-      title: "Activités de plaidoyer et de défense des droits",
+      title: "Activité de plaidoyer",
     },
   ],
 };

@@ -31,7 +31,7 @@ const TabContent = ({ tab = {}, current }) => {
       id={id}
       style={{ textAlign: "justify" }}
     >
-      <p>{text}</p>
+      <p dangerouslySetInnerHTML={{ __html: text.replace(/\./g, ".<br>") }}></p>
     </div>
   );
 };

@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
-import Layout from "@/components/Layout/Layout";
+import { Row, Col, Form, Button, Card, Alert } from "react-bootstrap";
 import PageTitle from "@/components/Reuseable/PageTitle";
 
 const SignIn = () => {
@@ -61,62 +60,70 @@ const SignIn = () => {
   };
 
   return (
-    <section className="auth-section">
+    <div style={{ marginBottom: "50px" }}>
       <PageTitle title="Se connecter" />
-      <Container>
-        <Row className="justify-content-center">
-          <Col lg={6} md={8}>
-            <div className="auth-form">
-              <h2 className="mt-4 text-center">Se connecter</h2>
+      <Row className="justify-content-center">
+        <Col lg={5} md={7}>
+          <Card className="shadow-lg border-0 rounded-lg mt-5">
+            <Card.Body>
+              <h2 className="text-center font-weight-light my-4">
+                Se connecter
+              </h2>
               <Form onSubmit={handleSubmit}>
-                <Form.Group controlId="formEmail" className="mb-3">
+                <Form.Group className="mb-3" controlId="formEmail">
                   <Form.Label>Email</Form.Label>
                   <Form.Control
                     type="email"
                     name="email"
-                    placeholder="Email"
+                    placeholder="Entrer votre email"
                     onChange={handleChange}
                     required
                   />
                 </Form.Group>
-                <Form.Group controlId="formPassword" className="mb-3">
-                  <Form.Label>Password</Form.Label>
+                <Form.Group className="mb-3" controlId="formPassword">
+                  <Form.Label>Mot de passe</Form.Label>
                   <Form.Control
                     type="password"
                     name="password"
-                    placeholder="Password"
+                    placeholder="Entrer votre mot de passe"
                     onChange={handleChange}
                     required
                   />
                 </Form.Group>
-                <Button
-                  variant="primary"
-                  type="submit"
-                  className="w-100 mt-3"
-                  disabled={loader}
-                >
-                  {loader ? (
-                    <div
-                      className="spinner-border text-light spinner-border-sm"
-                      role="status"
-                    ></div>
-                  ) : (
-                    "Se connecter"
-                  )}
-                </Button>
+                <div className="d-grid gap-2 mt-4">
+                  <Button variant="primary" type="submit" disabled={loader}>
+                    {loader ? (
+                      <span>
+                        <span
+                          className="spinner-border spinner-border-sm"
+                          role="status"
+                          aria-hidden="true"
+                        ></span>{" "}
+                        Connexion...
+                      </span>
+                    ) : (
+                      "Se connecter"
+                    )}
+                  </Button>
+                </div>
               </Form>
               {errorMessage && (
-                <p className="mt-3 text-center text-danger">{errorMessage}</p>
+                <Alert variant="danger" className="mt-3">
+                  {errorMessage}
+                </Alert>
               )}
-              <p className="mt-3 text-center mb-5">
-                Don&apos;t have an account?{" "}
-                <Link href="/sign-up">S&apos;inscrire</Link>
-              </p>
-            </div>
-          </Col>
-        </Row>
-      </Container>
-    </section>
+
+              <div className="text-center mt-3">
+                <span className="small">Vous n&apos;avez pas de compte ?</span>{" "}
+                <Link href="/sign-up" className="small text-decoration-none">
+                  S&apos;inscrire
+                </Link>
+              </div>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </div>
   );
 };
 

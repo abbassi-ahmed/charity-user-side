@@ -7,7 +7,6 @@ import HeaderMenu from "./HeaderMenu";
 const MainHeaderItem = ({
   logo,
   navItems = [],
-  navDefault = [],
   icon,
   phone = "",
   socials,
@@ -38,6 +37,24 @@ const MainHeaderItem = ({
         });
     }
   }, []);
+
+  const updatedNavItems = navItems
+    .filter((navItem) => {
+      return !navItem.role || (user && user.role === "moderator");
+    })
+    .map((navItem) => {
+      if (navItem.subNavItems) {
+        return {
+          ...navItem,
+          subNavItems: navItem.subNavItems.filter(
+            (subNavItem) =>
+              !subNavItem.role || (user && user.role === "moderator")
+          ),
+        };
+      }
+      return navItem;
+    });
+
   return (
     <Row>
       <Col lg={12}>
@@ -49,12 +66,7 @@ const MainHeaderItem = ({
               </Link>
             </div>
 
-            {/* {user?.id && user?.subscription ? (
-              <HeaderMenu navItems={navItems} />
-            ) : (
-              <HeaderMenu navItems={navDefault} />
-            )} */}
-            <HeaderMenu navItems={navItems} />
+            <HeaderMenu navItems={updatedNavItems} />
 
             <HeaderInfo
               icon={icon}

@@ -51,33 +51,41 @@ const ProjectsArea = ({ className = "" }) => {
         const response = await axios.get(
           "https://api.olympiquemnihla.com/projects/find-not-ended"
         );
-        setProjects(response.data);
-        const projectSumsCopy = { ...projectSums };
-        await Promise.all(
-          projects.map(async (project) => {
-            try {
-              const response = await axios.get(
-                `https://api.olympiquemnihla.com/project-donation/get-sum-of-donations/${project.id}`
-              );
-              projectSumsCopy[project.id] = response.data.sum;
-            } catch (error) {
-              console.error(
-                `Error fetching sum of donations for project ${project.id}:`,
-                error
-              );
-            }
-          })
+        const fetchedProjects = response.data;
+
+        const projectSumsPromises = fetchedProjects.map(async (project) => {
+          try {
+            const donationResponse = await axios.get(
+              `https://api.olympiquemnihla.com/project-donation/get-sum-of-donations/${project.id}`
+            );
+            return { projectId: project.id, sum: donationResponse.data.sum };
+          } catch (error) {
+            console.error(
+              `Error fetching sum of donations for project ${project.id}:`,
+              error
+            );
+            return { projectId: project.id, sum: 0 };
+          }
+        });
+
+        const projectSumsResults = await Promise.all(projectSumsPromises);
+        const projectSumsMap = projectSumsResults.reduce(
+          (acc, { projectId, sum }) => {
+            acc[projectId] = sum;
+            return acc;
+          },
+          {}
         );
-        setProjectSums(projectSumsCopy);
+
+        setProjects(fetchedProjects);
+        setProjectSums(projectSumsMap);
       } catch (error) {
         console.error("Error fetching the projects", error);
       }
     };
-    if (!hasFetchedProjects.current) {
-      fetchProjects();
-      hasFetchedProjects.current = true;
-    }
-  }, [projectSums, projects]);
+
+    fetchProjects();
+  }, []);
 
   return (
     <div>

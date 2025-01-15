@@ -1,7 +1,7 @@
 import { contactFormArea } from "@/data/contactArea";
 import handleSubmit from "@/utils/handleSubmit";
 import React, { useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row, Toast } from "react-bootstrap";
 import Title from "../Reuseable/Title";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
@@ -24,22 +24,33 @@ const ContactFormArea = ({ email }) => {
     setFormValues((prev) => ({ ...prev, [name]: value }));
   };
 
-  const onSubmit = async (data) =>
-    await axios
-      .post("https://api.olympiquemnihla.com/contact/create", data)
-      .then((res) => {
-        const form = document.querySelector("#contact-form");
-        form.reset();
-        toast.success("Message sent successfully");
-        setFormValues(
-          inputs.reduce((acc, { name }) => ({ ...acc, [name]: "" }), {})
-        ); // Reset state
-      })
-      .catch((err) => {
-        document.querySelector(".form-message").innerHTML =
-          err.response.data.message;
-      });
-
+  const onSubmit = async (data) => {
+    if (
+      data.firstName === "" ||
+      data.lastName === "" ||
+      data.message === "" ||
+      data.email === "" ||
+      data.phone === ""
+    ) {
+      toast.error("Tous les champs sont obligatoires");
+      return;
+    } else {
+      await axios
+        .post("https://api.olympiquemnihla.com/contact/create", data)
+        .then((res) => {
+          const form = document.querySelector("#contact-form");
+          form.reset();
+          toast.success("Message envoyé avec succès");
+          setFormValues(
+            inputs.reduce((acc, { name }) => ({ ...acc, [name]: "" }), {})
+          ); // Reset state
+        })
+        .catch((err) => {
+          document.querySelector(".form-message").innerHTML =
+            err.response.data.message;
+        });
+    }
+  };
   return (
     <section className="contact-form-area">
       <Container>
