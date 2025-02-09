@@ -13,10 +13,10 @@ import BrandAreaTwo from "@/components/BrandArea/BrandAreaTwo";
 
 import TogetherArea from "@/components/TogetherArea/TogetherArea";
 import TeamHome from "./team-home";
-import { Link } from "react-scroll";
+import Link from "@/components/Reuseable/Link";
 
 const fetchUser = async (token) => {
-  const response = await fetch("https://api.olympiquemnihla.com/users/verify", {
+  const response = await fetch("http://localhost:3636/users/verify", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ token }),
@@ -27,20 +27,18 @@ const fetchUser = async (token) => {
 
 const fetchSlides = async () => {
   const response = await axios.get(
-    "https://api.olympiquemnihla.com/slider-section/find-all"
+    "http://localhost:3636/slider-section/find-all"
   );
   return response.data;
 };
 const fetchUsers = async () => {
-  const response = await axios.get(
-    "https://api.olympiquemnihla.com/derigant/find-all"
-  );
+  const response = await axios.get("http://localhost:3636/derigant/find-all");
   return response.data;
 };
 
-const fetchTestimonials = async () => {
+const fetchInformation = async () => {
   const response = await axios.get(
-    "https://api.olympiquemnihla.com/testimonials-section/find-all"
+    "http://localhost:3636/together-area/find-all"
   );
   return response.data;
 };
@@ -78,15 +76,15 @@ const Home = () => {
     initialData: [],
   });
 
-  const { data: testimonials, isLoading: isTestimonialsLoading } = useQuery({
-    queryKey: ["testimonials"],
-    queryFn: fetchTestimonials,
-    initialData: [],
-  });
-
   const { data: users, isLoading: isUsersLoading } = useQuery({
     queryKey: ["users"],
     queryFn: fetchUsers,
+    initialData: [],
+  });
+
+  const { data: information, isLoading: isInformationLoading } = useQuery({
+    queryKey: ["information"],
+    queryFn: fetchInformation,
     initialData: [],
   });
 
@@ -97,7 +95,15 @@ const Home = () => {
     }
   }, []);
 
-  if (isUserLoading || isSlidesLoading || isTestimonialsLoading) {
+  if (
+    isUserLoading ||
+    isSlidesLoading ||
+    isInformationLoading ||
+    isUsersLoading ||
+    !slides ||
+    !information ||
+    !users
+  ) {
     return (
       <Layout>
         <Header />
@@ -130,12 +136,14 @@ const Home = () => {
         <CtaArea />
         <ProjectsArea />
         <FunFacts />
+
+        {information && information.length > 0 && (
+          <TogetherArea information={information} />
+        )}
+        {users && users.length > 0 && <TeamHome users={users.slice(0, 3)} />}
+        <NewsArea />
         <BrandAreaTwo />
 
-        <TogetherArea />
-        {users && users.length > 0 && <TeamHome users={users.slice(0, 3)} />}
-        {/* <TestimonialsArea testimonials={testimonials} /> */}
-        <NewsArea />
         {slides && slides.length > 0 && (
           <Link
             style={{
@@ -147,8 +155,8 @@ const Home = () => {
               zIndex: 9999,
               transition: "all 0.8s ease",
             }}
+            href={"/donate"}
             className="main-btn"
-            href="/donate"
           >
             Faire Un Don
           </Link>

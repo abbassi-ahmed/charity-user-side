@@ -68,7 +68,7 @@ const BrandAreaTwo = ({ className = "" }) => {
   const fetchBrands = async () => {
     try {
       const response = await axios.get(
-        "https://api.olympiquemnihla.com/worked-with/find-all"
+        "http://localhost:3636/worked-with/find-all"
       );
       if (response.data) {
         setBrands(response.data);

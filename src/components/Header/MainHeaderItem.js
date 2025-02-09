@@ -16,7 +16,7 @@ const MainHeaderItem = ({
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      fetch("https://api.olympiquemnihla.com/users/verify", {
+      fetch("http://localhost:3636/users/verify", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -61,7 +61,7 @@ const MainHeaderItem = ({
         <div className="main-header-item">
           <div className="main-header-menus d-flex justify-content-between align-items-center">
             <div className="header-logo">
-              <Link href="/">
+              <Link href="/" className="d-none d-lg-block">
                 <Image src={logo.src} alt="logo" width={120} height={110} />
               </Link>
             </div>

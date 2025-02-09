@@ -14,12 +14,16 @@ import TeamHome from "./team-home";
 import { useQuery } from "@tanstack/react-query";
 
 const fetchUsers = async () => {
-  const response = await axios.get(
-    "https://api.olympiquemnihla.com/derigant/find-all"
-  );
+  const response = await axios.get("http://localhost:3636/derigant/find-all");
   return response.data;
 };
 
+const fetchInformation = async () => {
+  const response = await axios.get(
+    "http://localhost:3636/together-area/find-all"
+  );
+  return response.data;
+};
 const About = () => {
   const [user, setUser] = useState(null);
   const [loader, setLoader] = useState(true);
@@ -28,7 +32,7 @@ const About = () => {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      fetch("https://api.olympiquemnihla.com/users/verify", {
+      fetch("http://localhost:3636/users/verify", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -62,8 +66,13 @@ const About = () => {
     queryFn: fetchUsers,
     initialData: [],
   });
+  const { data: information, isLoading: isInformationLoading } = useQuery({
+    queryKey: ["information"],
+    queryFn: fetchInformation,
+    initialData: [],
+  });
 
-  if (loader || isUsersLoading) {
+  if (loader || isUsersLoading || isInformationLoading) {
     return (
       <Layout>
         <Header />
@@ -88,7 +97,9 @@ const About = () => {
       <FunFacts className="fun-facts-about-area" />
       <NextBigThing className="next-big-thing-about-area" />
       {users && users.length > 0 && <TeamHome users={users.slice(0, 3)} />}
-      <TogetherArea className="together-3-area" />
+      {information && information.length > 0 && (
+        <TogetherArea information={information} />
+      )}
       <BrandAreaTwo className="brand-area-2" />
     </Layout>
   );
