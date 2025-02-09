@@ -24,7 +24,7 @@ export default function Page() {
       const fetchProjectData = async () => {
         try {
           const projectResponse = await fetch(
-            `https://api.olympiquemnihla.com/projects/find-one/${id}`
+            `http://localhost:3636/projects/find-one/${id}`
           );
           if (!projectResponse.ok) throw new Error("Failed to fetch project");
           const projectData = await projectResponse.json();
@@ -35,7 +35,7 @@ export default function Page() {
 
         try {
           const OtherProjects = await axios.get(
-            `https://api.olympiquemnihla.com/projects/find-all`
+            `http://localhost:3636/projects/find-all`
           );
           if (!OtherProjects) throw new Error("Failed to fetch other projects");
           const similarProjects = OtherProjects.data.filter(
@@ -49,7 +49,7 @@ export default function Page() {
 
         try {
           const sumResponse = await fetch(
-            `https://api.olympiquemnihla.com/project-donation/get-sum-of-donations/${id}`
+            `http://localhost:3636/project-donation/get-sum-of-donations/${id}`
           );
           if (!sumResponse.ok)
             throw new Error("Failed to fetch sum of donations");

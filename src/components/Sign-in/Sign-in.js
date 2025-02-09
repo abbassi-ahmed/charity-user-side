@@ -28,7 +28,7 @@ const SignIn = () => {
     try {
       setLoader(true);
       const response = await axios.post(
-        `https://api.olympiquemnihla.com/users/signin`,
+        `http://localhost:3636/users/signin`,
         { email: formData.email.toLowerCase(), password: formData.password },
         {
           headers: {

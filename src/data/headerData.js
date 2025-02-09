@@ -27,8 +27,21 @@ export const navItems = [
       { id: 3, name: "Projet participatif", href: "/projects-type2" },
     ],
   },
+
   {
     id: 4,
+    name: "Pages",
+    href: "",
+    subNavItems: [
+      { id: 1, name: "Projet", href: "/project-details" },
+      { id: 2, name: "Gallerie", href: "/gallery" },
+      { id: 3, name: "Faq", href: "/faq" },
+      { id: 4, name: "Dérigont", href: "/team-members" },
+      { id: 5, name: "Actualité", href: "/news" },
+    ],
+  },
+  {
+    id: 5,
     name: "Nos Abonnements",
     href: "",
     subNavItems: [
@@ -37,24 +50,11 @@ export const navItems = [
     ],
   },
   {
-    id: 5,
+    id: 6,
     name: "Donner abonnement",
     href: "/abonnement-form",
     role: "moderator",
   },
-
-  // {
-  //   id: 5,
-  //   name: "Pages",
-  //   href: "",
-  //   subNavItems: [
-  //     { id: 1, name: "Nos Abonnement", href: "/abonnement" },
-  //     { id: 2, name: "Gallerie", href: "/gallery" },
-  //     { id: 3, name: "Faq", href: "/faq" },
-  //     { id: 4, name: "Dérigont", href: "/team-members" },
-  //     { id: 5, name: "Actualité", href: "/news" },
-  //   ],
-  // },
 ];
 export const navDefault = [
   {

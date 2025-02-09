@@ -35,7 +35,7 @@ const WhyChoose = () => {
     try {
       setLoading(true);
       const response = await axios.get(
-        "https://api.olympiquemnihla.com/why-choose-section/find-all"
+        "http://localhost:3636/why-choose-section/find-all"
       );
       setWhyChooseData(response.data);
     } catch (error) {

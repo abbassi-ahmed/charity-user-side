@@ -49,14 +49,14 @@ const ProjectsArea = ({ className = "" }) => {
     const fetchProjects = async () => {
       try {
         const response = await axios.get(
-          "https://api.olympiquemnihla.com/projects/find-not-ended"
+          "http://localhost:3636/projects/find-not-ended"
         );
         const fetchedProjects = response.data;
 
         const projectSumsPromises = fetchedProjects.map(async (project) => {
           try {
             const donationResponse = await axios.get(
-              `https://api.olympiquemnihla.com/project-donation/get-sum-of-donations/${project.id}`
+              `http://localhost:3636/project-donation/get-sum-of-donations/${project.id}`
             );
             return { projectId: project.id, sum: donationResponse.data.sum };
           } catch (error) {

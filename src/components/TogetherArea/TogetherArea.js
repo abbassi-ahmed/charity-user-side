@@ -1,25 +1,21 @@
 import { togetherArea } from "@/data/togetherArea";
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import Link from "../Reuseable/Link";
 
-const { bg, tagline, title } = togetherArea;
+const { bg } = togetherArea;
 
-const TogetherArea = ({ className = "" }) => {
+const TogetherArea = ({ information }) => {
   return (
     <section
-      className={`together-area bg_cover ${className}`}
+      className={`together-area bg_cover`}
       style={{ backgroundImage: `url(${bg.src})` }}
     >
       <Container>
         <Row className="justify-content-center">
           <Col lg={10}>
             <div className="together-content text-center">
-              <span>{tagline}</span>
-              <h3 className="title">{title}</h3>
-              {/* <Link className="main-btn" href="/single-project">
-                Start a Project
-              </Link> */}
+              <span>{information[0].tagline}</span>
+              <h3 className="title">{information[0].title}</h3>
             </div>
           </Col>
         </Row>

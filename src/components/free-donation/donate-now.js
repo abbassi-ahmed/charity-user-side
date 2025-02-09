@@ -15,11 +15,13 @@ const DonationAll = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [cin, setCin] = useState("");
   const [errors, setErrors] = useState({
     token: "",
     amount: "",
     firstName: "",
     lastName: "",
+    cin: "",
     email: "",
     phone: "",
   });
@@ -43,18 +45,22 @@ const DonationAll = () => {
     if (!phone) {
       formErrors.phone = "Please enter your phone number";
     }
+    if (!cin) {
+      formErrors.cin = "Please enter your cin";
+    }
     setErrors(formErrors);
     if (Object.keys(formErrors).length > 0) {
       return;
     }
     try {
       const response = await axios.post(
-        "https://api.olympiquemnihla.com/payments/donation",
+        "http://localhost:3636/payments/donation",
         {
           token: "TND",
           amount: parseFloat(amount),
           description: "Donate for us to help more people",
           firstName: firstName,
+          cin: cin,
           lastName: lastName,
           email: email,
           phoneNumber: phone,
@@ -66,6 +72,7 @@ const DonationAll = () => {
         router.push(response.data.url);
         setToken("");
         setAmount("");
+        setCin("");
         setFirstName("");
         setLastName("");
         setEmail("");
@@ -144,46 +151,18 @@ const DonationAll = () => {
                     setErrors({ ...errors, phone: "" });
                   }}
                 />
-                {/* <Col
-                  lg={5}
-                  className={`d-flex gap-3 align-items-center justify-content-center mt-3 mb-3 p-2 rounded border border-gray shadow-sm bg-light text-gray w-100 ${
-                    errors.token && "border-danger"
+                <input
+                  type="text"
+                  placeholder="Cin"
+                  className={`p-2 rounded border border-gray shadow-sm bg-light text-gray ${
+                    errors.cin && "border-danger"
                   }`}
-                >
-                  <input
-                    type="radio"
-                    name="token"
-                    value="TND"
-                    checked={token === "TND"}
-                    onChange={(e) => {
-                      setToken(e.target.value);
-                      setErrors({ ...errors, token: "" });
-                    }}
-                  />
-                  TND
-                  <input
-                    type="radio"
-                    name="token"
-                    value="USD"
-                    checked={token === "USD"}
-                    onChange={(e) => {
-                      setToken(e.target.value);
-                      setErrors({ ...errors, token: "" });
-                    }}
-                  />
-                  USD
-                  <input
-                    type="radio"
-                    name="token"
-                    value="EUR"
-                    checked={token === "EUR"}
-                    onChange={(e) => {
-                      setToken(e.target.value);
-                      setErrors({ ...errors, token: "" });
-                    }}
-                  />
-                  EUR
-                </Col> */}
+                  value={cin}
+                  onChange={(e) => {
+                    setCin(e.target.value);
+                    setErrors({ ...errors, cin: "" });
+                  }}
+                />
                 <input
                   type="text"
                   placeholder="Amount"
@@ -196,7 +175,6 @@ const DonationAll = () => {
                     setErrors({ ...errors, amount: "" });
                   }}
                 />
-
                 <Button className="main-btn" type="submit">
                   Submit Donation
                 </Button>

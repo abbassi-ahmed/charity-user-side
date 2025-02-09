@@ -19,16 +19,13 @@ const TeamMembers = () => {
       if (!token) {
         throw new Error("No token found");
       }
-      const response = await fetch(
-        "https://api.olympiquemnihla.com/users/verify",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ token }),
-        }
-      );
+      const response = await fetch("http://localhost:3636/users/verify", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ token }),
+      });
       if (!response.ok) {
         throw new Error("Failed to verify token");
       }
@@ -46,7 +43,7 @@ const TeamMembers = () => {
     queryKey: ["users"],
     queryFn: async () => {
       const response = await axios.get(
-        "https://api.olympiquemnihla.com/derigant/find-all"
+        "http://localhost:3636/derigant/find-all"
       );
       return response.data;
     },
