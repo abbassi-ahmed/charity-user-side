@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Col, Container, Image, Row, Button } from "react-bootstrap";
 import { useRouter } from "next/router";
 import { toast, Toaster } from "react-hot-toast";
@@ -13,6 +13,8 @@ const DonationProject = ({ project }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [user, setUser] = useState(null);
+  const menuRef = useRef(null);
   const [phone, setPhone] = useState("");
   const [errors, setErrors] = useState({
     token: "",
@@ -22,6 +24,45 @@ const DonationProject = ({ project }) => {
     email: "",
     phone: "",
   });
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      fetch("http://localhost:3636/users/verify", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ token }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data && data.firstName) {
+            setUser(data);
+            setEmail(data.email);
+            setFirstName(data.firstName);
+            setLastName(data.lastName);
+          } else {
+            localStorage.removeItem("token");
+          }
+        })
+        .catch((error) => {
+          console.error("Error verifying token:", error);
+          localStorage.removeItem("token");
+        });
+    }
+
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setShowMenu(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const handleDonate = async (e) => {
     e.preventDefault();
@@ -84,7 +125,7 @@ const DonationProject = ({ project }) => {
         <Row>
           <Col lg={7}>
             <div className="project-details-thumb">
-              <Image src={image} alt={name} />
+              <Image src={image} alt={name} width={400} height={400} />
               <div className="icon">
                 <i className="fa fa-heart"></i>
               </div>

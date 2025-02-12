@@ -19,7 +19,7 @@ const ProjectType1 = () => {
         const response = await axios.post(
           "http://localhost:3636/projects/find-by-type",
           {
-            type: "projet participatif",
+            type: "Projet participatif",
           }
         );
         const projects = response.data;
@@ -73,7 +73,7 @@ const ProjectType1 = () => {
     return (
       <Layout>
         <Header />
-        <PageTitle title="Project Ess " />
+        <PageTitle title="Projet participatif" />
 
         <div
           className="d-flex justify-content-center align-items-center flex-column"
@@ -89,7 +89,7 @@ const ProjectType1 = () => {
   return (
     <Layout>
       <Header />
-      <PageTitle title="Project Ess " />
+      <PageTitle title="Projet participatif" />
 
       <ExploreProjectsThree projects={projects} projectSums={projectSums} />
     </Layout>
