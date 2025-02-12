@@ -2,8 +2,16 @@ import React from "react";
 import { Col, Image } from "react-bootstrap";
 
 const TeamItem = ({ team = {} }) => {
-  const { avatar, twitter, facebook, instagram, firstName, lastName, email } =
-    team;
+  const {
+    avatar,
+    twitter,
+    facebook,
+    instagram,
+    firstName,
+    lastName,
+    email,
+    role,
+  } = team;
 
   return (
     <Col lg={4} md={7}>
@@ -50,7 +58,24 @@ const TeamItem = ({ team = {} }) => {
         </div>
         <div className="team-content text-center bg-white">
           <h5 className="title">{firstName + " " + lastName}</h5>
-          <span>{email}</span>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              flexDirection: "column",
+            }}
+          >
+            <span>{email}</span>
+            <span
+              style={{
+                textTransform: "capitalize",
+                color: "#0073e6",
+                fontWeight: "bold",
+              }}
+            >
+              {role}
+            </span>
+          </div>
         </div>
       </div>
     </Col>

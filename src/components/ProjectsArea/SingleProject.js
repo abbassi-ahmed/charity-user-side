@@ -71,7 +71,7 @@ const SingleProject = ({ project, projectSums = {} }) => {
         </div>
         <div className="projects-goal">
           <span>
-            Goal: <span>{target}</span>
+            Goal: <span>{target} TND</span>
           </span>
         </div>
       </div>

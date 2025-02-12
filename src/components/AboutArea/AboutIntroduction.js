@@ -72,6 +72,8 @@ const AboutIntroduction = () => {
                 <Image
                   src={aboutData[0]?.thumb}
                   alt=""
+                  width={550}
+                  height={550}
                   style={{ display: imageLoaded ? "block" : "none" }}
                   onLoad={handleImageLoad}
                 />

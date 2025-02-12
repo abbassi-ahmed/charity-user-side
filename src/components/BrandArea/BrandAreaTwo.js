@@ -93,11 +93,13 @@ const BrandAreaTwo = ({ className = "" }) => {
       <Container>
         <div className="brand-active">
           <Swiper {...options}>
-            {adjustedBrands.map(({ image, title, link }, index) => (
-              <SwiperSlide key={index}>
-                <BrandItem image={image} title={title} link={link} />
-              </SwiperSlide>
-            ))}
+            {adjustedBrands &&
+              adjustedBrands.length > 0 &&
+              adjustedBrands.map(({ image, title, link }, index) => (
+                <SwiperSlide key={index}>
+                  <BrandItem image={image} title={title} link={link} />
+                </SwiperSlide>
+              ))}
           </Swiper>
         </div>
       </Container>
