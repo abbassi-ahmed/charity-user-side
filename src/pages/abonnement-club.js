@@ -3,14 +3,16 @@ import Header from "@/components/Header/Header";
 import Layout from "@/components/Layout/Layout";
 import NewsArea from "@/components/NewsArea/NewsArea";
 import PageTitle from "@/components/Reuseable/PageTitle";
+import { useRootContext } from "@/context/context";
 
 import React, { useEffect, useState } from "react";
 
 const Abonnement = () => {
   const [subscriptionData, setSubscriptionData] = useState([]);
-  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const { user } = useRootContext();
+
   const fetchSubscriptions = async () => {
     try {
       const response = await fetch(
@@ -27,35 +29,20 @@ const Abonnement = () => {
     }
   };
 
-  const fetchUser = async () => {
-    const token = localStorage.getItem("token");
-    if (!token) return;
-
-    try {
-      const response = await fetch("http://localhost:3636/users/verify", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ token }),
-      });
-      if (!response.ok) throw new Error("Failed to verify token");
-      const data = await response.json();
-      if (data && data.firstName) {
-        setUser(data);
-      } else {
-        localStorage.removeItem("token");
-      }
-    } catch (error) {
-      console.error("Error verifying token:", error);
-      localStorage.removeItem("token");
-    }
-  };
-
   useEffect(() => {
     fetchSubscriptions();
-    fetchUser();
   }, []);
+  if (subscriptionData.length === 0) {
+    return (
+      <Layout>
+        <Header />
+        <PageTitle title="Abonnement Sport" />
+        <div className="subscription-wrapper">
+          <p>No subscriptions available</p>
+        </div>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>

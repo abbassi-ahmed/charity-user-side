@@ -5,22 +5,22 @@ import logo from "@/images/output-onlinepngtools.png";
 export const socials2 = [
   {
     id: 1,
-    icon: "fa fa-twitter",
+    icon: "fa fa-facebook-square",
     href: "#",
   },
   {
     id: 2,
-    icon: "fa fa-facebook-official",
+    icon: "fa fa-instagram",
     href: "#",
   },
   {
     id: 3,
-    icon: "fa fa-pinterest",
+    icon: "fa fa-linkedin",
     href: "#",
   },
   {
     id: 4,
-    icon: "fa fa-instagram",
+    icon: "fa fa-tiktok",
     href: "#",
   },
 ];
@@ -114,7 +114,7 @@ const footerData2 = {
     {
       id: 4,
       text: "Nos Abonnements",
-      href: "/abonnement",
+      href: "/abonnement-club",
     },
   ],
   Categories: [
@@ -125,12 +125,12 @@ const footerData2 = {
     },
     {
       id: 2,
-      text: "Idée de projet",
+      text: "Startup",
       href: "/projects-type1",
     },
     {
       id: 3,
-      text: "ESS",
+      text: "Projet participatif",
       href: "/projects-type2",
     },
   ],

@@ -16,6 +16,7 @@ import "@/styles/modalPayment.css";
 import "@/styles/subscriptionCard.css";
 import "@/styles/skeletonLoader.css";
 import "@/styles/loader.css";
+import "@/styles/succeed.css";
 
 const queryClient = new QueryClient();
 

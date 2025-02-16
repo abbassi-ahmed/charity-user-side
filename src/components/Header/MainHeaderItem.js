@@ -3,6 +3,7 @@ import { Col, Image, Row } from "react-bootstrap";
 import Link from "../Reuseable/Link";
 import HeaderInfo from "./HeaderInfo";
 import HeaderMenu from "./HeaderMenu";
+import { useRootContext } from "@/context/context";
 
 const MainHeaderItem = ({
   logo,
@@ -12,43 +13,17 @@ const MainHeaderItem = ({
   socials,
   searchColor,
 }) => {
-  const [user, setUser] = useState(null);
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      fetch("http://localhost:3636/users/verify", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ token }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data && data.firstName) {
-            setUser(data);
-          } else {
-            localStorage.removeItem("token");
-          }
-        })
-        .catch((error) => {
-          console.error("Error verifying token:", error);
-          localStorage.removeItem("token");
-        });
-    }
-  }, []);
-
+  const { user } = useRootContext();
   const updatedNavItems = navItems
     .filter((navItem) => {
-      return !navItem.role || (user && user.role === "moderator");
+      return !navItem.role || (user && user.isModerator);
     })
     .map((navItem) => {
       if (navItem.subNavItems) {
         return {
           ...navItem,
           subNavItems: navItem.subNavItems.filter(
-            (subNavItem) =>
-              !subNavItem.role || (user && user.role === "moderator")
+            (subNavItem) => !subNavItem.role || (user && user.isModerator)
           ),
         };
       }

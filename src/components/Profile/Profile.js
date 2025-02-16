@@ -6,10 +6,9 @@ import Image from "next/image";
 import NoPayment from "../../assets/svgs/empty-cart.svg";
 
 import { toast, Toaster } from "react-hot-toast";
-import { useRouter } from "next/router";
+import { useRootContext } from "@/context/context";
 
 const Profile = () => {
-  const [user, setUser] = useState(null);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -21,39 +20,19 @@ const Profile = () => {
 
   const [loading, setLoading] = useState(true);
   const [loader, setLoader] = useState(false);
-  const router = useRouter();
+  const { user } = useRootContext();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      fetch("http://localhost:3636/users/verify", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ token }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setUser(data);
-          setFormData({
-            firstName: data.firstName,
-            lastName: data.lastName,
-            email: data.email,
-          });
-          setAvatarPreview(data.avatar);
-
-          setLoading(false);
-        })
-        .catch((error) => {
-          console.error("Error fetching user data:", error);
-          setLoading(false);
-        });
-    } else {
-      router.push("/sign-in");
+    if (user) {
+      setFormData({
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+      });
+      setAvatarPreview(user.avatar);
       setLoading(false);
     }
-  }, [router]);
+  }, [user]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

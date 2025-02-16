@@ -4,37 +4,15 @@ import BlogAuthor from "./BlogAuthor"; // Unused import
 import BlogDetailsMain from "./BlogDetailsMain";
 import BlogDetailsSidebar from "./BlogDetailsSidebar";
 import axios from "axios";
+import { useRootContext } from "@/context/context";
 
 const BlogDetails = ({ id }) => {
   const [blog, setBlog] = useState(null);
   const [posts, setPosts] = useState([]);
-  const [user, setUser] = useState(null);
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
 
-  const fetchUser = async () => {
-    const token = localStorage.getItem("token");
-    if (!token) return;
-    try {
-      const response = await fetch("http://localhost:3636/users/verify", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ token }),
-      });
-      if (!response.ok) throw new Error("Failed to verify token");
-      const data = await response.json();
-      if (data && data.firstName) {
-        setUser(data);
-      } else {
-        localStorage.removeItem("token");
-      }
-    } catch (error) {
-      console.error("Error verifying token:", error);
-      localStorage.removeItem("token");
-    }
-  };
+  const { user } = useRootContext();
 
   const fetchBlog = async () => {
     try {
