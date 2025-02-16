@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { Row, Col, Form, Button, Card, Alert } from "react-bootstrap";
 import PageTitle from "@/components/Reuseable/PageTitle";
+import { useRootContext } from "@/context/context";
 
 const SignIn = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +14,7 @@ const SignIn = () => {
   const [errorMessage, setErrorMessage] = useState(null);
   const router = useRouter();
   const [loader, setLoader] = useState(false);
+  const { fetchUser } = useRootContext();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -42,6 +44,7 @@ const SignIn = () => {
         (response.status === 201 && response.data.token)
       ) {
         localStorage.setItem("token", response.data.token);
+        fetchUser();
         router.push("/");
       } else {
         setErrorMessage(response.data.message);

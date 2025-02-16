@@ -71,9 +71,21 @@ export default function Subscription({
 
   return (
     <>
-      <div className="container-card">
+      <div className="container-card" style={{ height: "100%" }}>
         <h2 className="title-card">{title}</h2>
-        <p className="body-card">{description}</p>
+        <p
+          className="body-card"
+          style={{
+            display: "-webkit-box",
+            WebkitLineClamp: 2,
+            position: "relative",
+          }}
+        >
+          {description.length > 250
+            ? description.substring(0, 250) + "..."
+            : description}
+        </p>
+
         <div className="payment-card" style={{ width: "110px" }}>
           {price} TND
           <span className="text-lg">{duration}/ Mois</span>

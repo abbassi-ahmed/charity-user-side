@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Col, Container, Image, Row, Button } from "react-bootstrap";
 import { useRouter } from "next/router";
 import { toast, Toaster } from "react-hot-toast";
+import { useRootContext } from "@/context/context";
 
 const DonationProject = ({ project }) => {
   const { image, name, description } = project;
@@ -13,9 +14,10 @@ const DonationProject = ({ project }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
-  const [user, setUser] = useState(null);
   const menuRef = useRef(null);
   const [phone, setPhone] = useState("");
+  const { user } = useRootContext();
+
   const [errors, setErrors] = useState({
     token: "",
     amount: "",
@@ -25,30 +27,11 @@ const DonationProject = ({ project }) => {
     phone: "",
   });
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      fetch("http://localhost:3636/users/verify", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ token }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data && data.firstName) {
-            setUser(data);
-            setEmail(data.email);
-            setFirstName(data.firstName);
-            setLastName(data.lastName);
-          } else {
-            localStorage.removeItem("token");
-          }
-        })
-        .catch((error) => {
-          console.error("Error verifying token:", error);
-          localStorage.removeItem("token");
-        });
+    if (user) {
+      setEmail(user.email);
+      setFirstName(user.firstName);
+      setLastName(user.lastName);
+      setPhone(user.phoneNumber);
     }
 
     const handleClickOutside = (event) => {
@@ -62,7 +45,7 @@ const DonationProject = ({ project }) => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [user]);
 
   const handleDonate = async (e) => {
     e.preventDefault();

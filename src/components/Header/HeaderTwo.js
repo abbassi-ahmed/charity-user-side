@@ -1,44 +1,19 @@
 import headerData from "@/data/headerData";
 import useScroll from "@/hooks/useScroll";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Container } from "react-bootstrap";
 import Link from "next/link";
 import MainHeaderItem from "./MainHeaderItem";
+import { useRootContext } from "@/context/context";
 
 const { logo2, navItems, phone, icon, socials } = headerData;
 
 const HeaderTwo = () => {
   const { scrollTop } = useScroll(160);
-  const [user, setUser] = useState(null);
+  const { user, logout } = useRootContext();
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      fetch("http://localhost:3636/users/verify", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ token }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data && data.firstName) {
-            setUser(data);
-          } else {
-            localStorage.removeItem("token");
-          }
-        })
-        .catch((error) => {
-          console.error("Error verifying token:", error);
-          localStorage.removeItem("token");
-        });
-    }
-  }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    setUser(null);
+  const handleLogout = (e) => {
+    logout(e);
   };
 
   return (

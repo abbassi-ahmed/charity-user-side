@@ -10,35 +10,6 @@ import noData from "../assets/svgs/noData.svg";
 import Image from "next/image";
 
 const TeamMembers = () => {
-  const router = useRouter();
-
-  const { data: user, isLoading: loadingUser } = useQuery({
-    queryKey: ["user"],
-    queryFn: async () => {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        throw new Error("No token found");
-      }
-      const response = await fetch("http://localhost:3636/users/verify", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ token }),
-      });
-      if (!response.ok) {
-        throw new Error("Failed to verify token");
-      }
-      return response.json();
-    },
-    onError: () => {
-      localStorage.removeItem("token");
-      router.push("/sign-in");
-    },
-    retry: false, // Prevent retrying if the token verification fails
-  });
-
-  // Fetch the users data
   const { data: users, isLoading: loadingUsers } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
@@ -47,10 +18,9 @@ const TeamMembers = () => {
       );
       return response.data;
     },
-    enabled: !loadingUser && user !== null,
   });
 
-  if (loadingUser || loadingUsers) {
+  if (loadingUsers) {
     return (
       <Layout>
         <Header />

@@ -1,18 +1,12 @@
-import AboutIntroduction from "@/components/AboutArea/AboutIntroduction";
 import BrandAreaTwo from "@/components/BrandArea/BrandAreaTwo";
 import FunFacts from "@/components/FunFacts/FunFacts";
 import Header from "@/components/Header/Header";
 import Layout from "@/components/Layout/Layout";
+import NextBigThing from "@/components/NextBigThing/NextBigThing";
 import PageTitle from "@/components/Reuseable/PageTitle";
 import TogetherArea from "@/components/TogetherArea/TogetherArea";
 import React from "react";
-import TeamHome from "./team-home";
 import { useQuery } from "@tanstack/react-query";
-
-const fetchUsers = async () => {
-  const response = await axios.get("http://localhost:3636/derigant/find-all");
-  return response.data;
-};
 
 const fetchInformation = async () => {
   const response = await axios.get(
@@ -21,24 +15,18 @@ const fetchInformation = async () => {
   return response.data;
 };
 const About = () => {
-  const { data: users, isLoading: isUsersLoading } = useQuery({
-    queryKey: ["users"],
-    queryFn: fetchUsers,
-    initialData: [],
-  });
   const { data: information, isLoading: isInformationLoading } = useQuery({
     queryKey: ["information"],
     queryFn: fetchInformation,
     initialData: [],
   });
 
-  if (isUsersLoading || isInformationLoading) {
+  if (isInformationLoading) {
     return (
       <Layout>
         <Header />
 
-        <PageTitle title="A Propos" parent="Page" />
-
+        <PageTitle title="A Propos Om" parent="Page" />
         <div
           className="d-flex justify-content-center align-items-center"
           style={{ height: "50vh", width: "100%" }}
@@ -52,13 +40,12 @@ const About = () => {
   return (
     <Layout>
       <Header />
-      <PageTitle title="A Propos" parent="Page" />
-      <AboutIntroduction />
-      <FunFacts className="fun-facts-about-area" />
-      {users && users.length > 0 && <TeamHome users={users.slice(0, 3)} />}
+      <PageTitle title="A Propos Om" parent="Page" />
+      <NextBigThing className="next-big-thing-about-area" />
       {information && information.length > 0 && (
         <TogetherArea information={information} />
       )}
+      <FunFacts className="fun-facts-about-area" />
       <BrandAreaTwo className="brand-area-2" />
     </Layout>
   );
