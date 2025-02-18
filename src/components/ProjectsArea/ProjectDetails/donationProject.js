@@ -13,6 +13,7 @@ const DonationProject = ({ project }) => {
   const [amount, setAmount] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const menuRef = useRef(null);
   const [phone, setPhone] = useState("");
@@ -71,6 +72,7 @@ const DonationProject = ({ project }) => {
       return;
     }
     try {
+      setLoading(true);
       const response = await axios.post(
         "http://localhost:3636/payments/project-donation",
         {
@@ -86,12 +88,14 @@ const DonationProject = ({ project }) => {
       );
       if (response.status === 204) {
         toast.error("Email Not found");
+        setLoading(false);
       } else if (response.data.url) {
         router.push(response.data.url);
         setToken("");
         setAmount("");
         setFirstName("");
         setLastName("");
+        setLoading(false);
         setEmail("");
         setPhone("");
       } else {
@@ -99,6 +103,8 @@ const DonationProject = ({ project }) => {
       }
     } catch (error) {
       console.error("Error donating:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -223,8 +229,15 @@ const DonationProject = ({ project }) => {
                   }}
                 />
 
-                <Button className="main-btn" type="submit">
-                  Submit Donation
+                <Button className="main-btn" type="submit" disabled={loading}>
+                  {loading ? (
+                    <div
+                      className="spinner-border text-light spinner-border-sm"
+                      role="status"
+                    ></div>
+                  ) : (
+                    <>Faire un don</>
+                  )}
                 </Button>
               </form>
             </div>
