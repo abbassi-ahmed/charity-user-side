@@ -18,6 +18,7 @@ export default function Subscription({
   const [lastName, setLastName] = useState("");
   const [phone, setPhone] = useState("");
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const toggleModal = () => {
     setModal(!modal);
@@ -38,6 +39,7 @@ export default function Subscription({
       setErrors({ phone: "Please enter your phone number" });
     } else {
       try {
+        setLoading(true);
         const response = await axios.post(
           "http://localhost:3636/payments/create",
           {
@@ -66,6 +68,7 @@ export default function Subscription({
         console.error("Error creating payment:", error);
       }
       toggleModal();
+      setLoading(false);
     }
   };
 
@@ -171,8 +174,15 @@ export default function Subscription({
                   setErrors({ ...errors, phone: "" });
                 }}
               />
-              <button className="btn-card" type="submit">
-                S&apos;abonner pour {price} TND
+              <button className="btn-card" type="submit" disabled={loading}>
+                {loading ? (
+                  <div
+                    className="spinner-border text-light spinner-border-sm"
+                    role="status"
+                  ></div>
+                ) : (
+                  <> S&apos;abonner pour {price} TND</>
+                )}
               </button>
             </form>
           </div>

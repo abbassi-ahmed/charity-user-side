@@ -102,27 +102,27 @@ const ProjectDetailsArea = ({ project, sum }) => {
                 </Card.Text>
               </Card.Body>
               <Card.Body>
-                <h4 className="mb-3">Project Details</h4>
+                <h4 className="mb-3">Détails du projet</h4>
                 <Row className="text-center">
                   <Col xs={6} md={3} className="mb-3">
                     <FaMoneyBillWave className="text-primary mb-2" size={24} />
                     <h5>{target} TND</h5>
-                    <small className="text-muted">Target</small>
+                    <small className="text-muted">Cible</small>
                   </Col>
                   <Col xs={6} md={3} className="mb-3">
                     <FaChartLine className="text-success mb-2" size={24} />
                     <h5>{amount === 0 ? 0 : `${amount} TND`}</h5>
-                    <small className="text-muted">Collected</small>
+                    <small className="text-muted">Montant collecté</small>
                   </Col>
                   <Col xs={6} md={3} className="mb-3">
                     <FaCalendarAlt className="text-info mb-2" size={24} />
                     <h5>{formatDate(startDate)}</h5>
-                    <small className="text-muted">Start Date</small>
+                    <small className="text-muted">Date de début</small>
                   </Col>
                   <Col xs={6} md={3} className="mb-3">
                     <FaCalendarAlt className="text-warning mb-2" size={24} />
                     <h5>{formatDate(targetDate)}</h5>
-                    <small className="text-muted">End Date</small>
+                    <small className="text-muted">Date de fin</small>
                   </Col>
                 </Row>
 
@@ -130,7 +130,7 @@ const ProjectDetailsArea = ({ project, sum }) => {
                   <div className="d-flex justify-content-between align-items-center mb-3">
                     <span className="h3 mb-0 text-primary">{amount} TND</span>
                     <span className="text-muted">
-                      raised of <strong>{target} TND</strong> goal
+                      {progress.toFixed(2)}% complété
                     </span>
                   </div>
                   <ProgressBar
@@ -141,7 +141,7 @@ const ProjectDetailsArea = ({ project, sum }) => {
                   />
                   <Link href={`/donation-project/${id}`} passHref>
                     <Button variant="primary" size="lg" className="w-100">
-                      Make a Donation
+                      Faire un don
                     </Button>
                   </Link>
                 </div>
@@ -155,7 +155,7 @@ const ProjectDetailsArea = ({ project, sum }) => {
               <Card.Body>
                 <Tabs defaultActiveKey="description" className="mb-3">
                   <Tab eventKey="description" title="Description">
-                    <h3 className="mb-3">About This Project</h3>
+                    <h3 className="mb-3"> A propos du projet</h3>
                     <Card.Text style={{ textAlign: "justify" }}>
                       {typeof longDescription === "string"
                         ? longDescription

@@ -210,9 +210,6 @@ const Profile = () => {
                   <h3 className="title-card">
                     {subscription.subscription.title}
                   </h3>
-                  <p className="body-card">
-                    {subscription.subscription.description}
-                  </p>
                   <div className="btn-card">
                     <span className="text-lg">
                       Se termine le:{" "}

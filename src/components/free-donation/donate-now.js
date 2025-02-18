@@ -16,6 +16,7 @@ const DonationAll = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [cin, setCin] = useState("");
+  const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({
     token: "",
     amount: "",
@@ -53,6 +54,7 @@ const DonationAll = () => {
       return;
     }
     try {
+      setLoading(true);
       const response = await axios.post(
         "http://localhost:3636/payments/donation",
         {
@@ -68,6 +70,7 @@ const DonationAll = () => {
       );
       if (response.status === 204) {
         toast.error("Email Not found");
+        setLoading(false);
       } else if (response.data.url) {
         router.push(response.data.url);
         setToken("");
@@ -77,6 +80,7 @@ const DonationAll = () => {
         setLastName("");
         setEmail("");
         setPhone("");
+        setLoading(false);
       } else {
         console.error("Error: URL is undefined");
       }
@@ -175,8 +179,15 @@ const DonationAll = () => {
                     setErrors({ ...errors, amount: "" });
                   }}
                 />
-                <Button className="main-btn" type="submit">
-                  Submit Donation
+                <Button className="main-btn" type="submit" disabled={loading}>
+                  {loading ? (
+                    <div
+                      className="spinner-border text-light spinner-border-sm"
+                      role="status"
+                    ></div>
+                  ) : (
+                    <>Donate</>
+                  )}
                 </Button>
               </form>
             </div>

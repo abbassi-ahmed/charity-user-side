@@ -131,14 +131,14 @@ export default function AbonnementForm() {
                       <optgroup label="Abonnements Sport">
                         {subscriptionDataSport.map((sub) => (
                           <option key={sub.id} value={sub.id}>
-                            {sub.title} - {sub.price}€
+                            {sub.title} - {sub.price}TND
                           </option>
                         ))}
                       </optgroup>
                       <optgroup label="Abonnements Club">
                         {subscriptionDataClub.map((sub) => (
                           <option key={sub.id} value={sub.id}>
-                            {sub.title} - {sub.price}€
+                            {sub.title} - {sub.price}TND
                           </option>
                         ))}
                       </optgroup>
@@ -174,7 +174,7 @@ export default function AbonnementForm() {
                       {subscriptionDataSport.map((sub) => (
                         <tr key={sub.id}>
                           <td>{sub.title}</td>
-                          <td>{sub.price}€</td>
+                          <td>{sub.price}TND</td>
                           <td>{sub.duration} mois</td>
                         </tr>
                       ))}
@@ -201,7 +201,7 @@ export default function AbonnementForm() {
                       {subscriptionDataClub.map((sub) => (
                         <tr key={sub.id}>
                           <td>{sub.title}</td>
-                          <td>{sub.price}€</td>
+                          <td>{sub.price}TND</td>
                           <td>{sub.duration} mois</td>
                         </tr>
                       ))}
