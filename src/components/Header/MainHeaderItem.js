@@ -42,7 +42,6 @@ const MainHeaderItem = ({
             </div>
 
             <HeaderMenu navItems={updatedNavItems} />
-
             <HeaderInfo
               icon={icon}
               phone={phone}

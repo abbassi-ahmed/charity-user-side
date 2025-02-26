@@ -30,13 +30,13 @@ export const navItems = [
 
   {
     id: 4,
-    name: "Pages",
+    name: "Nos Actions",
     href: "",
     subNavItems: [
-      { id: 1, name: "Gallerie", href: "/gallery" },
-      { id: 2, name: "Faq", href: "/faq" },
-      { id: 3, name: "Dérigont", href: "/team-members" },
-      { id: 4, name: "Actualité", href: "/news" },
+      { id: 1, name: "Projet", href: "/project" },
+      { id: 2, name: "Evénement", href: "/events" },
+      { id: 3, name: "Activité", href: "/activity" },
+      { id: 4, name: "Gallerie", href: "/gallery" },
     ],
   },
   {
@@ -48,8 +48,9 @@ export const navItems = [
       { id: 2, name: "Sport", href: "/abonnement-sport" },
     ],
   },
+  { id: 6, name: "Blog & Actualité", href: "/news" },
   {
-    id: 6,
+    id: 7,
     name: "Donner abonnement",
     href: "/abonnement-form",
     role: "moderator",
