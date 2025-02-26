@@ -33,11 +33,10 @@ export const navItems = [
     name: "Pages",
     href: "",
     subNavItems: [
-      { id: 1, name: "Projet", href: "/project-details" },
-      { id: 2, name: "Gallerie", href: "/gallery" },
-      { id: 3, name: "Faq", href: "/faq" },
-      { id: 4, name: "Dérigont", href: "/team-members" },
-      { id: 5, name: "Actualité", href: "/news" },
+      { id: 1, name: "Gallerie", href: "/gallery" },
+      { id: 2, name: "Faq", href: "/faq" },
+      { id: 3, name: "Dérigont", href: "/team-members" },
+      { id: 4, name: "Actualité", href: "/news" },
     ],
   },
   {
