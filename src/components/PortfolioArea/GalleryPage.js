@@ -12,7 +12,7 @@ const GalleryPage = () => {
     setLoader(true);
     try {
       const response = await axios.get(
-        "http://localhost:3636/gallerie/find-all"
+        "https://api.olympiquemnihla.com/gallerie/find-all"
       );
       setImages(response.data);
       setLoader(false);

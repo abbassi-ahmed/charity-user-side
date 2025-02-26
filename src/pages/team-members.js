@@ -14,7 +14,7 @@ const TeamMembers = () => {
     queryKey: ["users"],
     queryFn: async () => {
       const response = await axios.get(
-        "http://localhost:3636/derigant/find-all"
+        "https://api.olympiquemnihla.com/derigant/find-all"
       );
       return response.data;
     },

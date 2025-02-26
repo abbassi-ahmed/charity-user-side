@@ -15,13 +15,16 @@ const ContextProvider = ({ children }) => {
     if (!token) return;
 
     try {
-      const response = await fetch("http://localhost:3636/users/verify", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ token }),
-      });
+      const response = await fetch(
+        "https://api.olympiquemnihla.com/users/verify",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ token }),
+        }
+      );
       if (!response.ok) throw new Error("Failed to verify token");
       const data = await response.json();
       if (data && data.firstName) {

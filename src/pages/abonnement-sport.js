@@ -16,7 +16,7 @@ const Abonnement = () => {
   const fetchSubscriptions = async () => {
     try {
       const response = await fetch(
-        "http://localhost:3636/subscription/get-type?type=sport"
+        "https://api.olympiquemnihla.com/subscription/get-type?type=sport"
       );
       if (!response.ok) throw new Error("Failed to fetch subscriptions");
       const data = await response.json();

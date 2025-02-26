@@ -22,9 +22,13 @@ export default function AbonnementForm() {
     const fetchData = async () => {
       try {
         const [sportRes, clubRes, usersRes] = await Promise.all([
-          fetch("http://localhost:3636/subscription/get-type?type=sport"),
-          fetch("http://localhost:3636/subscription/get-type?type=club"),
-          fetch("http://localhost:3636/users/find-all"),
+          fetch(
+            "https://api.olympiquemnihla.com/subscription/get-type?type=sport"
+          ),
+          fetch(
+            "https://api.olympiquemnihla.com/subscription/get-type?type=club"
+          ),
+          fetch("https://api.olympiquemnihla.com/users/find-all"),
         ]);
 
         if (!sportRes.ok || !clubRes.ok || !usersRes.ok)
@@ -56,7 +60,7 @@ export default function AbonnementForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     await axios
-      .post("http://localhost:3636/users/assign", {
+      .post("https://api.olympiquemnihla.com/users/assign", {
         userId: selectedUser,
         subscriptionId: selectedSubscription,
         moderatorId: user.id,
