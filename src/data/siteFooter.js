@@ -109,13 +109,14 @@ const footerData2 = {
     {
       id: 3,
       text: "Événement",
-      href: "#",
+      href: "/events",
     },
     {
       id: 4,
       text: "Nos Abonnements",
       href: "/abonnement-club",
     },
+    { id: 5, text: "Faq", href: "/faq" },
   ],
   Categories: [
     {

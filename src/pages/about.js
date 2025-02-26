@@ -1,46 +1,26 @@
-import AboutIntroduction from "@/components/AboutArea/AboutIntroduction";
-import BrandAreaTwo from "@/components/BrandArea/BrandAreaTwo";
-import FunFacts from "@/components/FunFacts/FunFacts";
 import Header from "@/components/Header/Header";
 import Layout from "@/components/Layout/Layout";
 import PageTitle from "@/components/Reuseable/PageTitle";
-import TogetherArea from "@/components/TogetherArea/TogetherArea";
 import React from "react";
-import TeamHome from "./team-home";
 import { useQuery } from "@tanstack/react-query";
+import TeamMainArea from "@/components/TeamArea/TeamMainArea";
+import Image from "next/image";
 
-const fetchUsers = async () => {
-  const response = await axios.get(
-    "https://api.olympiquemnihla.com/derigant/find-all"
-  );
-  return response.data;
-};
-
-const fetchInformation = async () => {
-  const response = await axios.get(
-    "https://api.olympiquemnihla.com/together-area/find-all"
-  );
-  return response.data;
-};
 const About = () => {
-  const { data: users, isLoading: isUsersLoading } = useQuery({
+  const { data: users, isLoading: loadingUsers } = useQuery({
     queryKey: ["users"],
-    queryFn: fetchUsers,
-    initialData: [],
-  });
-  const { data: information, isLoading: isInformationLoading } = useQuery({
-    queryKey: ["information"],
-    queryFn: fetchInformation,
-    initialData: [],
+    queryFn: async () => {
+      const response = await axios.get(
+        "https://api.olympiquemnihla.com/derigant/find-all"
+      );
+      return response.data;
+    },
   });
 
-  if (isUsersLoading || isInformationLoading) {
+  if (loadingUsers) {
     return (
       <Layout>
         <Header />
-
-        <PageTitle title="A Propos" parent="Page" />
-
         <div
           className="d-flex justify-content-center align-items-center"
           style={{ height: "50vh", width: "100%" }}
@@ -54,14 +34,19 @@ const About = () => {
   return (
     <Layout>
       <Header />
-      <PageTitle title="A Propos" parent="Page" />
-      <AboutIntroduction />
-      <FunFacts className="fun-facts-about-area" />
-      {users && users.length > 0 && <TeamHome users={users.slice(0, 3)} />}
-      {information && information.length > 0 && (
-        <TogetherArea information={information} />
+      <PageTitle title="Membres de l'équipe" />
+      {users.length === 0 ? (
+        <div className="text-center my-4">
+          <Image src={noData} alt="No Data Found" width={200} height={200} />
+          <h2> Aucun membre pour le moment</h2>
+        </div>
+      ) : (
+        <TeamMainArea
+          className="about-team-main-area team-page-area"
+          count={users.length}
+          users={users}
+        />
       )}
-      <BrandAreaTwo className="brand-area-2" />
     </Layout>
   );
 };

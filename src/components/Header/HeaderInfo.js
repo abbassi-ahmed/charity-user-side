@@ -20,7 +20,10 @@ const HeaderInfo = ({ socials, icon, phone = "", searchColor }) => {
   };
 
   return (
-    <div className="header-info d-flex align-items-center">
+    <div
+      className="header-info d-flex align-items-center"
+      style={{ marginLeft: "8px" }}
+    >
       {socials && <Social socials={socials} />}
       {user ? (
         <>

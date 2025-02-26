@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import noData from "../../assets/svgs/noData.svg";
 import Image from "next/image";
 
-const EventsPage = () => {
+const ActivityPage = () => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const EventsPage = () => {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({ category: "event" }),
+            body: JSON.stringify({ category: "activity" }),
           }
         );
         const data = await response.json();
@@ -56,4 +56,4 @@ const EventsPage = () => {
   );
 };
 
-export default EventsPage;
+export default ActivityPage;
