@@ -36,9 +36,9 @@ const Abonnement = () => {
     return (
       <Layout>
         <Header />
-        <PageTitle title="Abonnement Sport" />
+        <PageTitle title="Abonnement Club" />
         <div className="subscription-wrapper">
-          <p>No subscriptions available</p>
+          <p>Aucun abonnement disponible</p>
         </div>
       </Layout>
     );
