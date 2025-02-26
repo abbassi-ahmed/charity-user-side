@@ -35,7 +35,7 @@ const About = () => {
     <Layout>
       <Header />
       <PageTitle title="Membres de l'équipe" />
-      {users.length === 0 ? (
+      {users && users.length === 0 ? (
         <div className="text-center my-4">
           <Image src={noData} alt="No Data Found" width={200} height={200} />
           <h2> Aucun membre pour le moment</h2>
