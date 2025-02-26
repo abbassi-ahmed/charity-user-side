@@ -74,7 +74,7 @@ const DonationProject = ({ project }) => {
     try {
       setLoading(true);
       const response = await axios.post(
-        "http://localhost:3636/payments/project-donation",
+        "https://api.olympiquemnihla.com/payments/project-donation",
         {
           token: "TND",
           amount: parseFloat(amount),

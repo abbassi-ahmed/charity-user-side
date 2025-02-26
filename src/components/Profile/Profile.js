@@ -65,7 +65,7 @@ const Profile = () => {
       formDataToSend.append("avatar", avatarFile);
     }
     setLoader(true);
-    fetch(`http://localhost:3636/users/update/${user.id}`, {
+    fetch(`https://api.olympiquemnihla.com/users/update/${user.id}`, {
       method: "PUT",
       body: formDataToSend,
     })

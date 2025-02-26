@@ -10,7 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const fetchInformation = async () => {
   const response = await axios.get(
-    "http://localhost:3636/together-area/find-all"
+    "https://api.olympiquemnihla.com/together-area/find-all"
   );
   return response.data;
 };

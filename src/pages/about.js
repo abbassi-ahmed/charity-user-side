@@ -10,13 +10,15 @@ import TeamHome from "./team-home";
 import { useQuery } from "@tanstack/react-query";
 
 const fetchUsers = async () => {
-  const response = await axios.get("http://localhost:3636/derigant/find-all");
+  const response = await axios.get(
+    "https://api.olympiquemnihla.com/derigant/find-all"
+  );
   return response.data;
 };
 
 const fetchInformation = async () => {
   const response = await axios.get(
-    "http://localhost:3636/together-area/find-all"
+    "https://api.olympiquemnihla.com/together-area/find-all"
   );
   return response.data;
 };
