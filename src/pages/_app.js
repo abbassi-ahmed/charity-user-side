@@ -8,7 +8,6 @@ import "react-modal-video/css/modal-video.css";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-// extra css
 import "@/styles/default.css";
 import "@/styles/style.css";
 import "@/styles/menu.css";
@@ -17,6 +16,8 @@ import "@/styles/subscriptionCard.css";
 import "@/styles/skeletonLoader.css";
 import "@/styles/loader.css";
 import "@/styles/succeed.css";
+import "@/styles/club.css";
+import "@/styles/sport.css";
 import "@/styles/gallery-styles.css";
 
 const queryClient = new QueryClient();
