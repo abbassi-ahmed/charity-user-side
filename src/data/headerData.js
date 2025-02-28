@@ -46,15 +46,15 @@ export const navItems = [
     subNavItems: [
       { id: 1, name: "Club", href: "/abonnement-club" },
       { id: 2, name: "Sport", href: "/abonnement-sport" },
+      {
+        id: 3,
+        name: "Donner abonnement",
+        href: "/abonnement-form",
+        role: "moderator",
+      },
     ],
   },
   { id: 6, name: "Blog & Actualité", href: "/news" },
-  {
-    id: 7,
-    name: "Donner abonnement",
-    href: "/abonnement-form",
-    role: "moderator",
-  },
 ];
 export const navDefault = [
   {

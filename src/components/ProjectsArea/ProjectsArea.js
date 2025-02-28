@@ -87,6 +87,8 @@ const ProjectsArea = ({ className = "" }) => {
     fetchProjects();
   }, []);
 
+  if (projects.length === 0 || !projects || !Array.isArray(projects))
+    return null;
   return (
     <div>
       <section className={`explore-projects-area ${className}`}>

@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Image, Modal } from "react-bootstrap";
+import { useState } from "react";
+import { Image, Modal, Badge } from "react-bootstrap";
 
-const PortfolioItem = ({ portfolio = {}, className = "" }) => {
+const PortfolioItem = ({ portfolio = {} }) => {
   const [showModal, setShowModal] = useState(false);
 
   const handleOpenModal = () => setShowModal(true);
@@ -9,36 +9,59 @@ const PortfolioItem = ({ portfolio = {}, className = "" }) => {
 
   return (
     <>
-      <div className={`portfolio-item${className}`} onClick={handleOpenModal}>
-        <Image
-          src={portfolio.image}
-          alt=""
-          width={400}
-          height={370}
-          style={{
-            objectFit: "cover",
-          }}
-        />
-        <div className="portfolio-overlay">
-          <a className="image-popup">
-            <i className="flaticon-add"></i>
-          </a>
+      <div className="portfolio-item" onClick={handleOpenModal}>
+        <div className="portfolio-image-container">
+          <Image
+            src={portfolio.image || "/placeholder.svg"}
+            alt={portfolio.title || "Gallery Image"}
+            className="portfolio-image"
+          />
+          <div className="portfolio-overlay">
+            <div className="overlay-icon">
+              <i className="flaticon-add"></i>
+            </div>
+          </div>
         </div>
+        {portfolio.title && (
+          <div className="portfolio-info">
+            <h5 className="portfolio-title">{portfolio.title}</h5>
+            {portfolio.tags && portfolio.tags.length > 0 && (
+              <div className="portfolio-tags">
+                {portfolio.tags.slice(0, 3).map((tag, index) => (
+                  <Badge key={index} bg="secondary" className="portfolio-tag">
+                    {tag}
+                  </Badge>
+                ))}
+                {portfolio.tags.length > 3 && (
+                  <Badge bg="light" text="dark" className="portfolio-tag">
+                    +{portfolio.tags.length - 3}
+                  </Badge>
+                )}
+              </div>
+            )}
+          </div>
+        )}
       </div>
 
-      <Modal show={showModal} onHide={handleCloseModal} centered>
-        <Modal.Header closeButton></Modal.Header>
-        <Modal.Body>
-          <Image
-            src={portfolio.image}
-            alt="Portfolio Image"
-            width={400}
-            height={370}
-            style={{
-              objectFit: "cover",
-            }}
-          />
-        </Modal.Body>
+      <Modal
+        show={showModal}
+        onHide={handleCloseModal}
+        centered
+        dialogClassName="custom-modal"
+      >
+        <Image
+          src={portfolio.image || "/placeholder.svg"}
+          alt={portfolio.title || "Gallery Image"}
+        />
+        {portfolio.tags && portfolio.tags.length > 0 && (
+          <div className="modal-tags">
+            {portfolio.tags.map((tag, index) => (
+              <Badge key={index} bg="secondary" className="modal-tag">
+                {tag}
+              </Badge>
+            ))}
+          </div>
+        )}
       </Modal>
     </>
   );

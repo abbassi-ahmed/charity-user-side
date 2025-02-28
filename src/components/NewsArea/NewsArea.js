@@ -3,8 +3,14 @@ import { Col, Container, Row } from "react-bootstrap";
 import Title from "../Reuseable/Title";
 import NewsItem from "./NewsItem";
 import axios from "axios";
+import Layout from "../Layout/Layout";
 
-const NewsArea = ({ className = "", newsTwo = false, newsPage = false }) => {
+const NewsArea = ({
+  className = "",
+  newsTwo = false,
+  newsPage = false,
+  home = false,
+}) => {
   const [blogs, setBlogs] = useState([]);
 
   useEffect(() => {
@@ -21,6 +27,17 @@ const NewsArea = ({ className = "", newsTwo = false, newsPage = false }) => {
 
     fetchBlogs();
   }, []);
+  if (blogs && blogs.length === 0 && home) return null;
+
+  if (blogs && blogs.length === 0) {
+    return (
+      <Layout>
+        <div className="subscription-wrapper">
+          <p>Aucun article disponible</p>
+        </div>
+      </Layout>
+    );
+  }
 
   return (
     <section className={`news-area ${className}`}>

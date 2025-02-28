@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import BlogAuthor from "./BlogAuthor"; // Unused import
 import BlogDetailsMain from "./BlogDetailsMain";
 import BlogDetailsSidebar from "./BlogDetailsSidebar";
 import axios from "axios";
@@ -59,10 +58,6 @@ const BlogDetails = ({ id }) => {
       }
     }
   };
-
-  useEffect(() => {
-    fetchUser();
-  }, []);
 
   useEffect(() => {
     fetchBlog();

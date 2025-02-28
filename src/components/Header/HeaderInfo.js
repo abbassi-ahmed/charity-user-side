@@ -72,7 +72,7 @@ const HeaderInfo = ({ socials, icon, phone = "", searchColor }) => {
       )}
       <div
         onClick={toggleMenu}
-        className="toggle-btn ml-30 canvas_open d-lg-none d-block"
+        className="toggle-btn ml-30 canvas_open d-xl-none d-block"
       >
         <i className="fa fa-bars"></i>
       </div>

@@ -17,6 +17,7 @@ import "@/styles/subscriptionCard.css";
 import "@/styles/skeletonLoader.css";
 import "@/styles/loader.css";
 import "@/styles/succeed.css";
+import "@/styles/gallery-styles.css";
 
 const queryClient = new QueryClient();
 

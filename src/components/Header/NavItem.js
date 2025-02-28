@@ -5,22 +5,29 @@ import Link from "../Reuseable/Link";
 
 const NavItem = ({ navItem = {}, mobile = false, activeId, handleActive }) => {
   const { pathname } = useRouter();
-  const { toggleMenu } = useRootContext();
+  const { toggleMenu, user } = useRootContext();
 
-  const { name, href, subNavItems = [], id } = navItem;
+  const { name = "", href = "", subNavItems = [], id } = navItem;
 
   const handleExpand = () => {
-    if (mobile && href) {
-      toggleMenu(false);
-    } else if (mobile) {
-      handleActive?.(id);
+    if (mobile) {
+      if (href) {
+        toggleMenu(false);
+      } else {
+        handleActive?.(id);
+      }
     }
   };
 
+  const filteredSubNavItems = subNavItems.filter(
+    (subNavItem) => !subNavItem.role || (user && user.isModerator)
+  );
+
   let current = pathname === href;
   if (!current) {
-    current = subNavItems.find((item) => item.href === pathname);
+    current = filteredSubNavItems.some((item) => item.href === pathname);
   }
+
   const active = id === activeId;
 
   return (
@@ -31,15 +38,15 @@ const NavItem = ({ navItem = {}, mobile = false, activeId, handleActive }) => {
         href={href}
       >
         {name}{" "}
-        {mobile && subNavItems.length > 0 && (
+        {mobile && filteredSubNavItems.length > 0 && (
           <span className="menu-expand">
             <i className="fa fa-angle-down"></i>
           </span>
         )}
       </Link>
-      {subNavItems.length > 0 && (
+      {filteredSubNavItems.length > 0 && (
         <ul className={`sub-menu ${mobile && !active ? "d-none" : "d-block"}`}>
-          {subNavItems.map(({ href, name, id }) => (
+          {filteredSubNavItems.map(({ href, name, id }) => (
             <li key={id}>
               <Link onClick={() => mobile && toggleMenu(false)} href={href}>
                 {name}
