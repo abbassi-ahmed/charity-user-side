@@ -1,44 +1,43 @@
-import Subscription from "@/components/cards/subscription";
+import { useEffect, useState } from "react";
+import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import Header from "@/components/Header/Header";
 import Layout from "@/components/Layout/Layout";
-import NewsArea from "@/components/NewsArea/NewsArea";
 import PageTitle from "@/components/Reuseable/PageTitle";
-import { useRootContext } from "@/context/context";
+import Image from "next/image";
+import Link from "@/components/Reuseable/Link";
 
-import React, { useEffect, useState } from "react";
-
-const Abonnement = () => {
-  const [subscriptionData, setSubscriptionData] = useState([]);
+const Clubs = () => {
+  const [clubsData, setClubsData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const { user } = useRootContext();
 
-  const fetchSubscriptions = async () => {
+  const fetchClubs = async () => {
     try {
       const response = await fetch(
-        "https://api.olympiquemnihla.com/subscription/get-type?type=club"
+        "https://api.olympiquemnihla.com/clubs/find-all"
       );
-      if (!response.ok) throw new Error("Failed to fetch subscriptions");
+      if (!response.ok) throw new Error("Failed to fetch clubs");
       const data = await response.json();
-      setSubscriptionData(data);
+      setClubsData(data);
     } catch (err) {
-      console.error("Error fetching subscriptions:", err);
-      setError("Failed to load subscriptions.");
+      console.error("Error fetching clubs:", err);
+      setError("Failed to load clubs.");
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchSubscriptions();
+    fetchClubs();
   }, []);
-  if (subscriptionData && subscriptionData.length === 0) {
+
+  if (clubsData && clubsData.length === 0) {
     return (
       <Layout>
         <Header />
-        <PageTitle title="Abonnement Club" />
-        <div className="subscription-wrapper">
-          <p>Aucun abonnement disponible</p>
+        <PageTitle title="Club" />
+        <div className="clubs-wrapper">
+          <p>Aucun Club disponible</p>
         </div>
       </Layout>
     );
@@ -47,8 +46,8 @@ const Abonnement = () => {
   return (
     <Layout>
       <Header />
-      <PageTitle title="Abonnement Club" />
-      <div className="subscription-wrapper">
+      <PageTitle title="Clubs" />
+      <div className="clubs-wrapper">
         {loading ? (
           <div
             className="d-flex justify-content-center align-items-center"
@@ -59,19 +58,53 @@ const Abonnement = () => {
         ) : error ? (
           <p>{error}</p>
         ) : (
-          <div className="subscription-grid">
-            {subscriptionData.map((sub) => (
-              <div key={sub.id}>
-                <Subscription
-                  title={sub.title}
-                  description={sub.description}
-                  price={sub.price}
-                  user={user}
-                  subscriptionId={sub.id}
-                  duration={sub.duration}
-                />
-              </div>
-            ))}
+          <div className="my-5">
+            <Container>
+              <Row xs={1} md={2} lg={3} className="g-4">
+                {clubsData.map((club) => (
+                  <Col key={club.id}>
+                    <Card className="club-card h-100">
+                      <div className="club-cover-container">
+                        <Card.Img
+                          variant="top"
+                          src={club.cover}
+                          alt={`${club.name} cover`}
+                          className="club-cover-img"
+                        />
+                        <div className="club-logo-container">
+                          <Image
+                            src={club.logo || "/placeholder.svg"}
+                            alt={`${club.name} logo`}
+                            className="club-logo"
+                            width={60}
+                            height={60}
+                          />
+                        </div>
+                      </div>
+                      <Card.Body>
+                        <Card.Title className="club-title">
+                          {club.name}
+                        </Card.Title>
+                        <Card.Text className="club-description">
+                          {club.description}
+                        </Card.Text>
+                      </Card.Body>
+                      <Card.Footer className="bg-white">
+                        <Link
+                          href={`/clubDetail/${club.id}`}
+                          passHref
+                          style={{ textDecoration: "none", width: "100%" }}
+                        >
+                          <Button variant="primary" className="w-100">
+                            <p className="text-white">Voire plus</p>
+                          </Button>
+                        </Link>
+                      </Card.Footer>
+                    </Card>
+                  </Col>
+                ))}
+              </Row>
+            </Container>
           </div>
         )}
       </div>
@@ -79,4 +112,4 @@ const Abonnement = () => {
   );
 };
 
-export default Abonnement;
+export default Clubs;
