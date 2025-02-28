@@ -6,7 +6,7 @@ import axios from "axios";
 
 const { shape1, shape2 } = funFacts;
 
-const FunFacts = ({ className = "" }) => {
+const FunFacts = ({ className = "", home = false }) => {
   const [facts, setFacts] = useState([]);
   const [loading, setLoading] = useState(true);
   const fetchFacts = async () => {
@@ -27,6 +27,7 @@ const FunFacts = ({ className = "" }) => {
     fetchFacts();
   }, []);
 
+  if (facts && facts.length === 0 && home) return null;
   return (
     <section className={`fun-facts-area ${className}`}>
       <Row>

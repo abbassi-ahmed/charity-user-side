@@ -62,7 +62,7 @@ const BrandItem = ({ image, title, link }) => {
   );
 };
 
-const BrandAreaTwo = ({ className = "" }) => {
+const BrandAreaTwo = ({ className = "", home = false }) => {
   const [brands, setBrands] = useState([]);
 
   const fetchBrands = async () => {
@@ -84,6 +84,7 @@ const BrandAreaTwo = ({ className = "" }) => {
   useEffect(() => {
     fetchBrands();
   }, []);
+  if (brands && brands.length === 0 && home) return null;
 
   const adjustedBrands =
     brands.length < 4 ? [...brands, ...brands, ...brands] : brands;

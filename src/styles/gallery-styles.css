@@ -1,0 +1,271 @@
+/* Gallery Page Styles */
+.gallery-page-area {
+    padding: 60px 0;
+    background-color: #f8f9fa;
+}
+
+.gallery-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.gallery-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.gallery-subtitle {
+    font-size: 1.1rem;
+    color: #6c757d;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.gallery-info {
+    margin-bottom: 20px;
+    color: #6c757d;
+    font-style: italic;
+}
+
+.gallery-grid {
+    margin-top: 30px;
+}
+
+.gallery-item-col {
+    margin-bottom: 30px;
+}
+
+/* Tags Filtering */
+.tags-container {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.tags-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.tags-header h5 {
+    margin: 0;
+    font-weight: 600;
+    color: #333;
+}
+
+.tags-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tag-badge {
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 8px 12px;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+}
+
+.tag-badge:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.clear-filters-btn {
+    font-size: 0.8rem;
+}
+
+/* Portfolio Item Styles */
+.portfolio-item {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.portfolio-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.portfolio-image-container {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+}
+
+.portfolio-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.portfolio-item:hover .portfolio-image {
+    transform: scale(1.05);
+}
+
+.portfolio-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.portfolio-item:hover .portfolio-overlay {
+    opacity: 1;
+}
+
+.overlay-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(0);
+    transition: transform 0.3s ease;
+}
+
+.portfolio-item:hover .overlay-icon {
+    transform: scale(1);
+}
+
+.overlay-icon i {
+    font-size: 20px;
+    color: #333;
+}
+
+.portfolio-info {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.portfolio-title {
+    margin: 0 0 10px 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.portfolio-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: auto;
+}
+
+.portfolio-tag {
+    font-size: 0.75rem;
+    font-weight: normal;
+}
+
+/* Modal Styles */
+
+.custom-modal .modal-dialog {
+    max-width: 100%;
+    /* Adjust as needed */
+    width: 100%;
+}
+
+.modal-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.modal-tag {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+/* Loading and No Data States */
+.loader-container,
+.no-data-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    width: 100%;
+    text-align: center;
+}
+
+.loader-container h3,
+.no-data-container h3 {
+    margin-top: 20px;
+    color: #6c757d;
+}
+
+/* Pagination Styles */
+.pagination {
+    margin-top: 40px;
+}
+
+.pagination .page-item .page-link {
+    color: #333;
+    border-color: #dee2e6;
+    margin: 0 3px;
+    border-radius: 4px;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.pagination .page-item .page-link:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 767px) {
+    .gallery-page-area {
+        padding: 40px 0;
+    }
+
+    .gallery-title {
+        font-size: 2rem;
+    }
+
+    .tags-container {
+        padding: 15px;
+    }
+
+    .tags-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .clear-filters-btn {
+        margin-top: 10px;
+    }
+
+    .portfolio-item {
+        margin-bottom: 20px;
+    }
+}

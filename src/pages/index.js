@@ -135,16 +135,18 @@ const Home = () => {
         <BannerSlider slides={slides} />
         <Categories />
         {/* <WhyChoose /> */}
-        <CtaArea />
+        <CtaArea slides={slides} />
         <ProjectsArea />
-        <FunFacts />
+        <FunFacts home />
 
-        {information && information.length > 0 && (
+        {information && information.length > 0 ? (
           <TogetherArea information={information} />
-        )}
-        {users && users.length > 0 && <TeamHome users={users.slice(0, 3)} />}
-        <NewsArea />
-        <BrandAreaTwo />
+        ) : null}
+        {users && users.length > 0 ? (
+          <TeamHome users={users.slice(0, 3)} />
+        ) : null}
+        <NewsArea home />
+        <BrandAreaTwo home />
 
         {slides && slides.length > 0 && (
           <Link

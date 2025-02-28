@@ -5,7 +5,9 @@ import Link from "../Reuseable/Link";
 
 const { bg, title } = ctaArea;
 
-const CtaArea = () => {
+const CtaArea = ({ slides = [] }) => {
+  if (slides.length === 0 || !slides || !Array.isArray(slides)) return null;
+
   return (
     <section className="cta-area mb-5">
       <Container>

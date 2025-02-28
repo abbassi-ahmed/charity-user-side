@@ -49,6 +49,14 @@ const Categories = () => {
     fetchCategories();
   }, []);
 
+  if (
+    !categoriesSection ||
+    categoriesSection.length === 0 ||
+    !categoriesSection[0]?.categories ||
+    !Array.isArray(categoriesSection[0]?.categories)
+  )
+    return null;
+
   return (
     <section
       className="categories-area bg_cover"

@@ -9,10 +9,13 @@ import { toast, Toaster } from "react-hot-toast";
 import { useRootContext } from "@/context/context";
 
 const Profile = () => {
+  const { setUser } = useRootContext();
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
     email: "",
+    gender: "",
+    dateOfBirth: "",
   });
   const [avatarFile, setAvatarFile] = useState(null);
 
@@ -28,6 +31,8 @@ const Profile = () => {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
+        gender: user?.gender || "",
+        dateOfBirth: user?.dateOfBirth || "",
       });
       setAvatarPreview(user.avatar);
       setLoading(false);
@@ -61,6 +66,8 @@ const Profile = () => {
     formDataToSend.append("firstName", formData.firstName);
     formDataToSend.append("lastName", formData.lastName);
     formDataToSend.append("email", formData.email);
+    formDataToSend.append("gender", formData.gender);
+    formDataToSend.append("dateOfBirth", formData.dateOfBirth);
     if (avatarFile) {
       formDataToSend.append("avatar", avatarFile);
     }
@@ -176,6 +183,32 @@ const Profile = () => {
                 type="email"
                 name="email"
                 value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
+            <Form.Group controlId="formGender">
+              <Form.Label>Gendre</Form.Label>
+              <Form.Control
+                as="select"
+                name="gender"
+                value={formData.gender}
+                onChange={handleChange}
+                required
+              >
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId="formDateOfBirth">
+              <Form.Label>Date de naissance</Form.Label>
+              <Form.Control
+                type="date"
+                name="dateOfBirth"
+                value={formData.dateOfBirth}
                 onChange={handleChange}
                 required
               />

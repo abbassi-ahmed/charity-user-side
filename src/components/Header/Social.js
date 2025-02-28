@@ -2,7 +2,7 @@ import React from "react";
 
 const Social = ({ socials = [] }) => {
   return (
-    <div className="social">
+    <div className="social d-flex align-items-center justify-content-center">
       <ul>
         {socials.map(({ id, icon, href }) => (
           <li key={id}>

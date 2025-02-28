@@ -32,7 +32,7 @@ const Abonnement = () => {
   useEffect(() => {
     fetchSubscriptions();
   }, []);
-  if (subscriptionData.length === 0) {
+  if (subscriptionData && subscriptionData.length === 0) {
     return (
       <Layout>
         <Header />

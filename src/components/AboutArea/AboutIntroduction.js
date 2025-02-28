@@ -26,6 +26,8 @@ const AboutIntroduction = () => {
     setImageLoaded(true);
   };
 
+  if (!aboutData || aboutData.length === 0) return null;
+
   return (
     <section className="about-introduction-area pt-120 pb-120">
       <Container>

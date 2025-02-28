@@ -31,6 +31,7 @@ const BannerSlider = ({
   slides = [],
 }) => {
   const router = useRouter();
+  if (slides.length === 0 || !slides || !Array.isArray(slides)) return null;
   return (
     <section className={`banner-slider ${className}`}>
       <Swiper {...options}>

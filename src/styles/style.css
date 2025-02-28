@@ -393,8 +393,8 @@ p {
   color: #674df0;
 }
 
-.header-area .header-top .header-info ul li:last-child {
-  margin-left: 36px;
+.header-area .header-top .header-info ul li:first-child {
+  margin-right: 30px;
 }
 
 .header-area .header-top .social ul li {
@@ -1205,13 +1205,13 @@ p {
   display: none;
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px) {
+@media only screen and (min-width: 1000px) {
   .offcanvas_menu {
     display: block;
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1000px) {
   .offcanvas_menu {
     display: block;
   }

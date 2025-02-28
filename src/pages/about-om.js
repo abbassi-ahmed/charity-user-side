@@ -55,13 +55,15 @@ const About = () => {
       <PageTitle title="A Propos Om" parent="Page" />
       <AboutIntroduction />
       <NextBigThing className="next-big-thing-about-area" />
-      {information && information.length > 0 && (
+      {information && information.length > 0 ? (
         <TogetherArea information={information} />
-      )}
-      {users && users.length > 0 && <TeamHome users={users.slice(0, 3)} />}
+      ) : null}
+      {users && users.length > 0 ? (
+        <TeamHome users={users.slice(0, 3)} />
+      ) : null}
 
-      <FunFacts className="fun-facts-about-area" />
-      <BrandAreaTwo className="brand-area-2" />
+      <FunFacts className="fun-facts-about-area" home />
+      <BrandAreaTwo className="brand-area-2" home />
     </Layout>
   );
 };
