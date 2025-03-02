@@ -1,18 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { Row, Col, Form, Button, Card, Alert } from "react-bootstrap";
 import PageTitle from "@/components/Reuseable/PageTitle";
 import { useRootContext } from "@/context/context";
+import toast, { Toaster } from "react-hot-toast";
 
-const SignIn = () => {
+const ForgetPassword = () => {
   const [formData, setFormData] = useState({
     email: "",
-    password: "",
   });
   const [errorMessage, setErrorMessage] = useState(null);
-  const router = useRouter();
   const [loader, setLoader] = useState(false);
   const { fetchUser } = useRootContext();
 
@@ -29,29 +27,24 @@ const SignIn = () => {
     setErrorMessage(null);
     try {
       setLoader(true);
-      const response = await axios.post(
-        `https://api.olympiquemnihla.com/users/signin`,
-        { email: formData.email.toLowerCase(), password: formData.password },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (
-        response.status === 200 ||
-        (response.status === 201 && response.data.token)
-      ) {
-        localStorage.setItem("token", response.data.token);
-        fetchUser();
-        router.push("/");
-      } else {
-        setErrorMessage(response.data.message);
-      }
+      await axios
+        .post(
+          `https://api.olympiquemnihla.com/users/forget-password`,
+          { email: formData.email.toLowerCase() },
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((response) => {
+          toast.success(
+            "Si l'email existe, un lien de réinitialisation de mot de passe vous sera envoyé."
+          );
+        });
     } catch (error) {
       if (error.response) {
-        setErrorMessage(error.response.data.message || "Error signing in");
+        setErrorMessage(error.response.data.message);
       } else if (error.request) {
         setErrorMessage("No response received from the server.");
       } else {
@@ -64,13 +57,13 @@ const SignIn = () => {
 
   return (
     <div style={{ marginBottom: "50px" }}>
-      <PageTitle title="Se connecter" />
+      <PageTitle title="Oubli de mot de passe" />
       <Row className="justify-content-center">
         <Col lg={5} md={7}>
           <Card className="shadow-lg border-0 rounded-lg mt-5">
             <Card.Body>
               <h2 className="text-center font-weight-light my-4">
-                Se connecter
+                Oubli de mot de passe
               </h2>
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formEmail">
@@ -83,22 +76,7 @@ const SignIn = () => {
                     required
                   />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="formPassword">
-                  <Form.Label>Mot de passe</Form.Label>
-                  <Form.Control
-                    type="password"
-                    name="password"
-                    placeholder="Entrer votre mot de passe"
-                    onChange={handleChange}
-                    required
-                  />
-                </Form.Group>
-                <Link
-                  href="/forget-password"
-                  className="small text-decoration-none"
-                >
-                  Mot de passe oublié ?
-                </Link>
+
                 <div className="d-grid gap-2 mt-4">
                   <Button variant="primary" type="submit" disabled={loader}>
                     {loader ? (
@@ -108,10 +86,10 @@ const SignIn = () => {
                           role="status"
                           aria-hidden="true"
                         ></span>{" "}
-                        Connexion...
+                        Envoi...
                       </span>
                     ) : (
-                      "Se connecter"
+                      "Envoyer"
                     )}
                   </Button>
                 </div>
@@ -123,17 +101,21 @@ const SignIn = () => {
               )}
 
               <div className="text-center mt-3">
-                <span className="small">Vous n&apos;avez pas de compte ?</span>{" "}
-                <Link href="/sign-up" className="small text-decoration-none">
-                  S&apos;inscrire
+                <span className="small">
+                  {" "}
+                  Vous souvenez-vous de votre mot de passe ?{" "}
+                </span>
+                <Link href="/sign-in" className="small text-decoration-none">
+                  Se connecter
                 </Link>
               </div>
             </Card.Body>
           </Card>
         </Col>
       </Row>
+      <Toaster />
     </div>
   );
 };
 
-export default SignIn;
+export default ForgetPassword;
