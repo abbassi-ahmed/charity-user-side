@@ -38,7 +38,6 @@ const Categories = () => {
         "https://api.olympiquemnihla.com/categories-section/find-all"
       );
       setCategoriesSection(res.data);
-      console.log("Categories fetched successfully:", res.data);
     } catch (error) {
       console.error("Error fetching categories:", error);
     } finally {

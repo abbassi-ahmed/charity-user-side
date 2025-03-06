@@ -67,7 +67,6 @@ export default function AbonnementForm() {
       })
       .then((response) => {
         toast.success("Abonnement attribué avec succès");
-        console.log("Subscription assigned:", response.data);
       })
       .catch((error) => {
         console.error("Error assigning subscription:", error);
