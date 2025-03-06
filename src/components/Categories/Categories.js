@@ -38,6 +38,7 @@ const Categories = () => {
         "https://api.olympiquemnihla.com/categories-section/find-all"
       );
       setCategoriesSection(res.data);
+      console.log("Categories fetched successfully:", res.data);
     } catch (error) {
       console.error("Error fetching categories:", error);
     } finally {
@@ -49,14 +50,9 @@ const Categories = () => {
     fetchCategories();
   }, []);
 
-  if (
-    !categoriesSection ||
-    categoriesSection.length === 0 ||
-    !categoriesSection[0]?.categories ||
-    !Array.isArray(categoriesSection[0]?.categories)
-  )
+  if (!categoriesSection || categoriesSection.length === 0) {
     return null;
-
+  }
   return (
     <section
       className="categories-area bg_cover"
