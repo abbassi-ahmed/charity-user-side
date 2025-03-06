@@ -40,7 +40,7 @@ const About = () => {
           className="d-flex justify-content-center align-items-center"
           style={{ height: "50vh", width: "100%" }}
         >
-          <p>Aucun membre de l'équipe disponible</p>
+          <p>Aucun membre de l&apos;équipe disponible</p>
         </div>
       </Layout>
     );
