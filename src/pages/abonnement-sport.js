@@ -36,7 +36,15 @@ const Sports = () => {
       <Layout>
         <Header />
         <PageTitle title="Club" />
-        <div className="sports-wrapper">
+        <div
+          className="sports-wrapper"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "50px",
+          }}
+        >
           <p>Aucun Club disponible</p>
         </div>
       </Layout>

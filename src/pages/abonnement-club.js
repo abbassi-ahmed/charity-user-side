@@ -36,7 +36,15 @@ const Clubs = () => {
       <Layout>
         <Header />
         <PageTitle title="Club" />
-        <div className="clubs-wrapper">
+        <div
+          className="clubs-wrapper"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "50px",
+          }}
+        >
           <p>Aucun Club disponible</p>
         </div>
       </Layout>
