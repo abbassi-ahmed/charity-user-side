@@ -5,7 +5,7 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import TeamMainArea from "@/components/TeamArea/TeamMainArea";
 import Image from "next/image";
-
+import noData from "../assets/svgs/noData.svg";
 const About = () => {
   const { data: users, isLoading: loadingUsers } = useQuery({
     queryKey: ["users"],
