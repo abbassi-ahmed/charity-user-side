@@ -1,23 +1,34 @@
-import Header from "@/components/Header/Header";
-import Layout from "@/components/Layout/Layout";
-import PageTitle from "@/components/Reuseable/PageTitle";
 import React from "react";
+import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import Layout from "@/components/Layout/Layout";
+import Header from "@/components/Header/Header";
+import PageTitle from "@/components/Reuseable/PageTitle";
 import TeamMainArea from "@/components/TeamArea/TeamMainArea";
-import Image from "next/image";
-import noData from "../assets/svgs/noData.svg";
+
+const fetchUsers = async () => {
+  try {
+    const response = await axios.get(
+      "https://api.olympiquemnihla.com/derigant/find-all"
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    throw new Error("Failed to fetch users");
+  }
+};
+
 const About = () => {
-  const { data: users, isLoading: loadingUsers } = useQuery({
+  const {
+    data: users,
+    isLoading,
+    error,
+  } = useQuery({
     queryKey: ["users"],
-    queryFn: async () => {
-      const response = await axios.get(
-        "https://api.olympiquemnihla.com/derigant/find-all"
-      );
-      return response.data;
-    },
+    queryFn: fetchUsers,
   });
 
-  if (loadingUsers) {
+  if (isLoading) {
     return (
       <Layout>
         <Header />
@@ -25,22 +36,26 @@ const About = () => {
           className="d-flex justify-content-center align-items-center"
           style={{ height: "50vh", width: "100%" }}
         >
-          <div className="pageLoader"></div>
+          <div className="spinner-border text-primary" role="status">
+            <span className="visually-hidden">Chargement...</span>
+          </div>
         </div>
       </Layout>
     );
   }
 
-  if (!users || users.length === 0) {
+  if (error || !users || users.length === 0) {
     return (
       <Layout>
         <Header />
         <PageTitle title="Membres de l'équipe" />
         <div
-          className="d-flex justify-content-center align-items-center"
+          className="d-flex flex-column justify-content-center align-items-center text-center"
           style={{ height: "50vh", width: "100%" }}
         >
-          <p>Aucun membre de l&apos;équipe disponible</p>
+          <p className="text-muted fs-5">
+            Aucun membre de l&apos;équipe disponible
+          </p>
         </div>
       </Layout>
     );
