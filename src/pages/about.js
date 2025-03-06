@@ -31,22 +31,30 @@ const About = () => {
     );
   }
 
+  if (!users || users.length === 0) {
+    return (
+      <Layout>
+        <Header />
+        <PageTitle title="Membres de l'équipe" />
+        <div
+          className="d-flex justify-content-center align-items-center"
+          style={{ height: "50vh", width: "100%" }}
+        >
+          <p>Aucun membre de l'équipe disponible</p>
+        </div>
+      </Layout>
+    );
+  }
+
   return (
     <Layout>
       <Header />
       <PageTitle title="Membres de l'équipe" />
-      {users && users.length === 0 ? (
-        <div className="text-center my-4">
-          <Image src={noData} alt="No Data Found" width={200} height={200} />
-          <h2> Aucun membre pour le moment</h2>
-        </div>
-      ) : (
-        <TeamMainArea
-          className="about-team-main-area team-page-area"
-          count={users.length}
-          users={users}
-        />
-      )}
+      <TeamMainArea
+        className="about-team-main-area team-page-area"
+        count={users.length}
+        users={users}
+      />
     </Layout>
   );
 };
