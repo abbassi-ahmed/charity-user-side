@@ -21,6 +21,7 @@ const SignUp = () => {
     email: "",
     password: "",
     gender: "",
+    phone: "",
     dateOfBirth: "",
     avatar: null,
   });
@@ -62,8 +63,8 @@ const SignUp = () => {
       );
 
       if (response.status === 200 || response.status === 201) {
-        if (response.data.message === "Email already exists") {
-          setErrorMessage("Email déjà utilisé");
+        if (response.data.message === "Email or phone already exists") {
+          setErrorMessage("Email  ou numéro de téléphone déjà utilisé");
         } else {
           router.push("/sign-in");
         }
@@ -134,18 +135,34 @@ const SignUp = () => {
                     required
                   />
                 </Form.Group>
-
-                <Form.Group className="mb-3" controlId="formPassword">
-                  <Form.Label>Mot de passe</Form.Label>
-                  <Form.Control
-                    type="password"
-                    name="password"
-                    placeholder="Entrez votre mot de passe"
-                    value={formData.password}
-                    onChange={handleChange}
-                    required
-                  />
-                </Form.Group>
+                <Row>
+                  <Col md={6}>
+                    <Form.Group className="mb-3" controlId="formPassword">
+                      <Form.Label>Mot de passe</Form.Label>
+                      <Form.Control
+                        type="password"
+                        name="password"
+                        placeholder="Entrez votre mot de passe"
+                        value={formData.password}
+                        onChange={handleChange}
+                        required
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col md={6}>
+                    <Form.Group className="mb-3" controlId="formPhone">
+                      <Form.Label>Numéro de téléphone</Form.Label>
+                      <Form.Control
+                        type="text"
+                        name="phone"
+                        placeholder="Entrez votre numéro de téléphone"
+                        value={formData.phone}
+                        onChange={handleChange}
+                        required
+                      />
+                    </Form.Group>
+                  </Col>
+                </Row>
 
                 <Row>
                   <Col md={6}>

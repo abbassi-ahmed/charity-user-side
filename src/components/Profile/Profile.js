@@ -14,6 +14,7 @@ const Profile = () => {
     firstName: "",
     lastName: "",
     email: "",
+    phone: "",
     gender: "",
     dateOfBirth: "",
   });
@@ -31,6 +32,7 @@ const Profile = () => {
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
+        phone: user.phone || "",
         gender: user?.gender || "",
         dateOfBirth: user?.dateOfBirth || "",
       });
@@ -65,6 +67,7 @@ const Profile = () => {
     const formDataToSend = new FormData();
     formDataToSend.append("firstName", formData.firstName);
     formDataToSend.append("lastName", formData.lastName);
+    formDataToSend.append("phone", formData.phone);
     formDataToSend.append("email", formData.email);
     formDataToSend.append("gender", formData.gender);
     formDataToSend.append("dateOfBirth", formData.dateOfBirth);
@@ -187,8 +190,18 @@ const Profile = () => {
                 required
               />
             </Form.Group>
+            <Form.Group controlId="formPhone">
+              <Form.Label>Téléphone</Form.Label>
+              <Form.Control
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                required
+              />
+            </Form.Group>
             <Form.Group controlId="formGender">
-              <Form.Label>Gendre</Form.Label>
+              <Form.Label>Sexe</Form.Label>
               <Form.Control
                 as="select"
                 name="gender"
