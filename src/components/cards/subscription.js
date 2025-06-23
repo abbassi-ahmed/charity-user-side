@@ -36,7 +36,7 @@ export default function Subscription({
   const handleDonate = async (e) => {
     e.preventDefault();
     if (phone === "" || phone === undefined) {
-      setErrors({ phone: "Please enter your phone number" });
+      setErrors({ phone: "Veuillez entrer votre numéro de téléphone" });
     } else {
       try {
         setLoading(true);
@@ -128,7 +128,7 @@ export default function Subscription({
             >
               <input
                 type="text"
-                placeholder="Email"
+                placeholder="E-mail"
                 value={email}
                 className={`p-2 rounded border shadow-sm bg-light text-gray ${
                   errors.email && "border-danger"
@@ -140,7 +140,7 @@ export default function Subscription({
               />
               <input
                 type="text"
-                placeholder="First Name"
+                placeholder="Prénom"
                 className={`p-2 rounded border shadow-sm bg-light text-gray ${
                   errors.firstName && "border-danger"
                 }`}
@@ -152,7 +152,7 @@ export default function Subscription({
               />
               <input
                 type="text"
-                placeholder="Last Name"
+                placeholder="Nom de famille"
                 className={`p-2 rounded border shadow-sm bg-light text-gray ${
                   errors.lastName && "border-danger"
                 }`}
@@ -164,7 +164,7 @@ export default function Subscription({
               />
               <input
                 type="text"
-                placeholder="Phone"
+                placeholder="Téléphone"
                 className={`p-2 rounded border shadow-sm bg-light text-gray ${
                   errors.phone && "border-danger"
                 }`}
@@ -181,7 +181,7 @@ export default function Subscription({
                     role="status"
                   ></div>
                 ) : (
-                  <> S&apos;abonner pour {price} TND</>
+                  <>S&apos;abonner pour {price} TND</>
                 )}
               </button>
             </form>

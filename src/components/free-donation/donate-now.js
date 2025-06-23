@@ -32,22 +32,22 @@ const DonationAll = () => {
     let formErrors = {};
 
     if (!amount) {
-      formErrors.amount = "Please enter an amount";
+      formErrors.amount = "Veuillez entrer un montant";
     }
     if (!firstName) {
-      formErrors.firstName = "Please enter your first name";
+      formErrors.firstName = "Veuillez entrer votre prénom";
     }
     if (!lastName) {
-      formErrors.lastName = "Please enter your last name";
+      formErrors.lastName = "Veuillez entrer votre nom";
     }
     if (!email) {
-      formErrors.email = "Please enter your email";
+      formErrors.email = "Veuillez entrer votre e-mail";
     }
     if (!phone) {
-      formErrors.phone = "Please enter your phone number";
+      formErrors.phone = "Veuillez entrer votre numéro de téléphone";
     }
     if (!cin) {
-      formErrors.cin = "Please enter your cin";
+      formErrors.cin = "Veuillez entrer votre CIN";
     }
     setErrors(formErrors);
     if (Object.keys(formErrors).length > 0) {
@@ -109,7 +109,7 @@ const DonationAll = () => {
               >
                 <input
                   type="text"
-                  placeholder="Email"
+                  placeholder="E-mail"
                   value={email}
                   className={`p-2 rounded border border-gray shadow-sm bg-light text-gray ${
                     errors.email && "border-danger"
@@ -121,7 +121,7 @@ const DonationAll = () => {
                 />
                 <input
                   type="text"
-                  placeholder="First Name"
+                  placeholder="Prénom"
                   className={`p-2 rounded border border-gray shadow-sm bg-light text-gray ${
                     errors.firstName && "border-danger"
                   }`}
@@ -133,7 +133,7 @@ const DonationAll = () => {
                 />
                 <input
                   type="text"
-                  placeholder="Last Name"
+                  placeholder="Nom"
                   className={`p-2 rounded border border-gray shadow-sm bg-light text-gray ${
                     errors.lastName && "border-danger"
                   }`}
@@ -145,7 +145,7 @@ const DonationAll = () => {
                 />
                 <input
                   type="text"
-                  placeholder="Phone"
+                  placeholder="Téléphone"
                   className={`p-2 rounded border border-gray shadow-sm bg-light text-gray ${
                     errors.phone && "border-danger"
                   }`}
@@ -157,7 +157,7 @@ const DonationAll = () => {
                 />
                 <input
                   type="text"
-                  placeholder="Cin"
+                  placeholder="CIN"
                   className={`p-2 rounded border border-gray shadow-sm bg-light text-gray ${
                     errors.cin && "border-danger"
                   }`}
@@ -169,7 +169,7 @@ const DonationAll = () => {
                 />
                 <input
                   type="text"
-                  placeholder="Amount"
+                  placeholder="Montant"
                   className={`p-2 rounded border border-gray shadow-sm bg-light text-gray ${
                     errors.amount && "border-danger"
                   }`}
@@ -186,7 +186,7 @@ const DonationAll = () => {
                       role="status"
                     ></div>
                   ) : (
-                    <>Donate</>
+                    <>Donner</>
                   )}
                 </Button>
               </form>
