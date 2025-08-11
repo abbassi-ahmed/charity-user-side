@@ -329,6 +329,6 @@ export const projectDetailsSidebar = {
 
 export const similarProjects = {
   tagline: "Businesses You Can Back",
-  title: "Similar Projects",
+  title: "Projets Similaires",
   projects: projects.slice(0, 3),
 };

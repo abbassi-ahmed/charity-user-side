@@ -23,8 +23,8 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <link rel="icon" href="favicon.ico" />
-          <link rel="shortcut icon" href="favicon.ico" type="image/png" />
+          <link rel="icon" href="favicon.png" />
+          <link rel="shortcut icon" href="favicon.png" type="image/png" />
 
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
           <meta name="description" content="" />

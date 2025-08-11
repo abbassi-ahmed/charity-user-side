@@ -68,7 +68,7 @@ const EventDetails = () => {
         />
       </div>
       <div className="event-content bg-light p-4 rounded shadow-sm">
-        <h2 className="mb-3">Event Description</h2>
+        <h2 className="mb-3">Description de l&apos;événement</h2>
         <p
           className="text-wrap"
           style={{

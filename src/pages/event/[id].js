@@ -11,7 +11,7 @@ export default function Page() {
   return (
     <Layout>
       <Header />
-      <PageTitle title="Event Detail" />
+      <PageTitle title="Détails de l'événement" />
       <EventDetails id={id} />
     </Layout>
   );

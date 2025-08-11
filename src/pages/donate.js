@@ -8,7 +8,7 @@ export default function Page() {
   return (
     <Layout>
       <Header />
-      <PageTitle title="Donation" page="Donate" />
+      <PageTitle title="Don" page="Don" />
       <DonationSimple />
     </Layout>
   );

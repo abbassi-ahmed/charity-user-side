@@ -12,7 +12,7 @@ export default function EventItem({ event }) {
             <Card.Img
               variant="top"
               src={event.image || "https://via.placeholder.com/400x300.png"}
-              alt={event.title || "Event image"}
+              alt={event.title || "Image de l'événement"}
               style={{ height: "200px", objectFit: "cover" }}
             />
             <div className="position-absolute top-0 end-0 m-2">
