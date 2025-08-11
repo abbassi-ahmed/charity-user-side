@@ -73,23 +73,23 @@ export const socials = [
   {
     id: 1,
     icon: "fa fa-facebook-square",
-    href: "#",
+    href: "https://www.facebook.com/OlympiqueMnihla",
   },
   {
     id: 2,
     icon: "fa fa-instagram",
-    href: "#",
+    href: "https://www.instagram.com/olympique_mnihla/",
   },
-  {
-    id: 3,
-    icon: "fa fa-linkedin",
-    href: "#",
-  },
-  {
-    id: 4,
-    icon: "fa fa-tiktok",
-    href: "#",
-  },
+  // {
+  //   id: 3,
+  //   icon: "fa fa-linkedin",
+  //   href: "#",
+  // },
+  // {
+  //   id: 4,
+  //   icon: "fa fa-tiktok",
+  //   href: "#",
+  // },
 ];
 
 const headerData = {
