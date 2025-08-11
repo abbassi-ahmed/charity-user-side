@@ -6,7 +6,7 @@ import Link from "next/link";
 import MainHeaderItem from "./MainHeaderItem";
 import { useRootContext } from "@/context/context";
 
-const { logo2, navItems, phone, icon, socials } = headerData;
+const { logo2, navItems, phone, icon } = headerData;
 
 const HeaderTwo = () => {
   const { scrollTop } = useScroll(160);

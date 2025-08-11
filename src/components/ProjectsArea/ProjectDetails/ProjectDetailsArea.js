@@ -130,12 +130,12 @@ const ProjectDetailsArea = ({ project, sum }) => {
                   <div className="d-flex justify-content-between align-items-center mb-3">
                     <span className="h3 mb-0 text-primary">{amount} TND</span>
                     <span className="text-muted">
-                      {progress.toFixed(2)}% complété
+                      {progress.toFixed(0)}% complété
                     </span>
                   </div>
                   <ProgressBar
                     now={progress}
-                    label={`${progress.toFixed(2)}%`}
+                    label={`${progress.toFixed(0)}%`}
                     className="mb-4"
                     style={{ height: "10px" }}
                   />

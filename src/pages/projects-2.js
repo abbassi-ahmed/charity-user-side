@@ -74,7 +74,7 @@ const Projects2 = () => {
     return (
       <Layout>
         <Header />
-        <PageTitle title="Project social" />
+        <PageTitle title="Projet social" />
 
         <div
           className="d-flex justify-content-center align-items-center flex-column"
@@ -90,7 +90,7 @@ const Projects2 = () => {
   return (
     <Layout>
       <Header />
-      <PageTitle title="Project Social" />
+      <PageTitle title="Projet Social" />
       <ExploreProjectsThree projects={projects} projectSums={projectSums} />
     </Layout>
   );

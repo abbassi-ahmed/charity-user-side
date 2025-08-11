@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Row, Col, Badge, Button, Form } from "react-bootstrap";
+import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { Image } from "react-bootstrap";
 import { FaRegCalendarAlt } from "react-icons/fa";
 
@@ -11,16 +11,13 @@ const BlogDetailsMain = ({
   setNewComment,
   handleAddComment,
 }) => {
-  const { image, createdAt, admin, title, content } = blog;
+  const { image, createdAt, title, content } = blog;
 
   return (
     <Container className="blog-details__main">
       <Row className="align-items-center mb-4">
         <Col md={8} className="mb-3 mb-md-0">
           <h1 className="text-primary">{title}</h1>
-          <Badge bg="secondary" className="mb-2">
-            {`${admin.firstName} ${admin.lastName}`}
-          </Badge>
         </Col>
         <Col md={4} className="text-md-end">
           <div className="d-flex align-items-center justify-content-md-end">
@@ -85,7 +82,7 @@ const BlogDetailsMain = ({
                 rows={3}
                 value={newComment}
                 onChange={(e) => setNewComment(e.target.value)}
-                placeholder="Write a comment..."
+                placeholder="Écrivez un commentaire..."
                 className="comment-input"
               />
             </Form.Group>
@@ -99,7 +96,7 @@ const BlogDetailsMain = ({
                 Add Comment
               </Button>
             ) : (
-              <p className="text-muted">Please login to add a comment.</p>
+              <p className="text-muted">Veuillez vous connecter pour ajouter un commentaire.</p>
             )}
           </Form>
         </Col>

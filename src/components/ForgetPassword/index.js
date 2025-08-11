@@ -57,13 +57,13 @@ const ForgetPassword = () => {
 
   return (
     <div style={{ marginBottom: "50px" }}>
-      <PageTitle title="Oubli de mot de passe" />
+      <PageTitle title="Mot de passe oublié" />
       <Row className="justify-content-center">
         <Col lg={5} md={7}>
           <Card className="shadow-lg border-0 rounded-lg mt-5">
             <Card.Body>
               <h2 className="text-center font-weight-light my-4">
-                Oubli de mot de passe
+                Mot de passe oublié
               </h2>
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formEmail">

@@ -186,7 +186,7 @@ const DonationAll = () => {
                       role="status"
                     ></div>
                   ) : (
-                    <>Donner</>
+                    <>Faire un don</>
                   )}
                 </Button>
               </form>
