@@ -1,6 +1,6 @@
 import { funFacts } from "@/data/funFacts";
 import React, { useState, useEffect } from "react";
-import { Container, Image, Row } from "react-bootstrap";
+import { Image, Row } from "react-bootstrap";
 import FunFactsItem from "./FunFactsItem";
 import axios from "axios";
 

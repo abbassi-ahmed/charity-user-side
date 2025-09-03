@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Col, Image, Row } from "react-bootstrap";
 import Link from "../Reuseable/Link";
 import HeaderInfo from "./HeaderInfo";
@@ -32,7 +32,7 @@ const MainHeaderItem = ({
 
   return (
     <Row>
-      <Col lg={12}>
+      <Col lg={14}>
         <div className="main-header-item">
           <div className="main-header-menus d-flex justify-content-between align-items-center">
             <div className="header-logo">

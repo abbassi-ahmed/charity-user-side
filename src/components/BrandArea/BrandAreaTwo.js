@@ -6,7 +6,7 @@ import axios from "axios";
 SwiperCore.use([Autoplay]);
 
 const options = {
-  slidesPerView: 4,
+  slidesPerView: 2,
   spaceBetween: 30,
   loop: true,
   autoplay: {

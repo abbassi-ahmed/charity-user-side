@@ -8,7 +8,7 @@ export default function Events() {
   return (
     <Layout>
       <Header />
-      <PageTitle title="Evénement" parent="pages" />
+      <PageTitle title="Événements" parent="pages" />
       <EventsPage />
     </Layout>
   );

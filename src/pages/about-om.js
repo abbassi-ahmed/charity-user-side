@@ -38,7 +38,7 @@ const About = () => {
       <Layout>
         <Header />
 
-        <PageTitle title="A Propos Om" parent="Page" />
+        <PageTitle title="A Propos Olympique Mnihla" parent="Page" />
         <div
           className="d-flex justify-content-center align-items-center"
           style={{ height: "50vh", width: "100%" }}
@@ -52,7 +52,7 @@ const About = () => {
   return (
     <Layout>
       <Header />
-      <PageTitle title="A Propos Om" parent="Page" />
+      <PageTitle title="A Propos Olympique Mnihla" parent="Page" />
       <AboutIntroduction />
       <NextBigThing className="next-big-thing-about-area" />
       {information && information.length > 0 ? (

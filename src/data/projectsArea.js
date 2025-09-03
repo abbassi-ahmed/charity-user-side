@@ -20,23 +20,23 @@ export const socials3 = [
   {
     id: 1,
     icon: "fa fa-facebook-square",
-    href: "#",
+    href: "https://www.facebook.com/OlympiqueMnihla",
   },
   {
     id: 2,
-    icon: "fa fa-twitter",
-    href: "#",
-  },
-  {
-    id: 3,
-    icon: "ffa fa-pinterest-p",
-    href: "#",
-  },
-  {
-    id: 4,
     icon: "fa fa-instagram",
-    href: "#",
+    href: "https://www.instagram.com/olympique_mnihla/",
   },
+  // {
+  //   id: 3,
+  //   icon: "ffa fa-pinterest-p",
+  //   href: "#",
+  // },
+  // {
+  //   id: 4,
+  //   icon: "fa fa-twitter",
+  //   href: "#",
+  // },
 ];
 
 const projects = [
@@ -329,6 +329,6 @@ export const projectDetailsSidebar = {
 
 export const similarProjects = {
   tagline: "Businesses You Can Back",
-  title: "Similar Projects",
+  title: "Projets Similaires",
   projects: projects.slice(0, 3),
 };

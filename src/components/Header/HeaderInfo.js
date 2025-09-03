@@ -4,8 +4,9 @@ import Social from "./Social";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignInAlt } from "@fortawesome/free-solid-svg-icons";
+import { Button } from "react-bootstrap";
 
-const HeaderInfo = ({ socials, icon, phone = "", searchColor }) => {
+const HeaderInfo = ({ socials }) => {
   const [showMenu, setShowMenu] = useState(false);
   const menuRef = useRef(null);
 
@@ -63,13 +64,13 @@ const HeaderInfo = ({ socials, icon, phone = "", searchColor }) => {
           )}
         </>
       ) : (
-        <Link href="/sign-in">
-          <a className="d-flex align-items-center">
-            <FontAwesomeIcon icon={faSignInAlt} className="mr-10" />
-            <span>Se connecter</span>
-          </a>
-        </Link>
-      )}
+          <Link href="/sign-in">
+            <Button variant="primary" className="w-100">
+              <FontAwesomeIcon icon={faSignInAlt} className="mr-10" />
+              <span>Se connecter</span>
+            </Button>
+          </Link>
+        )}
       <div
         onClick={toggleMenu}
         className="toggle-btn ml-30 canvas_open d-xl-none d-block"

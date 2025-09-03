@@ -11,7 +11,7 @@ export const navItems = [
   {
     id: 2,
     name: "A Propos",
-    href: "",
+    href: "#",
     subNavItems: [
       { id: 1, name: "Olympique Mnihla", href: "/about-om" },
       { id: 2, name: "Équipe", href: "/about" },
@@ -20,7 +20,7 @@ export const navItems = [
   {
     id: 3,
     name: "Crowdfunding",
-    href: "",
+    href: "#",
     subNavItems: [
       { id: 1, name: "SOCIAL", href: "/projects-2" },
       { id: 2, name: "Startup", href: "/projects-type1" },
@@ -31,7 +31,7 @@ export const navItems = [
   {
     id: 4,
     name: "Nos Actions",
-    href: "",
+    href: "#",
     subNavItems: [
       { id: 1, name: "Projet", href: "/project" },
       { id: 2, name: "Evénement", href: "/events" },
@@ -42,7 +42,7 @@ export const navItems = [
   {
     id: 5,
     name: "Nos Abonnements",
-    href: "",
+    href: "#",
     subNavItems: [
       { id: 1, name: "Club", href: "/abonnement-club" },
       { id: 2, name: "Sport", href: "/abonnement-sport" },
@@ -73,23 +73,23 @@ export const socials = [
   {
     id: 1,
     icon: "fa fa-facebook-square",
-    href: "#",
+    href: "https://www.facebook.com/OlympiqueMnihla",
   },
   {
     id: 2,
     icon: "fa fa-instagram",
-    href: "#",
+    href: "https://www.instagram.com/olympique_mnihla/",
   },
-  {
-    id: 3,
-    icon: "fa fa-linkedin",
-    href: "#",
-  },
-  {
-    id: 4,
-    icon: "fa fa-tiktok",
-    href: "#",
-  },
+  // {
+  //   id: 3,
+  //   icon: "fa fa-linkedin",
+  //   href: "#",
+  // },
+  // {
+  //   id: 4,
+  //   icon: "fa fa-tiktok",
+  //   href: "#",
+  // },
 ];
 
 const headerData = {

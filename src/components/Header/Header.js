@@ -1,6 +1,6 @@
 import headerData from "@/data/headerData";
 import useScroll from "@/hooks/useScroll";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import MainHeaderItem from "./MainHeaderItem";
 import Social from "./Social";

@@ -104,7 +104,7 @@ const Clubs = () => {
                           style={{ textDecoration: "none", width: "100%" }}
                         >
                           <Button variant="primary" className="w-100">
-                            <p className="text-white">Voire plus</p>
+                            <p className="text-white">Voir plus</p>
                           </Button>
                         </Link>
                       </Card.Footer>
