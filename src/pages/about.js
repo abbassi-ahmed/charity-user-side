@@ -11,6 +11,7 @@ const fetchUsers = async () => {
     const response = await axios.get(
       "https://api.olympiquemnihla.com/derigant/find-all"
     );
+    console.log(response.data);
     return response.data;
   } catch (error) {
     console.error("Error fetching users:", error);
