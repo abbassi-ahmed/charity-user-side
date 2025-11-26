@@ -13,11 +13,11 @@ export const socials2 = [
     icon: "fa fa-instagram",
     href: "https://www.instagram.com/olympique_mnihla/",
   },
-  // {
-  //   id: 3,
-  //   icon: "fa fa-linkedin",
-  //   href: "#",
-  // },
+  {
+    id: 3,
+    icon: "fa fa-linkedin",
+    href: "https://www.linkedin.com/company/olympique-mnihla",
+  },
   // {
   //   id: 4,
   //   icon: "fa fa-tiktok",

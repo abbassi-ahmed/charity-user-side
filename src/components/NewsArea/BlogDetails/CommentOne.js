@@ -27,7 +27,9 @@ const CommentOneSingle = ({ comment = {} }) => {
 const CommentOne = ({ comments = [], className = "" }) => {
   return (
     <div className={`comment-one ${className}`}>
-      <h3 className="comment-one__block-title">{comments.length} Comments</h3>
+      <h3 className="comment-one__block-title">
+        {comments.length} Commentaires
+      </h3>
       {comments.map((comment) => (
         <CommentOneSingle comment={comment} key={comment.id} />
       ))}

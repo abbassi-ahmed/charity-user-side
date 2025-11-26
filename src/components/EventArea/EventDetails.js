@@ -36,9 +36,6 @@ const EventDetails = () => {
       <Row className="align-items-center mb-4">
         <Col md={8} className="mb-3 mb-md-0">
           <h1 className="text-primary">{event.title}</h1>
-          <Badge bg="secondary" className="mb-2">
-            {event.category}
-          </Badge>
         </Col>
         <Col md={4} className="text-md-end">
           <div className="d-flex align-items-center justify-content-md-end">

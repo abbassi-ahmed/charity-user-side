@@ -31,10 +31,37 @@ const SignUp = () => {
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
+
     if (name === "avatar" && files?.length > 0) {
+      const file = files[0];
+      const fileType = file.type;
+      const fileName = file.name.toLowerCase();
+      const validTypes = ["image/png", "image/jpeg", "image/jpg"];
+      const validExtensions = [".png", ".jpg", ".jpeg"];
+
+      const hasValidType = validTypes.includes(fileType);
+      const hasValidExtension = validExtensions.some(ext => fileName.endsWith(ext));
+
+      if (!hasValidType || !hasValidExtension) {
+        setErrorMessage("La photo de profil doit être au format .png ou .jpg");
+        e.target.value = "";
+        setFormData((prevData) => ({
+          ...prevData,
+          [name]: null,
+        }));
+        return;
+      }
+
+      setErrorMessage(null);
       setFormData((prevData) => ({
         ...prevData,
-        [name]: files[0],
+        [name]: file,
+      }));
+    } else if (name === "phone") {
+      const numericValue = value.replace(/\D/g, "");
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: numericValue,
       }));
     } else {
       setFormData((prevData) => ({
@@ -44,9 +71,44 @@ const SignUp = () => {
     }
   };
 
+  const validateForm = () => {
+    const phoneRegex = /^[0-9]+$/;
+    if (!phoneRegex.test(formData.phone)) {
+      setErrorMessage("Le numéro de téléphone doit contenir uniquement des chiffres");
+      return false;
+    }
+
+    const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+    if (!emailRegex.test(formData.email)) {
+      setErrorMessage("Veuillez entrer une adresse email valide (exemple: utilisateur@domaine.com)");
+      return false;
+    }
+
+    if (formData.avatar) {
+      const validTypes = ["image/png", "image/jpeg", "image/jpg"];
+      const fileName = formData.avatar.name.toLowerCase();
+      const validExtensions = [".png", ".jpg", ".jpeg"];
+
+      const hasValidType = validTypes.includes(formData.avatar.type);
+      const hasValidExtension = validExtensions.some(ext => fileName.endsWith(ext));
+
+      if (!hasValidType || !hasValidExtension) {
+        setErrorMessage("La photo de profil doit être au format .png ou .jpg");
+        return false;
+      }
+    }
+
+    return true;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage(null);
+
+    if (!validateForm()) {
+      return;
+    }
+
     try {
       const data = new FormData();
       Object.keys(formData).forEach((key) => {
@@ -127,7 +189,7 @@ const SignUp = () => {
                 <Form.Group className="mb-3" controlId="formEmail">
                   <Form.Label>Email</Form.Label>
                   <Form.Control
-                    type="email"
+                    type="text"
                     name="email"
                     placeholder="Entrez votre email"
                     value={formData.email}
@@ -200,6 +262,7 @@ const SignUp = () => {
                   <Form.Control
                     type="file"
                     name="avatar"
+                    accept=".png,.jpg,.jpeg,image/png,image/jpeg"
                     onChange={handleChange}
                   />
                 </Form.Group>

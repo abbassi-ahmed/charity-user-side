@@ -44,7 +44,7 @@ const BlogDetailsMain = ({
       </Row>
       <Row className="comments-section mt-5">
         <Col>
-          <h4 className="mb-4">Comments</h4>
+          <h4 className="mb-4">Commentaires</h4>
           {comments.length > 0 ? (
             <ul className="list-unstyled">
               {comments.map((comment) => (
@@ -96,7 +96,9 @@ const BlogDetailsMain = ({
                 Add Comment
               </Button>
             ) : (
-              <p className="text-muted">Veuillez vous connecter pour ajouter un commentaire.</p>
+              <p className="text-muted">
+                Veuillez vous connecter pour ajouter un commentaire.
+              </p>
             )}
           </Form>
         </Col>
