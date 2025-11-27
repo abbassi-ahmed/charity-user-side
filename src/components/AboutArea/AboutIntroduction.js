@@ -73,10 +73,13 @@ const AboutIntroduction = () => {
                 {!imageLoaded && <div className="pageLoader"></div>}
                 <Image
                   src={aboutData[0]?.thumb}
-                  alt=""
+                  alt="About section image"
                   width={550}
                   height={550}
-                  style={{ display: imageLoaded ? "block" : "none" }}
+                  style={{
+                    display: imageLoaded ? "block" : "none",
+                    objectFit: "contain",
+                  }}
                   onLoad={handleImageLoad}
                 />
                 {imageLoaded && (
